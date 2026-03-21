@@ -129,7 +129,7 @@ const ABOUT_TRANSLATIONS = {
     next: 'Επόμενα',
   },
   en: {
-    titlePrefix: 'Our first',
+    titlePrefix: 'Our',
     titleAccent: 'projects',
     titleSuffix: '',
     prev: 'Previous',
