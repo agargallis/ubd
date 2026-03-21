@@ -26,7 +26,7 @@ const TESTIMONIALS_TRANSLATIONS = {
   en: {
     titlePrefix: 'What our',
     titleAccent: 'clients',
-    titleSuffix: 'say',
+    titleSuffix: 'say?',
     seeAllTitle: 'See all reviews',
     seeAllSubtitle: 'on Google',
     items: [
