@@ -37,6 +37,17 @@ const PROJECTS = [
     ],
   },
   {
+    title: 'Μεταξύ Μας',
+    image: '/2.png',
+    alt: 'Λογότυπο του Μεταξύ Μας',
+    imageLink: 'https://metaxumas.gr/',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/metaxumasouzeri/', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://metaxumas.gr/', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, url: 'https://shorturl.at/C4e8i', label: 'Google Profile Optimization' },
+    ],
+  },
+  {
     title: 'Kalamaki Lab',
     image: 'https://i.imgur.com/lk2rBNd.png',
     alt: 'Λογότυπο του Kalamaki Lab',
