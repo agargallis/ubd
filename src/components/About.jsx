@@ -51,6 +51,7 @@ const PROJECTS = [
     title: 'Kalamaki Lab',
     image: 'https://i.imgur.com/lk2rBNd.png',
     alt: 'Λογότυπο του Kalamaki Lab',
+    imageLink: 'https://linktr.ee/kalamakilab',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/kalamaki_lab/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://linktr.ee/kalamakilab', label: 'Website Creation' },
@@ -61,6 +62,7 @@ const PROJECTS = [
     title: 'Barbershop Queue System',
     image: 'https://i.imgur.com/6mkuHi8.png',
     alt: 'Λογότυπο του Queue System',
+    imageLink: 'https://barbershop-qr.vercel.app/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://barbershop-qr.vercel.app/', label: 'Website Creation' },
@@ -93,6 +95,7 @@ const PROJECTS = [
     title: 'Jim Vlachos',
     image: 'https://i.imgur.com/DqZTyop.png',
     alt: 'Λογότυπο του Jim Vlachos',
+    imageLink: 'https://jimvlachos.gr/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/jim.vlachos/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://jimvlachos.gr/', label: 'Website Creation' },
@@ -103,6 +106,7 @@ const PROJECTS = [
     title: 'Barbershop Booking App',
     image: 'https://i.imgur.com/0JIuRWN.png',
     alt: 'Λογότυπο του Booking App',
+    imageLink: 'https://barbershop-booking-jet.vercel.app/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://barbershop-booking-jet.vercel.app/', label: 'Website Creation' },
@@ -113,6 +117,7 @@ const PROJECTS = [
     title: 'Personal Portfolio',
     image: 'https://i.imgur.com/v0LMlvm.png',
     alt: 'Λογότυπο του Antonis Gargallis',
+    imageLink: 'https://agargallis.github.io/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://agargallis.github.io/', label: 'Website Creation' },
@@ -123,6 +128,7 @@ const PROJECTS = [
     title: 'Teammate Personal Portfolio',
     image: '/AZ.png',
     alt: 'Teammate personal portfolio logo',
+    imageLink: 'https://aggeloszax.github.io',
     links: [
       { icon: <Instagram className="h-6 w-6" />, label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://aggeloszax.github.io', label: 'Website Creation' },
