@@ -126,7 +126,7 @@ const PROJECTS = [
   },
   {
     title: 'Teammate Personal Portfolio',
-    image: '/AZ.png',
+    image: '/AG.png',
     alt: 'Teammate personal portfolio logo',
     imageLink: 'https://aggeloszax.github.io',
     links: [
