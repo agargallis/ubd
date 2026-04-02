@@ -93,15 +93,16 @@ const Hero = ({ language }) => {
     <motion.span
   animate={
     isMobile
-      ? { scale: [1, 1.03, 1], opacity: [1, 0.92, 1] }
+      ? { opacity: [1, 0.75, 1] }
       : { letterSpacing: ["0em", "0.04em", "0em"] }
   }
   transition={{
-    duration: 5,
+    duration: 4,
     ease: "easeInOut",
-    repeat: Infinity
+    repeat: Infinity,
+    repeatType: "mirror"
   }}
-  className="font-medium tracking-wide leading-tight inline-block origin-center [will-change:transform]"
+  className="font-medium tracking-wide leading-tight inline-block"
 >
   Upgrading Business Digitally -{" "}
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-amber-300 to-yellow-500 font-semibold">
