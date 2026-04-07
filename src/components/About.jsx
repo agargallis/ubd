@@ -119,7 +119,7 @@ const PROJECTS = [
     alt: 'Λογότυπο του Antonis Gargallis',
     imageLink: 'https://agargallis.github.io/',
     links: [
-      { icon: <Instagram className="h-6 w-6" />, label: 'Instagram Page' },
+      { icon: <Instagram className="h-6 w-6" />,url: 'https://www.instagram.com/agargallis/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://agargallis.github.io/', label: 'Website Creation' },
       { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
     ],
@@ -130,13 +130,24 @@ const PROJECTS = [
     alt: 'Teammate personal portfolio logo',
     imageLink: 'https://aggeloszax.github.io',
     links: [
-      { icon: <Instagram className="h-6 w-6" />, label: 'Instagram Page' },
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/_zaxariou/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://aggeloszax.github.io', label: 'Website Creation' },
       { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
     ],
   },
+  {
+    title: 'Basketball Team Website',
+    image: 'https://i.imgur.com/FquU2N4.png',
+    alt: 'Basketball Team Website logo',
+    imageLink: 'https://noobs.gr',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/noobsbc/', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://noobs.gr', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
+    ],
+  },
 ];
-
+  
 const ABOUT_TRANSLATIONS = {
   el: {
     titlePrefix: 'Τα',
