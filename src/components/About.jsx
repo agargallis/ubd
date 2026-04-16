@@ -7,7 +7,7 @@ const PROJECTS = [
     title: 'Άσπρο Πρόβατο Κρεατοφαγείον',
     image: 'https://i.imgur.com/8mTd5fq.png',
     alt: 'Λογότυπο του εστιατορίου Άσπρο Πρόβατο',
-    imageLink: 'https://go.screenpal.com/watch/cT63Djnbmvl',
+    imageLink: 'https://www.instagram.com/aspro_provato/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/aspro_provato/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://aspro-provato.gr', label: 'Website Creation' },
@@ -18,7 +18,7 @@ const PROJECTS = [
     title: 'Έπρεπε',
     image: 'https://i.imgur.com/y0MDg7Y.png',
     alt: 'Λογότυπο του εστιατορίου Έπρεπε',
-    imageLink: 'https://go.screenpal.com/watch/cT63DnnbmUV',
+    imageLink: 'https://www.instagram.com/eprepemplelimanaki/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/eprepemplelimanaki/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://eprepe-salamina.gr', label: 'Website Creation' },
@@ -29,7 +29,7 @@ const PROJECTS = [
     title: 'Molte Vita',
     image: 'https://i.imgur.com/onRphz0.png',
     alt: 'Λογότυπο του καταστήματος Molte Vita',
-    imageLink: 'https://go.screenpal.com/watch/cT63lJnbGK8',
+    imageLink: 'https://www.instagram.com/moltevita_/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/moltevita_/', label: 'Instagram Optimization' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://moltevita.com', label: 'Website Creation' },
@@ -37,43 +37,10 @@ const PROJECTS = [
     ],
   },
   {
-    title: 'Μεταξύ Μας',
-    image: '/2.png',
-    alt: 'Λογότυπο του Μεταξύ Μας',
-    imageLink: 'https://metaxumas.gr/',
-    links: [
-      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/metaxumasouzeri/', label: 'Instagram Page' },
-      { icon: <Globe className="h-6 w-6" />, url: 'https://metaxumas.gr/', label: 'Website Creation' },
-      { icon: <Search className="h-6 w-6" />, url: 'https://shorturl.at/C4e8i', label: 'Google Profile Optimization' },
-    ],
-  },
-  {
-    title: 'Kalamaki Lab',
-    image: 'https://i.imgur.com/lk2rBNd.png',
-    alt: 'Λογότυπο του Kalamaki Lab',
-    imageLink: 'https://linktr.ee/kalamakilab',
-    links: [
-      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/kalamaki_lab/', label: 'Instagram Page' },
-      { icon: <Globe className="h-6 w-6" />, url: 'https://linktr.ee/kalamakilab', label: 'Website Creation' },
-      { icon: <Search className="h-6 w-6" />, url: 'https://share.google/cRAX6gvTvt2XhT1R0', label: 'Google Profile Optimization' },
-    ],
-  },
-  {
-    title: 'Barbershop Queue System',
-    image: 'https://i.imgur.com/6mkuHi8.png',
-    alt: 'Λογότυπο του Queue System',
-    imageLink: 'https://barbershop-qr.vercel.app/',
-    links: [
-      { icon: <Instagram className="h-6 w-6" />, label: 'Instagram Page' },
-      { icon: <Globe className="h-6 w-6" />, url: 'https://barbershop-qr.vercel.app/', label: 'Website Creation' },
-      { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
-    ],
-  },
-  {
     title: 'Λιοτρίβι',
     image: 'https://i.imgur.com/NzHvqVX.png',
     alt: 'Λογότυπο του καταστήματος Λιοτρίβι',
-    imageLink: 'https://go.screenpal.com/watch/cTXe1PnFFNu?_gl=1*1mbq3rm*_ga*NTI4MDkwNzgyLjE3NjExNDgwNTQ.*_ga_J7G603GGVL*czE3NjIxNTMwMDAkbzIkZzEkdDE3NjIxNTQxMTEkajE1JGwwJGgw',
+    imageLink: 'https://www.instagram.com/liotrivi_peristeri/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/liotrivi_peristeri/', label: 'Instagram Optimization' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://liotriviperisteri.gr', label: 'Website Creation' },
@@ -84,7 +51,7 @@ const PROJECTS = [
     title: 'Giafaliscar',
     image: 'https://i.imgur.com/swE8yJq.png',
     alt: 'Λογότυπο του Giafaliscar',
-    imageLink: 'https://go.screenpal.com/watch/cTlnronq7pW',
+    imageLink: 'https://www.instagram.com/giafaliscar/',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/giafaliscar/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://giafaliscar.gr', label: 'Website Creation' },
@@ -103,6 +70,39 @@ const PROJECTS = [
     ],
   },
   {
+    title: 'Kalamaki Lab',
+    image: 'https://i.imgur.com/lk2rBNd.png',
+    alt: 'Λογότυπο του Kalamaki Lab',
+    imageLink: 'https://linktr.ee/kalamakilab',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/kalamaki_lab/', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://linktr.ee/kalamakilab', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, url: 'https://share.google/cRAX6gvTvt2XhT1R0', label: 'Google Profile Optimization' },
+    ],
+  },
+  {
+    title: 'Μεταξύ Μας',
+    image: '/2.png',
+    alt: 'Λογότυπο του Μεταξύ Μας',
+    imageLink: 'https://metaxumas.gr/',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/metaxumasouzeri/', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://metaxumas.gr/', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, url: 'https://shorturl.at/C4e8i', label: 'Google Profile Optimization' },
+    ],
+  },/*
+  {
+    title: 'Barbershop Queue System',
+    image: 'https://i.imgur.com/6mkuHi8.png',
+    alt: 'Λογότυπο του Queue System',
+    imageLink: 'https://barbershop-qr.vercel.app/',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://barbershop-qr.vercel.app/', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
+    ],
+  },/*
+  {
     title: 'Barbershop Booking App',
     image: 'https://i.imgur.com/0JIuRWN.png',
     alt: 'Λογότυπο του Booking App',
@@ -112,9 +112,10 @@ const PROJECTS = [
       { icon: <Globe className="h-6 w-6" />, url: 'https://barbershop-booking-jet.vercel.app/', label: 'Website Creation' },
       { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
     ],
-  },
+  },*/
+  /*
   {
-    title: 'Personal Portfolio',
+    title: 'Antonis Gargallis',
     image: 'https://i.imgur.com/v0LMlvm.png',
     alt: 'Λογότυπο του Antonis Gargallis',
     imageLink: 'https://agargallis.github.io/',
@@ -123,9 +124,9 @@ const PROJECTS = [
       { icon: <Globe className="h-6 w-6" />, url: 'https://agargallis.github.io/', label: 'Website Creation' },
       { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
     ],
-  },
+  },*/
   {
-    title: 'Teammate Personal Portfolio',
+    title: 'Aggelos Zaxariou',
     image: '/AG.png',
     alt: 'Teammate personal portfolio logo',
     imageLink: 'https://aggeloszax.github.io',
@@ -136,14 +137,25 @@ const PROJECTS = [
     ],
   },
   {
-    title: 'Basketball Team Website',
-    image: 'https://i.imgur.com/FquU2N4.png',
+    title: 'Noobs BC',
+    image: 'https://i.imgur.com/r4zoNQ3.png',
     alt: 'Basketball Team Website logo',
     imageLink: 'https://noobs.gr',
     links: [
-      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/noobsbc/', label: 'Instagram Page' },
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/noobs.gr/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://noobs.gr', label: 'Website Creation' },
       { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
+    ],
+  },
+  {
+    title: 'SS Moto',
+    image: 'https://i.imgur.com/jzgQAv4.png',
+    alt: 'SS Moto logo',
+    imageLink: 'https://ssmoto.gr',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/ssmoto.gr/', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://ssmoto.gr', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, url: 'https://share.google/7wUWURyRpx8mh3fK7', label: 'Google Profile Optimization' },
     ],
   },
 ];

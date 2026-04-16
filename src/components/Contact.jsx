@@ -51,6 +51,7 @@ const CONTACT_TRANSLATIONS = {
     facebookAria: 'Facebook',
     instagramAria: 'Instagram',
     linkedinAria: 'LinkedIn',
+    tiktokAria: 'TikTok',
     successTitle: '✅ Το μήνυμά σας στάλθηκε με επιτυχία!',
     successDesc: 'Ευχαριστούμε για την επικοινωνία. Θα επικοινωνήσουμε μαζί σας σύντομα.',
     errorTitle: '❌ Σφάλμα Αποστολής',
@@ -96,6 +97,7 @@ const CONTACT_TRANSLATIONS = {
     facebookAria: 'Facebook',
     instagramAria: 'Instagram',
     linkedinAria: 'LinkedIn',
+    tiktokAria: 'TikTok',
     successTitle: '✅ Your message was sent successfully!',
     successDesc: 'Thank you for contacting us. We will get back to you shortly.',
     errorTitle: '❌ Submission Error',
@@ -382,14 +384,19 @@ const Contact = ({ language }) => {
                 </p>
 
                 <div className="flex justify-center gap-3 pt-3">
-                  <a href="https://www.facebook.com/profile.php?id=61581820626835" target="_blank" rel="noopener noreferrer" aria-label={t.facebookAria} className="p-2.5 bg-slate-800 rounded-full border border-slate-700/70 hover:bg-primary transition-all duration-300 hover:-translate-y-1">
-                    <Facebook className="w-5 h-5" />
-                  </a>
                   <a href="https://www.instagram.com/ubd.gr/" target="_blank" rel="noopener noreferrer" aria-label={t.instagramAria} className="p-2.5 bg-slate-800 rounded-full border border-slate-700/70 hover:bg-primary transition-all duration-300 hover:-translate-y-1">
                     <Instagram className="w-5 h-5" />
                   </a>
+                  <a href="https://www.tiktok.com/@ubd.gr" target="_blank" rel="noopener noreferrer" aria-label={t.tiktokAria} className="p-2.5 bg-slate-800 rounded-full border border-slate-700/70 hover:bg-primary transition-all duration-300 hover:-translate-y-1">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.3 6.3 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.15 8.15 0 0 0 4.77 1.52V6.76a4.85 4.85 0 0 1-1-.07z"/>
+                    </svg>
+                  </a>
                   <a href="https://www.linkedin.com/company/ubdgr/" target="_blank" rel="noopener noreferrer" aria-label={t.linkedinAria} className="p-2.5 bg-slate-800 rounded-full border border-slate-700/70 hover:bg-primary transition-all duration-300 hover:-translate-y-1">
                     <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="https://www.facebook.com/profile.php?id=61581820626835" target="_blank" rel="noopener noreferrer" aria-label={t.facebookAria} className="p-2.5 bg-slate-800 rounded-full border border-slate-700/70 hover:bg-primary transition-all duration-300 hover:-translate-y-1">
+                    <Facebook className="w-5 h-5" />
                   </a>
                 </div>
               </div>
