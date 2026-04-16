@@ -7,7 +7,7 @@ const PROJECTS = [
     title: 'Άσπρο Πρόβατο Κρεατοφαγείον',
     image: 'https://i.imgur.com/8mTd5fq.png',
     alt: 'Λογότυπο του εστιατορίου Άσπρο Πρόβατο',
-    imageLink: 'https://www.instagram.com/aspro_provato/',
+    imageLink: 'https://aspro-provato.gr',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/aspro_provato/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://aspro-provato.gr', label: 'Website Creation' },
@@ -18,7 +18,7 @@ const PROJECTS = [
     title: 'Έπρεπε',
     image: 'https://i.imgur.com/y0MDg7Y.png',
     alt: 'Λογότυπο του εστιατορίου Έπρεπε',
-    imageLink: 'https://www.instagram.com/eprepemplelimanaki/',
+    imageLink: 'https://eprepe-salamina.gr',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/eprepemplelimanaki/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://eprepe-salamina.gr', label: 'Website Creation' },
@@ -29,7 +29,7 @@ const PROJECTS = [
     title: 'Molte Vita',
     image: 'https://i.imgur.com/onRphz0.png',
     alt: 'Λογότυπο του καταστήματος Molte Vita',
-    imageLink: 'https://www.instagram.com/moltevita_/',
+    imageLink: 'https://moltevita.com',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/moltevita_/', label: 'Instagram Optimization' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://moltevita.com', label: 'Website Creation' },
@@ -40,7 +40,7 @@ const PROJECTS = [
     title: 'Λιοτρίβι',
     image: 'https://i.imgur.com/NzHvqVX.png',
     alt: 'Λογότυπο του καταστήματος Λιοτρίβι',
-    imageLink: 'https://www.instagram.com/liotrivi_peristeri/',
+    imageLink: 'https://liotriviperisteri.gr',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/liotrivi_peristeri/', label: 'Instagram Optimization' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://liotriviperisteri.gr', label: 'Website Creation' },
@@ -51,7 +51,7 @@ const PROJECTS = [
     title: 'Giafaliscar',
     image: 'https://i.imgur.com/swE8yJq.png',
     alt: 'Λογότυπο του Giafaliscar',
-    imageLink: 'https://www.instagram.com/giafaliscar/',
+    imageLink: 'https://giafaliscar.gr',
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/giafaliscar/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://giafaliscar.gr', label: 'Website Creation' },
