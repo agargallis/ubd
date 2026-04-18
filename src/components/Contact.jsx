@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Mail, Phone, MapPin, Clock, Send, Facebook, Instagram, Linkedin } from 'lucide-react';
 import { useToast } from '@/components/ui/use-toast';
 
-const RECAPTCHA_SITE_KEY = '6LfaXAwsAAAAAPwkFIKF-b5PZ--OV0xCqx4LfbVV';
+const FORMSPREE_URL = 'https://formspree.io/f/xvgwwave';
 
 const CONTACT_TRANSLATIONS = {
   el: {
@@ -109,76 +109,19 @@ const Contact = ({ language }) => {
   const { toast } = useToast();
   const [service, setService] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const recaptchaRef = useRef(null);
-  const widgetIdRef = useRef(null);
   const t = CONTACT_TRANSLATIONS[language] || CONTACT_TRANSLATIONS.el;
 
-  useEffect(() => {
-    const loadRecaptcha = () => {
-      if (document.getElementById('recaptcha-script')) {
-        if (window.grecaptcha && window.grecaptcha.render) {
-          renderBadge();
-        }
-        return;
-      }
-
-      const script = document.createElement('script');
-      script.id = 'recaptcha-script';
-      script.src = `https://www.google.com/recaptcha/api.js?render=explicit`;
-      script.async = true;
-      script.defer = true;
-      document.body.appendChild(script);
-
-      script.onload = () => {
-        window.grecaptcha.ready(() => {
-          renderBadge();
-        });
-      };
-    };
-
-    const renderBadge = () => {
-      if (recaptchaRef.current && widgetIdRef.current === null) {
-        try {
-          widgetIdRef.current = window.grecaptcha.render(recaptchaRef.current, {
-            'sitekey': RECAPTCHA_SITE_KEY,
-            'badge': 'inline',
-            'size': 'invisible'
-          });
-        } catch (e) {
-          console.error("Recaptcha render error:", e);
-        }
-      }
-    };
-
-    loadRecaptcha();
-  }, []);
-  
   const handleSubmit = async e => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    try {
-      // Execute using the specific widget ID to ensure it uses the inline configuration
-      let recaptchaToken;
-      if (widgetIdRef.current !== null) {
-         recaptchaToken = await window.grecaptcha.execute(widgetIdRef.current, { action: 'submit' });
-      } else {
-         // Fallback if widget didn't render (shouldn't happen if loaded correctly)
-         recaptchaToken = await window.grecaptcha.execute(RECAPTCHA_SITE_KEY, { action: 'submit' });
-      }
-      
-      const formData = new FormData(e.target);
-      const data = {
-        ...Object.fromEntries(formData.entries()),
-        recaptchaToken
-      };
 
-      const response = await fetch('/api/send-email', {
+    try {
+      const formData = new FormData(e.target);
+
+      const response = await fetch(FORMSPREE_URL, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        headers: { 'Accept': 'application/json' },
+        body: formData,
       });
 
       if (response.ok) {
@@ -297,14 +240,6 @@ const Contact = ({ language }) => {
               <p className="text-xs text-muted-foreground text-center lg:text-left">
                 {t.requiredHint} <span className="text-primary">*</span> {t.requiredHintSuffix}
               </p>
-
-              
-              {/* ReCAPTCHA Inline Badge Container */}
-              <div
-                ref={recaptchaRef}
-                className="my-4 min-h-[60px] flex justify-center lg:justify-start"
-              ></div>
-
 
               <div>
                 <Button 
