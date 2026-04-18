@@ -14,7 +14,7 @@ const SERVICES_TRANSLATIONS = {
       {
         title: 'Βελτιστοποίηση & Ασφάλεια Social Media',
         description: 'Μεταμορφώστε την παρουσία σας στα social media με στρατηγικό περιεχόμενο και ευπαρουσίαστο υλικό.',
-        features: ['Insta, L/In, Fb, T/T, Gmail', 'Bitwarden Safety System', 'Content Building'],
+        features: ['Insta, L/In, Fb, T/T, Gmail', 'Bitwarden safety system', 'Content building'],
       },
       {
         title: 'Σύγχρονη Ανάπτυξη Ιστοσελίδων',
