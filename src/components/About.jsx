@@ -80,17 +80,7 @@ const PROJECTS = [
       { icon: <Search className="h-6 w-6" />, url: 'https://share.google/cRAX6gvTvt2XhT1R0', label: 'Google Profile Optimization' },
     ],
   },
-  {
-    title: 'Μεταξύ Μας',
-    image: '/2.png',
-    alt: 'Λογότυπο του Μεταξύ Μας',
-    imageLink: 'https://metaxumas.gr/',
-    links: [
-      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/metaxu.mas/', label: 'Instagram Page' },
-      { icon: <Globe className="h-6 w-6" />, url: 'https://metaxumas.gr/', label: 'Website Creation' },
-      { icon: <Search className="h-6 w-6" />, url: 'https://shorturl.at/C4e8i', label: 'Google Profile Optimization' },
-    ],
-  },/*
+  /*
   {
     title: 'Barbershop Queue System',
     image: 'https://i.imgur.com/6mkuHi8.png',
@@ -134,6 +124,17 @@ const PROJECTS = [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/_zaxariou/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://aggeloszax.github.io', label: 'Website Creation' },
       { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
+    ],
+  },
+  {
+    title: 'Μεταξύ Μας',
+    image: '/2.png',
+    alt: 'Λογότυπο του Μεταξύ Μας',
+    imageLink: 'https://metaxumas.gr/',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/metaxu.mas/', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://metaxumas.gr/', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, url: 'https://shorturl.at/C4e8i', label: 'Google Profile Optimization' },
     ],
   },
   {
