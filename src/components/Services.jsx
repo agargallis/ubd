@@ -14,17 +14,17 @@ const SERVICES_TRANSLATIONS = {
       {
         title: 'Βελτιστοποίηση & Ασφάλεια Social Media',
         description: 'Μεταμορφώστε την παρουσία σας στα social media με στρατηγικό περιεχόμενο και ευπαρουσίαστο υλικό.',
-        features: ['Insta, L/In, Fb, T/T, Gmail', 'Bitwarden safety system', 'Content giving'],
+        features: ['Insta, L/In, Fb, T/T, Gmail', 'Bitwarden Safety System', 'Content Building'],
       },
       {
         title: 'Σύγχρονη Ανάπτυξη Ιστοσελίδων',
         description: 'Δημιουργήστε εντυπωσιακές, responsive ιστοσελίδες που μετατρέπουν τους επισκέπτες σε πελάτες με κορυφαίο σχεδιασμό και λειτουργικότητα.',
-        features: ['Δωρεάν παροχή hosting', 'Domain management', 'Mini e-shop', 'Contact form management'],
+        features: ['Δωρεάν παροχή hosting', 'Domain management', 'Automations', 'Contact form management'],
       },
       {
         title: 'Έξυπνες Λύσεις για Καταστήματα',
         description: 'Επαναπροσδιορίστε τις λειτουργίες του καταστήματός σας με διαχείριση αποθεμάτων, συστήματα πωλήσεων και ανάλυση πελατών.',
-        features: ['QR cards για αξιολόγηση', 'Συνεργασία με simple system', 'Παρακολούθηση e-sales'],
+        features: ['QR cards για αξιολόγηση', 'Διαχείριση e-services', 'Παρακολούθηση e-sales'],
       },
       {
         title: 'Ενσωμάτωση Google Maps',
