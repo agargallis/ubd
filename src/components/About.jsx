@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Globe, Search, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Instagram, Globe, Search, ChevronLeft, ChevronRight, MenuSquare } from 'lucide-react';
 
 const PROJECTS = [
   {
@@ -45,6 +45,7 @@ const PROJECTS = [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/liotrivi_peristeri/', label: 'Instagram Optimization' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://liotriviperisteri.gr', label: 'Website Creation' },
       { icon: <Search className="h-6 w-6" />, url: 'https://share.google/qhHt8f0MH0VmF0FSI', label: 'Google Profile Optimization' },
+      { icon: <MenuSquare className="h-6 w-6" />, url:'https://cm2qcx.csb.app/',label: 'React App' },
     ],
   },
   {
@@ -135,6 +136,7 @@ const PROJECTS = [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/metaxu.mas/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://metaxumas.gr/', label: 'Website Creation' },
       { icon: <Search className="h-6 w-6" />, url: 'https://shorturl.at/C4e8i', label: 'Google Profile Optimization' },
+      { icon: <MenuSquare className="h-6 w-6" />, url: 'https://www.papermark.com/view/cmocy7tdd002ol204d6ttqqtu', label: 'React App' },
     ],
   },
   {
