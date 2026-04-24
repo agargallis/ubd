@@ -159,6 +159,17 @@ const PROJECTS = [
       { icon: <Search className="h-6 w-6" />, url: 'https://share.google/7wUWURyRpx8mh3fK7', label: 'Google Profile Optimization' },
     ],
   },
+  {
+    title: 'AEK of Peristeri BC',
+    image: 'https://i.imgur.com/hMB8R7q.png',
+    alt: 'AEK of Peristeri BC logo',
+    imageLink: 'https://aekperisterioubc.gr',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/aekperisterioubc/', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://aekperisterioubc.gr', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, url: 'https://share.google/m8aCoXfevK1UnRg6o', label: 'Google Profile Optimization' },
+    ],
+  },
 ];
   
 const ABOUT_TRANSLATIONS = {
