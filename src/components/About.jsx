@@ -67,7 +67,6 @@ const PROJECTS = [
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/jim.vlachos/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://jimvlachos.gr/', label: 'Website Creation' },
-      { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
     ],
   },
   {
@@ -124,7 +123,6 @@ const PROJECTS = [
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/_zaxariou/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://aggeloszax.github.io', label: 'Website Creation' },
-      { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
     ],
   },
   {
@@ -147,7 +145,7 @@ const PROJECTS = [
     links: [
       { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/noobs.gr/', label: 'Instagram Page' },
       { icon: <Globe className="h-6 w-6" />, url: 'https://noobs.gr', label: 'Website Creation' },
-      { icon: <Search className="h-6 w-6" />, label: 'Google Profile Optimization' },
+      { icon: <Search className="h-6 w-6" />, url: 'https://shorturl.at/1kQpW',label: 'Google Profile Optimization' },
     ],
   },
   {
