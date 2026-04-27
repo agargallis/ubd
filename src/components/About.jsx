@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Globe, Search, ChevronLeft, ChevronRight, MenuSquare } from 'lucide-react';
 
-const PROJECTS = [
+export const PROJECTS = [
   {
     title: 'Άσπρο Πρόβατο Κρεατοφαγείον',
     image: 'https://i.imgur.com/8mTd5fq.png',
