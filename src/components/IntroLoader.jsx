@@ -54,8 +54,12 @@ const IntroLoader = () => {
           exit={{ opacity: 0, scale: 1.02, transition: { duration: 0.45, ease: 'easeInOut' } }}
         >
           <div className="intro-loader__backdrop" aria-hidden="true">
+            <div className="intro-loader__blurwash" />
             <div className="intro-loader__orb intro-loader__orb--cyan" />
+            <div className="intro-loader__orb intro-loader__orb--blue" />
             <div className="intro-loader__orb intro-loader__orb--gold" />
+            <div className="intro-loader__beam intro-loader__beam--left" />
+            <div className="intro-loader__beam intro-loader__beam--right" />
           </div>
 
           <motion.div
