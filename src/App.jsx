@@ -10,6 +10,7 @@ import TermsPage from '@/components/legal/TermsPage';
 import CookiesPage from '@/components/legal/CookiesPage';
 import HomePage from '@/pages/HomePage';
 import NotFoundPage from '@/pages/NotFoundPage';
+import IntroLoader from '@/components/IntroLoader';
 
 const ScrollToSection = () => {
   const { hash } = useLocation();
@@ -80,6 +81,7 @@ function App() {
       <Router>
         <ScrollToSection />
         <div className="relative isolate min-h-screen min-h-[100dvh] text-foreground transition-colors duration-300 overflow-x-hidden flex flex-col">
+          <IntroLoader />
           <div className="site-ambience" aria-hidden="true">
             <div className="ambient-orb ambient-orb-cyan" />
             <div className="ambient-orb ambient-orb-gold" />
