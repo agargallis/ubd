@@ -3,10 +3,17 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 const LOADING_DURATION_MS = 2600;
 const WELCOME_DURATION_MS = 900;
+const INTRO_LOGO_URL = 'https://i.imgur.com/I7mGxrV.png';
 
-const THEME_LOGO_FILTERS = {
-  light: 'brightness(0) drop-shadow(0 0 18px rgba(66, 170, 214, 0.16))',
-  dark: 'brightness(0) invert(1) drop-shadow(0 0 18px rgba(91, 234, 255, 0.3))',
+const THEME_LOGO_STYLES = {
+  light: {
+    backgroundColor: '#000000',
+    boxShadow: '0 0 18px rgba(66, 170, 214, 0.16)',
+  },
+  dark: {
+    backgroundColor: '#ffffff',
+    boxShadow: '0 0 18px rgba(91, 234, 255, 0.3)',
+  },
 };
 
 const IntroLoader = ({ theme = 'light', onComplete }) => {
@@ -15,7 +22,7 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
 
   const progressLabel = useMemo(() => `${Math.max(progress, 1)}%`, [progress]);
-  const logoFilter = THEME_LOGO_FILTERS[theme] || THEME_LOGO_FILTERS.light;
+  const logoStyle = THEME_LOGO_STYLES[theme] || THEME_LOGO_STYLES.light;
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -75,11 +82,15 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: 'easeOut' }}
           >
-            <motion.img
-              src="https://i.imgur.com/I7mGxrV.png"
-              alt="UBD Logo"
+            <motion.div
+              role="img"
+              aria-label="UBD Logo"
               className="intro-loader__logo intro-loader__logo--pulse"
-              style={{ filter: logoFilter }}
+              style={{
+                ...logoStyle,
+                WebkitMaskImage: `url(${INTRO_LOGO_URL})`,
+                maskImage: `url(${INTRO_LOGO_URL})`,
+              }}
               initial={{ scale: 0.86, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.75, ease: 'easeOut' }}

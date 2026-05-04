@@ -466,9 +466,15 @@
 
 .intro-loader__logo {
   width: min(18rem, 56vw);
-  height: auto;
+  aspect-ratio: 360 / 242;
   will-change: transform, opacity;
   backface-visibility: hidden;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
 }
 
 .intro-loader__logo--pulse {
