@@ -70,6 +70,12 @@ function App() {
     root.classList.add(theme);
     root.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+
+    const themeColor = theme === 'dark' ? '#060c17' : '#f1f8ff';
+    const themeColorMeta = window.document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', themeColor);
+    }
   }, [theme]);
 
   useEffect(() => {

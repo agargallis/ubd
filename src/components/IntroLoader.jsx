@@ -98,7 +98,7 @@ const IntroLoader = () => {
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.22 }}
                 >
-                  Preparing your digital experience
+                  Preparing your digital experience...
                 </motion.p>
               ) : (
                 <motion.p
