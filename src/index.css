@@ -467,12 +467,12 @@
 .intro-loader__logo {
   width: min(18rem, 56vw);
   height: auto;
-  filter: brightness(0);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
 }
 
 .intro-loader__logo--pulse {
   animation: intro-logo-flash 1.4s ease-in-out infinite;
-  filter: brightness(0) drop-shadow(0 0 0 rgba(136, 236, 255, 0));
 }
 
 .intro-loader__status {
@@ -714,11 +714,6 @@
   color: #0d2237;
 }
 
-[data-theme='light'] .intro-loader__logo,
-[data-theme='light'] .intro-loader__logo--pulse {
-  filter: brightness(0) drop-shadow(0 0 18px rgba(66, 170, 214, 0.16));
-}
-
 [data-theme='light'] .intro-loader__bar-shell {
   background: rgba(255, 255, 255, 0.52);
   border-color: rgba(16, 118, 161, 0.16);
@@ -728,11 +723,6 @@
   border-color: rgba(16, 118, 161, 0.1);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.3), rgba(241, 248, 255, 0.14));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.32);
-}
-
-[data-theme='dark'] .intro-loader__logo,
-[data-theme='dark'] .intro-loader__logo--pulse {
-  filter: brightness(0) invert(1) drop-shadow(0 0 18px rgba(91, 234, 255, 0.3));
 }
 
 @layer components {
@@ -780,18 +770,10 @@
     background-image: linear-gradient(120deg, #33d6ee, #79fbff) !important;
   }
 
-  [data-theme='dark'] .site-logo {
-    filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(91, 234, 255, 0.36));
-  }
 }
 
 /* === LIGHT MODE OVERRIDES === */
 [data-theme='light'] {
-  /* Μαύρο logo */
-  header img.site-logo, footer img.site-logo {
-    filter: brightness(0) !important;
-  }
-  
   /* Γενικά χρώματα για light mode */
   .bg-slate-800\/50, .bg-slate-900\/50, .bg-slate-800\/40 { background-color: #ffffff !important; border: 1px solid #e2e8f0 !important; }
   .border-slate-700\/50 { border-color: #e2e8f0 !important; }
@@ -941,13 +923,8 @@
 
 /* Light mode → μαύρο logo */
 .site-logo {
-  filter: brightness(0);
-  transition: filter 0.3s ease;
-}
-
-/* Dark mode → άσπρο logo */
-[data-theme='dark'] .site-logo {
-  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(91, 234, 255, 0.36));
+  backface-visibility: hidden;
+  will-change: filter;
 }
 
 [data-theme='dark'] .glass-shell {

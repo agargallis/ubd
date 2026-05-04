@@ -53,6 +53,10 @@ const Header = ({ theme, setTheme, language, setLanguage }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const t = HEADER_TRANSLATIONS[language] || HEADER_TRANSLATIONS.el;
+  const logoFilter =
+    theme === 'dark'
+      ? 'brightness(0) invert(1) drop-shadow(0 0 10px rgba(91, 234, 255, 0.36))'
+      : 'brightness(0)';
 
   const navItems = [
     { label: t.services, id: 'services', icon: BriefcaseBusiness },
@@ -121,6 +125,7 @@ const Header = ({ theme, setTheme, language, setLanguage }) => {
               alt="UBD Logo"
               className="h-12 md:h-20 w-auto site-logo"
               src="https://i.imgur.com/I7mGxrV.png"
+              style={{ filter: logoFilter }}
             />
           </div>
 

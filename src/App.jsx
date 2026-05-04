@@ -62,6 +62,7 @@ function App() {
 
   const [theme, setTheme] = useState(getInitialTheme);
   const [language, setLanguage] = useState(getInitialLanguage);
+  const [isIntroComplete, setIsIntroComplete] = useState(false);
   const appText = APP_TRANSLATIONS[language] || APP_TRANSLATIONS.el;
 
   useEffect(() => {
@@ -87,7 +88,7 @@ function App() {
       <Router>
         <ScrollToSection />
         <div className="relative isolate min-h-screen min-h-[100dvh] text-foreground transition-colors duration-300 overflow-x-hidden flex flex-col">
-          <IntroLoader />
+          <IntroLoader theme={theme} onComplete={() => setIsIntroComplete(true)} />
           <div className="site-ambience" aria-hidden="true">
             <div className="ambient-orb ambient-orb-cyan" />
             <div className="ambient-orb ambient-orb-gold" />
@@ -115,7 +116,7 @@ function App() {
 
           <Footer language={language} />
           <BackToTopButton language={language} />
-          <CookieBanner language={language} />
+          <CookieBanner language={language} isEnabled={isIntroComplete} />
         </div>
       </Router>
     </HelmetProvider>

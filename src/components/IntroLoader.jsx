@@ -4,12 +4,18 @@ import { AnimatePresence, motion } from 'framer-motion';
 const LOADING_DURATION_MS = 2600;
 const WELCOME_DURATION_MS = 900;
 
-const IntroLoader = () => {
+const THEME_LOGO_FILTERS = {
+  light: 'brightness(0) drop-shadow(0 0 18px rgba(66, 170, 214, 0.16))',
+  dark: 'brightness(0) invert(1) drop-shadow(0 0 18px rgba(91, 234, 255, 0.3))',
+};
+
+const IntroLoader = ({ theme = 'light', onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState('loading');
   const [isVisible, setIsVisible] = useState(true);
 
   const progressLabel = useMemo(() => `${Math.max(progress, 1)}%`, [progress]);
+  const logoFilter = THEME_LOGO_FILTERS[theme] || THEME_LOGO_FILTERS.light;
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -31,6 +37,7 @@ const IntroLoader = () => {
       welcomeTimeoutId = window.setTimeout(() => {
         setIsVisible(false);
         root.style.overflow = previousOverflow;
+        onComplete?.();
       }, WELCOME_DURATION_MS);
     };
 
@@ -42,7 +49,7 @@ const IntroLoader = () => {
       window.clearTimeout(welcomeTimeoutId);
       root.style.overflow = previousOverflow;
     };
-  }, []);
+  }, [onComplete]);
 
   return (
     <AnimatePresence>
@@ -72,6 +79,7 @@ const IntroLoader = () => {
               src="https://i.imgur.com/I7mGxrV.png"
               alt="UBD Logo"
               className="intro-loader__logo intro-loader__logo--pulse"
+              style={{ filter: logoFilter }}
               initial={{ scale: 0.86, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.75, ease: 'easeOut' }}

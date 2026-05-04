@@ -51,7 +51,7 @@ const COOKIE_TRANSLATIONS = {
   },
 };
 
-const CookieBanner = ({ language }) => {
+const CookieBanner = ({ language, isEnabled = true }) => {
   const [showBanner, setShowBanner] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [preferences, setPreferences] = useState({
@@ -62,11 +62,17 @@ const CookieBanner = ({ language }) => {
   const t = COOKIE_TRANSLATIONS[language] || COOKIE_TRANSLATIONS.el;
 
   useEffect(() => {
+    if (!isEnabled) {
+      setShowBanner(false);
+      return;
+    }
+
     const consent = localStorage.getItem('cookieConsent');
     if (!consent) {
-      setTimeout(() => setShowBanner(true), 1000);
+      const timeoutId = window.setTimeout(() => setShowBanner(true), 250);
+      return () => window.clearTimeout(timeoutId);
     }
-  }, []);
+  }, [isEnabled]);
 
   const handleAcceptAll = () => {
     const allAccepted = {
