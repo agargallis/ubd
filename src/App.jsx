@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -65,6 +65,10 @@ function App() {
   const [isIntroComplete, setIsIntroComplete] = useState(false);
   const appText = APP_TRANSLATIONS[language] || APP_TRANSLATIONS.el;
 
+  const handleIntroComplete = useCallback(() => {
+    setIsIntroComplete(true);
+  }, []);
+
   useEffect(() => {
     const root = window.document.documentElement;
     root.classList.remove(theme === 'dark' ? 'light' : 'dark');
@@ -88,7 +92,7 @@ function App() {
       <Router>
         <ScrollToSection />
         <div className="relative isolate min-h-screen min-h-[100dvh] text-foreground transition-colors duration-300 overflow-x-hidden flex flex-col">
-          <IntroLoader theme={theme} onComplete={() => setIsIntroComplete(true)} />
+          <IntroLoader theme={theme} onComplete={handleIntroComplete} />
           <div className="site-ambience" aria-hidden="true">
             <div className="ambient-orb ambient-orb-cyan" />
             <div className="ambient-orb ambient-orb-gold" />

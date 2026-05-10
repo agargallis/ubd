@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 const LOADING_DURATION_MS = 2600;
@@ -20,9 +20,14 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
   const [progress, setProgress] = useState(0);
   const [phase, setPhase] = useState('loading');
   const [isVisible, setIsVisible] = useState(true);
+  const onCompleteRef = useRef(onComplete);
 
   const progressLabel = useMemo(() => `${Math.max(progress, 1)}%`, [progress]);
   const logoStyle = THEME_LOGO_STYLES[theme] || THEME_LOGO_STYLES.light;
+
+  useEffect(() => {
+    onCompleteRef.current = onComplete;
+  }, [onComplete]);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -44,7 +49,7 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
       welcomeTimeoutId = window.setTimeout(() => {
         setIsVisible(false);
         root.style.overflow = previousOverflow;
-        onComplete?.();
+        onCompleteRef.current?.();
       }, WELCOME_DURATION_MS);
     };
 
@@ -56,7 +61,7 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
       window.clearTimeout(welcomeTimeoutId);
       root.style.overflow = previousOverflow;
     };
-  }, [onComplete]);
+  }, []);
 
   return (
     <AnimatePresence>
