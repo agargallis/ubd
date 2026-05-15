@@ -946,6 +946,180 @@
   will-change: filter;
 }
 
+.custom-cursor {
+  --cursor-x: -100px;
+  --cursor-y: -100px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 300;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  transform: translate3d(var(--cursor-x), var(--cursor-y), 0);
+  transition: opacity 0.18s ease;
+  opacity: 1;
+  mix-blend-mode: normal;
+}
+
+.custom-cursor__ring,
+.custom-cursor__dot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  border-radius: 9999px;
+  transform: translate(-50%, -50%);
+  will-change: transform, width, height, opacity;
+}
+
+.custom-cursor__ring {
+  width: 1.55rem;
+  height: 1.55rem;
+  border: 1px solid rgba(15, 158, 179, 0.78);
+  background: transparent;
+  box-shadow:
+    0 0 0 1px rgba(15, 158, 179, 0.1),
+    0 0 16px rgba(15, 158, 179, 0.24),
+    inset 0 0 10px rgba(15, 158, 179, 0.08);
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.custom-cursor__ring::before {
+  content: '';
+  position: absolute;
+  inset: 0.22rem;
+  border-radius: inherit;
+  border: 1px solid rgba(15, 158, 179, 0.2);
+  opacity: 0.7;
+}
+
+.custom-cursor__ring::after {
+  display: none;
+}
+
+.custom-cursor__dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  background: #0f9eb3;
+  box-shadow:
+    0 0 0 1px rgba(15, 158, 179, 0.22),
+    0 0 12px rgba(15, 158, 179, 0.62);
+  transition:
+    width 0.18s ease,
+    height 0.18s ease,
+    border-radius 0.18s ease,
+    background 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+
+.custom-cursor--interactive .custom-cursor__ring {
+  width: 1.85rem;
+  height: 1.85rem;
+  border-color: rgba(15, 158, 179, 0.5);
+  background: transparent;
+  box-shadow:
+    0 0 0 1px rgba(15, 158, 179, 0.08),
+    0 0 16px rgba(15, 158, 179, 0.16),
+    inset 0 0 0 1px rgba(15, 158, 179, 0.08);
+}
+
+.custom-cursor--interactive .custom-cursor__ring::before {
+  border-color: rgba(15, 158, 179, 0.16);
+  opacity: 0.32;
+}
+
+.custom-cursor--interactive .custom-cursor__ring::after {
+  display: none;
+}
+
+.custom-cursor--interactive .custom-cursor__dot {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 0.18rem 9999px 9999px 9999px;
+  background: #0f9eb3;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  box-shadow: 0 0 16px rgba(15, 158, 179, 0.58);
+}
+
+.custom-cursor--pressed .custom-cursor__ring {
+  width: 1.55rem;
+  height: 1.55rem;
+  border-color: rgba(15, 158, 179, 0.22);
+  opacity: 0.34;
+  background: transparent;
+  box-shadow:
+    0 0 0 1px rgba(15, 158, 179, 0.04),
+    0 0 10px rgba(15, 158, 179, 0.1);
+}
+
+.custom-cursor--pressed .custom-cursor__ring::before {
+  opacity: 0.18;
+}
+
+.custom-cursor--pressed .custom-cursor__ring::after {
+  display: none;
+}
+
+.custom-cursor--pressed .custom-cursor__dot {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 0.18rem 9999px 9999px 9999px;
+  background: #0f9eb3;
+  opacity: 0.92;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  box-shadow: 0 0 14px rgba(15, 158, 179, 0.5);
+}
+
+.custom-cursor--text {
+  opacity: 0;
+}
+
+.custom-cursor--idle {
+  opacity: 0;
+}
+
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none;
+}
+
+.has-custom-cursor :where(input, textarea, [contenteditable='true'], [contenteditable='']) {
+  cursor: text;
+}
+
+.has-custom-cursor :where(select) {
+  cursor: auto;
+}
+
+[data-theme='light'] .custom-cursor__ring {
+  border-color: rgba(15, 158, 179, 0.78);
+  background: transparent;
+  box-shadow:
+    0 0 0 1px rgba(15, 158, 179, 0.1),
+    0 0 14px rgba(15, 158, 179, 0.2),
+    inset 0 0 10px rgba(15, 158, 179, 0.08);
+}
+
+[data-theme='light'] .custom-cursor__dot {
+  background: #0f9eb3;
+  box-shadow:
+    0 0 0 1px rgba(15, 158, 179, 0.22),
+    0 0 12px rgba(15, 158, 179, 0.5);
+}
+
+[data-theme='light'] .custom-cursor--interactive .custom-cursor__dot {
+  background: #0f9eb3;
+}
+
 [data-theme='dark'] .glass-shell {
   background: linear-gradient(140deg, rgba(9, 28, 51, 0.78), rgba(8, 44, 72, 0.58));
   border-color: rgba(108, 218, 255, 0.35);

@@ -11,6 +11,7 @@ import CookiesPage from '@/components/legal/CookiesPage';
 import HomePage from '@/pages/HomePage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import IntroLoader from '@/components/IntroLoader';
+import CustomCursor from '@/components/CustomCursor';
 
 const ScrollToSection = () => {
   const { hash } = useLocation();
@@ -91,6 +92,7 @@ function App() {
     <HelmetProvider>
       <Router>
         <ScrollToSection />
+        <CustomCursor />
         <div className="relative isolate min-h-screen min-h-[100dvh] text-foreground transition-colors duration-300 overflow-x-hidden flex flex-col">
           <IntroLoader theme={theme} onComplete={handleIntroComplete} />
           <div className="site-ambience" aria-hidden="true">
