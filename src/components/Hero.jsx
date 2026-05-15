@@ -109,15 +109,15 @@ const Hero = ({ language }) => {
               initial={{ opacity: 0, y: 18, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-              whileHover={{ y: -2, scale: 1.015 }}
+              whileHover={{ y: -2 }}
               className="hero-badge relative mb-8 inline-flex items-center overflow-hidden rounded-full border border-white/15 px-5 py-3 text-sm shadow-xl backdrop-blur-md md:px-6 md:text-base"
             >
               <span className="hero-badge-glow" />
               <span className="hero-badge-sheen" />
               <span className="relative z-10 inline-flex items-center text-white">
                 <motion.span
-                  animate={{ rotate: [0, 8, -6, 0], scale: [1, 1.08, 1] }}
-                  transition={{ duration: 3.6, ease: 'easeInOut', repeat: Infinity, repeatDelay: 0.5 }}
+                  animate={{ rotate: [0, 6, 0, -4, 0], scale: [1, 1.05, 1, 1.035, 1] }}
+                  transition={{ duration: 5.4, ease: [0.45, 0, 0.55, 1], repeat: Infinity }}
                   className="mr-2 inline-flex md:mr-3"
                 >
                   <Sparkles className="h-5 w-5 text-yellow-400 drop-shadow-[0_0_12px_rgba(250,204,21,0.55)]" />

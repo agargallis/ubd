@@ -142,25 +142,32 @@
 @keyframes hero-badge-flow {
   0% {
     background-position: 0% 50%;
-    opacity: 0.72;
+    opacity: 0.68;
   }
   50% {
     background-position: 100% 50%;
-    opacity: 1;
+    opacity: 0.94;
   }
   100% {
     background-position: 0% 50%;
-    opacity: 0.72;
+    opacity: 0.68;
   }
 }
 
 @keyframes hero-badge-sheen {
   0% {
-    transform: translateX(-140%) skewX(-18deg);
+    opacity: 0;
+    transform: translate3d(-130%, 0, 0) skewX(-16deg);
   }
-  44%,
+  14% {
+    opacity: 0.7;
+  }
+  72% {
+    opacity: 0.38;
+  }
   100% {
-    transform: translateX(150%) skewX(-18deg);
+    opacity: 0;
+    transform: translate3d(520%, 0, 0) skewX(-16deg);
   }
 }
 
@@ -199,6 +206,8 @@
     linear-gradient(135deg, rgba(7, 20, 35, 0.72), rgba(8, 50, 76, 0.5)),
     linear-gradient(90deg, rgba(34, 211, 238, 0.18), rgba(255, 215, 128, 0.18), rgba(59, 130, 246, 0.18));
   box-shadow: 0 16px 44px rgba(2, 12, 24, 0.32), inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .hero-badge-glow,
@@ -210,17 +219,21 @@
 .hero-badge-glow {
   inset: -1px;
   background: linear-gradient(110deg, rgba(34, 211, 238, 0.12), rgba(255, 214, 120, 0.2), rgba(80, 170, 255, 0.14), rgba(34, 211, 238, 0.12));
-  background-size: 240% 100%;
-  animation: hero-badge-flow 7.5s ease-in-out infinite;
+  background-size: 260% 100%;
+  animation: hero-badge-flow 11s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+  transform: translateZ(0);
+  will-change: background-position, opacity;
 }
 
 .hero-badge-sheen {
   top: -30%;
   bottom: -30%;
-  width: 34%;
-  left: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.36), transparent);
-  animation: hero-badge-sheen 4.8s ease-in-out infinite;
+  left: -28%;
+  width: 28%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: hero-badge-sheen 6.8s linear infinite;
+  transform: translate3d(-130%, 0, 0) skewX(-16deg);
+  will-change: transform, opacity;
 }
 
 .client-logo-stage {
