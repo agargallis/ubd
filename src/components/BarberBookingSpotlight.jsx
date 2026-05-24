@@ -19,8 +19,7 @@ const BARBER_SPOTLIGHT_TRANSLATIONS = {
       { text: 'booking app', accent: true },
       { text: ' που όχι απλά σε ' },
       { text: 'αυτοματοποιεί', accent: true },
-      { text: ' αλλά παύει να σε γεμίζει με πολλαπλά έξοδα και πονοκέφαλο, ' },
-      { text: 'όλα έτοιμα από εμάς!', accent: true },
+      { text: ' αλλά παύει να σε γεμίζει με πολλαπλά έξοδα και πονοκέφαλο! ' },
     ],
     titlePrefix: 'Η booking εφαρμογή που κάνει ένα',
     titleAccent: 'barbershop πιο εύκολο',
@@ -31,15 +30,14 @@ const BARBER_SPOTLIGHT_TRANSLATIONS = {
     contactCta: 'Το θέλω!',
     appTitle: 'Barbershop Booking App',
     presentationLine: 'Και σελίδα παρουσίασης και σύστημα κρατήσεων!',
-    taxLine: 'Tax free, επικοινώνησε μαζί μου και θα καταλάβεις!',
+    taxLine: 'Tax free, επικοινωνήστε μαζί μας και θα καταλάβετε!',
   },
   en: {
     badge: 'bestforbarbershops',
     titleParts: [
       { text: 'The ' },
       { text: 'booking app', accent: true },
-      { text: ' that does more than automate you: it stops multiple costs and headaches from piling up, ' },
-      { text: 'everything ready from us!', accent: true },
+      { text: ' that does more than automate you: it stops multiple costs and headaches from piling up!' },
     ],
     titlePrefix: 'The booking app that makes a',
     titleAccent: 'barbershop easier',
@@ -171,7 +169,7 @@ const BarberBookingSpotlight = ({ language }) => {
             />
 
             <div className="relative rounded-[1.85rem] bg-slate-950/90 p-4 ring-1 ring-white/10 transition-colors duration-300 group-hover:bg-slate-900/95">
-              <div className="mb-4 flex items-center justify-between px-2">
+              <div className="mb-4 flex items-center justify-center px-2">
                 <div className="flex items-center gap-2">
                   <span className="h-3 w-3 rounded-full bg-red-400 shadow-[0_0_14px_rgba(248,113,113,0.6)]" />
                   <span className="h-3 w-3 rounded-full bg-amber-300 shadow-[0_0_14px_rgba(252,211,77,0.6)]" />
