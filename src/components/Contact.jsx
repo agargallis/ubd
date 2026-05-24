@@ -24,6 +24,7 @@ const CONTACT_TRANSLATIONS = {
     servicePlaceholder: 'Επιλέξτε υπηρεσία',
     services: {
       learn: 'Μάθε για τις υπηρεσίες μας',
+      barberBooking: 'Barbershop Booking App',
       social: 'Βελτιστοποίηση & Ασφάλεια Social Media',
       web: 'Σύγχρονη Ανάπτυξη Ιστοσελίδων',
       ecommerce: 'Έξυπνες Λύσεις για Καταστήματα',
@@ -70,6 +71,7 @@ const CONTACT_TRANSLATIONS = {
     servicePlaceholder: 'Select a service',
     services: {
       learn: 'Learn about our services',
+      barberBooking: 'Barbershop Booking App',
       social: 'Social Media Optimization & Security',
       web: 'Modern Website Development',
       ecommerce: 'Smart Solutions for Stores',
@@ -221,6 +223,7 @@ const Contact = ({ language }) => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="learn-services">{t.services.learn}</SelectItem>
+                      <SelectItem value="barbershop-booking">{t.services.barberBooking}</SelectItem>
                       <SelectItem value="social">{t.services.social}</SelectItem>
                       <SelectItem value="web">{t.services.web}</SelectItem>
                       <SelectItem value="ecommerce">{t.services.ecommerce}</SelectItem>
