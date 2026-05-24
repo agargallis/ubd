@@ -10,17 +10,17 @@ const TESTIMONIALS_TRANSLATIONS = {
     seeAllSubtitle: 'στην Google',
     items: [
       {
-        name: 'Λιοτρίβι',
-        review: 'Ο Αντώνης κατάφερε να μας δημιουργήσει μια όμορφη ψηφιακή παρουσία ως "Λιοτρίβι", καθώς εμείς δεν γνωρίζουμε από αυτά και δεν είμαστε τόσο κοντά με την τεχνολογία. Μας ανανέωσε το προφίλ μας στο Google, μας δημιούργησε από το μηδέν Instagram, μας δημιούργησε μια απλή και καθωσπρέπει ιστοσελίδα με φόρμα κρατήσεων και πολλά πολλά ακόμη. Πλέον νιώθουμε πως η νέα γεννιά μπορεί να μας μάθει μέσα από το Ίντερνετ αλλά και να ανακαλύψει τι προσφέρουμε, πιο καλά από ποτέ. Ευχαριστούμε για όλα.',
-      },
-      {
-        name: 'Eprepe',
-        review: 'Μια φρέσκια παρουσία σε ο,τι αφορά computing , programming και online στήσιμο που αξιοποιήσαμε στο εστιατόριό μας . Ο Αντώνης κατασκεύασε πολύ έξυπνα και γρήγορα για εμάς μια όμορφη και φιλική για τον επισκέπτη ιστοσελίδα , καθώς επίσης και κάποιες πολύτιμες παρεμβάσεις στο instagram και το google προφίλ της επιχείρησής μας ! Ευχαριστούμε πολύ!!',
+        name: 'Μεταξύ μας',
+        review: 'Μια πολύ καλή δουλειά κ προσεγμένη από ένα νέο παιδί γεμάτο όρεξη να σου προσφέρει ότι χρειαστείς..!',
       },
       {
         name: 'aggelos myriounis',
         review: 'Πολύ φιλικός ο Αντώνης,συνεργάσιμος,έκατσε και άκουσε τι ήθελα και το αποτέλεσμα ήταν εκπληκτικό!!!',
       },
+            {
+        name: 'Eprepe',
+        review: 'Μια φρέσκια παρουσία σε ο,τι αφορά computing , programming και online στήσιμο που αξιοποιήσαμε στο εστιατόριό μας . Ο Αντώνης κατασκεύασε πολύ έξυπνα και γρήγορα για εμάς μια όμορφη και φιλική για τον επισκέπτη ιστοσελίδα , καθώς επίσης και κάποιες πολύτιμες παρεμβάσεις στο instagram και το google προφίλ της επιχείρησής μας ! Ευχαριστούμε πολύ!!',
+      }
     ],
   },
   en: {
@@ -31,37 +31,37 @@ const TESTIMONIALS_TRANSLATIONS = {
     seeAllSubtitle: 'on Google',
     items: [
       {
-        name: 'Liotrivi',
-        review: 'Antonis helped us build a beautiful digital presence for Liotrivi. He refreshed our Google profile, built our Instagram presence from scratch, and delivered a clean website with booking form and much more. We now feel the new generation can discover what we offer better than ever. Thank you for everything.',
+        name: 'Metaxu mas',
+        review: 'A very good job and attentive from a new kid full of enthusiasm to provide what you need..!',
       },
       {
-        name: 'Eprepe',
-        review: 'A fresh and professional approach to computing, programming, and online setup for our restaurant. Antonis built a smart and visitor-friendly website for us and made valuable improvements on Instagram and our Google profile. Thank you very much!',
-      },
-      {
-        name: 'Aggelos Myriounis',
+        name: 'aggelos myriounis',
         review: 'Antonis was very friendly and collaborative, listened carefully to what I wanted, and the final result was outstanding!',
       },
+            {
+        name: 'Eprepe',
+        review: 'A fresh and professional approach to computing, programming, and online setup for our restaurant. Antonis built a smart and visitor-friendly website for us and made valuable improvements on Instagram and our Google profile. Thank you very much!',
+      }
     ],
   },
 };
 
 const TESTIMONIAL_META = [
   {
-    image: 'https://i.imgur.com/NzHvqVX.png',
-    alt: 'Profile picture of a client named Nikolas Georgiou in an office',
-    link: 'https://maps.app.goo.gl/QUr7dB5sjK2zKjqD6',
+    image: 'https://i.imgur.com/6bWOW3A.png',
+    alt: 'Profile picture of a client named Metaxu mas in a restaurant',
+    link: 'https://maps.app.goo.gl/sXcV52CgP5E7NoyT7',
+  },
+    {
+    image: 'https://i.imgur.com/GmA0Phi.png',
+    alt: 'Profile picture of a happy client named aggelos myriounis',
+    link: 'https://share.google/qyN0NbABH5Twwubx3',
   },
   {
     image: 'https://horizons-cdn.hostinger.com/ab233996-ef22-4e42-af30-3c354fc24334/cace6508675781cfd4122477e7a8ab0a.png',
     alt: 'Profile picture of a professional client named Eprepe',
     link: 'https://maps.app.goo.gl/DASDkMcWD4Rb51f96',
-  },
-  {
-    image: 'https://i.imgur.com/GmA0Phi.png',
-    alt: 'Profile picture of a happy client named aggelos myriounis',
-    link: 'https://share.google/qyN0NbABH5Twwubx3',
-  },
+  }
 ];
 const cardVariants = {
   hidden: { opacity: 0, y: 50 },
