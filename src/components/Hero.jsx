@@ -9,8 +9,7 @@ const HERO_TRANSLATIONS = {
     headingTop: 'Ενδυναμώστε την επιχείρησή σας με',
     headingAccent: 'σύγχρονη τεχνολογία',
     description: 'Η UBD ειδικεύεται στη μετατροπή παραδοσιακών επιχειρήσεων σε ψηφιακές δυναμικές ομάδες μέσω βελτιστοποίησης και ασφάλειας social media, δημιουργία ιστοσελίδων, έξυπνες λύσεις καταστημάτων, ενσωμάτωσης Google Maps, συντήρησης e-services και όχι μόνο.',
-    primaryCta: 'Ξεκινήστε την διαδικασία',
-    secondaryCta: 'Εξερευνήστε τις υπηρεσίες',
+    primaryCta: 'ΜΗΝ το χάσεις!',
     features: [
       { title: '100% Επιτυχία', description: 'Εγγυημένα αποτελέσματα.' },
       { title: 'Γρήγορα αποτελέσματα', description: 'Δείτε ανάπτυξη σύντομα.' },
@@ -21,8 +20,7 @@ const HERO_TRANSLATIONS = {
     headingTop: 'Empower your business with',
     headingAccent: 'modern technology',
     description: 'UBD specializes in transforming traditional businesses into dynamic digital teams through social media optimization and security, website creation, smart store solutions, Google Maps integration, e-services maintenance, and more.',
-    primaryCta: 'Start the process',
-    secondaryCta: 'Explore services',
+    primaryCta: "Don't miss it!",
     features: [
       { title: '100% Success', description: 'Guaranteed results.' },
       { title: 'Fast outcomes', description: 'See growth quickly.' },
@@ -168,11 +166,8 @@ const Hero = ({ language }) => {
       }} transition={{
         duration: 0.6,
         delay: 0.8
-      }} className="flex flex-col justify-center gap-4 mb-8 sm:flex-row md:mb-10">
-              <Button size="lg" className="bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-opacity duration-300" onClick={() => scrollToSection('contact')}>{t.primaryCta}</Button>
-              <Button size="lg" variant="outline" className="text-foreground border-primary hover:bg-primary/10 hover:text-primary" onClick={() => scrollToSection('services')}>
-                {t.secondaryCta}
-              </Button>
+      }} className="flex justify-center mb-8 md:mb-10">
+              <Button size="lg" className="bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-opacity duration-300" onClick={() => scrollToSection('barber-booking')}>{t.primaryCta}</Button>
             </motion.div>
 
             <ClientLogoCarousel />
