@@ -58,7 +58,7 @@ const TESTIMONIAL_META = [
     link: 'https://share.google/qyN0NbABH5Twwubx3',
   },
   {
-    image: 'https://horizons-cdn.hostinger.com/ab233996-ef22-4e42-af30-3c354fc24334/cace6508675781cfd4122477e7a8ab0a.png',
+    image: 'https://i.imgur.com/XB1qSoY.png',
     alt: 'Profile picture of a professional client named Eprepe',
     link: 'https://maps.app.goo.gl/DASDkMcWD4Rb51f96',
   }
