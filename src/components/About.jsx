@@ -170,6 +170,16 @@ export const PROJECTS = [
       { icon: <Search className="h-6 w-6" />, url: 'https://share.google/m8aCoXfevK1UnRg6o', label: 'Google Profile Optimization' },
     ],
   },
+  {
+    title: 'Mathletes',
+    image: '/mathletes.webp',
+    alt: 'Λογότυπο της πλατφόρμας Mathletes',
+    imageLink: 'https://mathletes.gr',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/mathletes_gr', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://mathletes.gr', label: 'Website Creation' },
+    ],
+  },
 ];
   
 const ABOUT_TRANSLATIONS = {
