@@ -26,17 +26,6 @@ export const PROJECTS = [
     ],
   },
   {
-    title: 'Molte Vita',
-    image: 'https://i.imgur.com/onRphz0.png',
-    alt: 'Λογότυπο του καταστήματος Molte Vita',
-    imageLink: 'https://moltevita.com',
-    links: [
-      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/moltevita_/', label: 'Instagram Optimization' },
-      { icon: <Globe className="h-6 w-6" />, url: 'https://moltevita.com', label: 'Website Creation' },
-      { icon: <Search className="h-6 w-6" />, url: 'https://www.google.com/search?q=Molte+Vita', label: 'Google Profile Optimization' },
-    ],
-  },
-  {
     title: 'Λιοτρίβι',
     image: 'https://i.imgur.com/NzHvqVX.png',
     alt: 'Λογότυπο του καταστήματος Λιοτρίβι',
