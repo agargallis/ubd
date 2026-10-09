@@ -90,15 +90,6 @@ const ClientLogoCarousel = () => {
 const Hero = ({ language }) => {
   const t = HERO_TRANSLATIONS[language] || HERO_TRANSLATIONS.el;
   const features = t.features.map((feature, index) => ({ ...feature, icon: FEATURE_ICONS[index] }));
-
-  const scrollToSection = id => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth'
-      });
-    }
-  };
     return <section id="hero" className="relative -mt-24 pt-44 pb-20 md:mt-0 md:pt-28 md:pb-20 text-white overflow-hidden">
       <div className="absolute inset-0 bg-grid-primary/[0.07] [mask-image:linear-gradient(to_bottom,white_5%,transparent_100%)]"></div>
       <div className="pointer-events-none absolute -top-16 left-1/2 h-64 w-[38rem] -translate-x-1/2 rounded-full bg-cyan-400/20 blur-3xl"></div>
@@ -167,7 +158,7 @@ const Hero = ({ language }) => {
         duration: 0.6,
         delay: 0.8
       }} className="flex justify-center mb-8 md:mb-10">
-              <Button size="lg" className="bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-opacity duration-300" onClick={() => scrollToSection('barber-booking')}>{t.primaryCta}</Button>
+              <Button size="lg" className="bg-primary text-primary-foreground font-bold hover:bg-primary/90 transition-opacity duration-300" asChild><a href="https://koulis80.gr" target="_blank" rel="noopener noreferrer">{t.primaryCta}</a></Button>
             </motion.div>
 
             <ClientLogoCarousel />

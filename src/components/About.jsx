@@ -169,6 +169,17 @@ export const PROJECTS = [
       { icon: <Globe className="h-6 w-6" />, url: 'https://mathletes.gr', label: 'Website Creation' },
     ],
   },
+  {
+    title: 'Koulis 1980',
+    image: '/koulis1980.webp',
+    alt: 'Λογότυπο του κουρείου Koulis 1980',
+    imageLink: 'https://koulis80.gr',
+    links: [
+      { icon: <Instagram className="h-6 w-6" />, url: 'https://www.instagram.com/koulis_1980/', label: 'Instagram Page' },
+      { icon: <Globe className="h-6 w-6" />, url: 'https://koulis80.gr', label: 'Website Creation' },
+      { icon: <Search className="h-6 w-6" />, url: 'https://www.google.com/maps/search/?api=1&query=Koulis%201980%2C%20Leof.%20Salaminos%20292%2C%20Salamina%20189%2000', label: 'Google Profile Optimization' },
+    ],
+  },
 ];
   
 const ABOUT_TRANSLATIONS = {
