@@ -313,7 +313,7 @@ const About = ({ language }) => {
           ref={railRef}
           className="flex gap-4 md:gap-5 overflow-x-auto pb-3 snap-x snap-mandatory [scrollbar-width:thin]"
         >
-          {PROJECTS.map((project, index) => (
+          {[...PROJECTS].reverse().map((project, index) => (
             <ProjectCard key={`${project.title}-${index}`} project={project} index={index} />
           ))}
         </div>
