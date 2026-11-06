@@ -70,7 +70,7 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
           key="intro-loader"
           className="intro-loader"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.02, transition: { duration: 0.45, ease: 'easeInOut' } }}
+          exit={{ opacity: 0, scale: 1.06, filter: 'blur(12px)', transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }}
         >
           <div className="intro-loader__backdrop" aria-hidden="true">
             <div className="intro-loader__blurwash" />
@@ -87,6 +87,10 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.65, ease: 'easeOut' }}
           >
+            <div className="lux-intro-rings" aria-hidden="true">
+              <span className="lux-intro-ring lux-intro-ring--outer" />
+              <span className="lux-intro-ring lux-intro-ring--inner" />
+            </div>
             <motion.div
               role="img"
               aria-label="UBD Logo"
@@ -96,15 +100,15 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
                 WebkitMaskImage: `url(${INTRO_LOGO_URL})`,
                 maskImage: `url(${INTRO_LOGO_URL})`,
               }}
-              initial={{ scale: 0.86, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.75, ease: 'easeOut' }}
+              initial={{ scale: 0.6, opacity: 0, filter: 'blur(14px)' }}
+              animate={{ scale: 1, opacity: 1, filter: 'blur(0px)' }}
+              transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
             />
 
             <div className="intro-loader__status">
               <div className="intro-loader__bar-shell" aria-hidden="true">
                 <motion.div
-                  className="intro-loader__bar-fill"
+                  className="intro-loader__bar-fill lux-intro-bar"
                   animate={{ width: `${progress}%` }}
                   transition={{ ease: 'easeOut', duration: 0.08 }}
                 />

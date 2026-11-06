@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '@/components/ui/button';
-import { Share2, Globe, Home, MapPin, Wrench, BarChart } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Share2, Globe, Home, MapPin, Wrench, BarChart, ArrowRight } from 'lucide-react';
+import { SpotlightCard, SectionHeading, LUX_EASE } from '@/components/lux/Lux';
 
 const SERVICES_TRANSLATIONS = {
   el: {
@@ -99,7 +98,7 @@ const colorVariants = {
   orange: { iconBg: "bg-orange-500", colorVar: "#f97316" },
   purple: { iconBg: "bg-purple-500", colorVar: "#a855f7" }
 };
-const ServiceCard = ({ service, ctaLabel }) => {
+const ServiceCard = ({ service, ctaLabel, index }) => {
   const colors = colorVariants[service.color] || colorVariants.cyan;
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');
@@ -108,38 +107,55 @@ const ServiceCard = ({ service, ctaLabel }) => {
     }
   };
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ y: -4, scale: 1.015, boxShadow: "0 8px 22px rgba(1, 151, 178, 0.12)" }}
-      className={cn("bg-slate-800/50 border border-slate-700/50 rounded-xl p-8 flex flex-col h-full text-center md:text-left transition-all duration-300 cursor-pointer service-card")}
+    <SpotlightCard
+      initial={{ opacity: 0, y: 60, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.25 }}
+      transition={{ duration: 0.9, ease: LUX_EASE, delay: (index % 3) * 0.12 }}
+      className="service-card rounded-3xl p-8 md:p-9 flex flex-col h-full text-center md:text-left cursor-pointer"
       style={{ '--service-color': colors.colorVar }}
+      tilt={6}
     >
-      <div className={`w-16 h-16 rounded-lg flex items-center justify-center mb-6 ${colors.iconBg} mx-auto md:mx-0`}>
-        {service.icon}
+      <span className="lux-card__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <div className="relative z-10 mb-7 flex justify-center md:justify-start">
+        <motion.div
+          className="lux-service-icon"
+          whileHover={{ rotate: -8, scale: 1.08 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 14 }}
+        >
+          <span className="lux-service-icon__halo" aria-hidden="true" />
+          <span className="relative z-10">{service.icon}</span>
+        </motion.div>
       </div>
-      <h3 className="text-2xl font-bold text-white mb-3">{service.title}</h3>
-      <p className="text-gray-400 mb-6 flex-grow">{service.description}</p>
-      <ul className="space-y-2.5 mb-8 text-gray-300 text-left text-sm md:text-base w-full max-w-xs mx-auto md:max-w-none md:mx-0">
+      <h3 className="relative z-10 text-2xl font-bold text-white mb-3 leading-snug">{service.title}</h3>
+      <p className="relative z-10 text-gray-400 mb-6 flex-grow leading-relaxed">{service.description}</p>
+      <motion.ul
+        className="relative z-10 space-y-3 mb-8 text-gray-300 text-left text-sm md:text-base w-full max-w-xs mx-auto md:max-w-none md:mx-0"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.08, delayChildren: 0.3 } } }}
+      >
         {service.features.map((feature, i) => (
-          <li
-  key={i}
-  className="flex items-start justify-center md:justify-start gap-3 text-center md:text-left leading-relaxed"
->
-  <span
-    className={`w-2 h-2 rounded-full mt-2 flex-shrink-0 ${colors.iconBg}`}
-  ></span>
-  <span>{feature}</span>
-</li>
-
+          <motion.li
+            key={i}
+            variants={{
+              hidden: { opacity: 0, x: -14 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.6, ease: LUX_EASE } },
+            }}
+            className="flex items-start justify-center md:justify-start gap-3 text-center md:text-left leading-relaxed"
+          >
+            <span className="lux-bullet mt-2 flex-shrink-0" />
+            <span>{feature}</span>
+          </motion.li>
         ))}
-      </ul>
-      <Button onClick={scrollToContact} className={`bg-primary text-primary-foreground font-bold mt-auto hover:bg-primary/90 transition-opacity`}>
-        {ctaLabel}
-      </Button>
-    </motion.div>
+      </motion.ul>
+      <button type="button" onClick={scrollToContact} className="lux-btn lux-btn--ghost relative z-10 mt-auto w-full">
+        <span className="lux-btn__shine" aria-hidden="true" />
+        <span className="relative z-10">{ctaLabel}</span>
+        <ArrowRight className="lux-btn__icon relative z-10 h-4 w-4" />
+      </button>
+    </SpotlightCard>
   );
 };
 
@@ -148,35 +164,18 @@ const Services = ({ language }) => {
   const servicesData = t.items.map((item, index) => ({ ...item, ...SERVICE_META[index] }));
 
   return (
-    <section id="services" className="py-20 md:py-28">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.h2 
-            className="relative text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 inline-block group"
-            whileHover="hover"
-            initial="rest"
-          >
-            {t.titlePrefix} <span className="text-primary">{t.titleAccent}</span> {t.titleSuffix}
-            <motion.div
-              className="absolute bottom-[-10px] left-0 right-0 h-1 bg-primary"
-              variants={{
-                rest: { scaleX: 0, transition: { duration: 0.6, ease: "easeOut" } },
-                hover: { scaleX: 1, transition: { duration: 0.4, ease: "easeIn" } }
-              }}
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1, transition: { duration: 0.8, ease: "easeOut", once: true } }}
-            />
-          </motion.h2>
-        </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section id="services" className="lux-section relative py-24 md:py-32">
+      <div className="lux-section__glow lux-section__glow--left" aria-hidden="true" />
+      <div className="container mx-auto px-6 relative">
+        <SectionHeading
+          prefix={t.titlePrefix}
+          accent={t.titleAccent}
+          suffix={t.titleSuffix}
+          className="mb-16 md:mb-20"
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 md:gap-8">
           {servicesData.map((service, index) => (
-            <ServiceCard key={index} service={service} ctaLabel={t.learnMore} />
+            <ServiceCard key={index} index={index} service={service} ctaLabel={t.learnMore} />
           ))}
         </div>
       </div>

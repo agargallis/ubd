@@ -48,7 +48,7 @@ const BackToTopButton = ({ language }) => {
         size="sm"
         aria-label={t.ariaLabel}
         title={t.ariaLabel}
-        className="rounded-full h-11 px-4 bg-primary text-primary-foreground shadow-lg shadow-primary/30 hover:bg-primary/90"
+        className="lux-back-to-top rounded-full h-11 px-5"
       >
         <ChevronUp className="h-4 w-4 mr-1" />
         {t.label}

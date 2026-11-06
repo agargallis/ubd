@@ -12,6 +12,7 @@ import HomePage from '@/pages/HomePage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import IntroLoader from '@/components/IntroLoader';
 import CustomCursor from '@/components/CustomCursor';
+import { ScrollProgress, PointerAura } from '@/components/lux/Lux';
 
 const ScrollToSection = () => {
   const { hash } = useLocation();
@@ -93,6 +94,7 @@ function App() {
       <Router>
         <ScrollToSection />
         <CustomCursor />
+        <ScrollProgress />
         <div className="relative isolate min-h-screen min-h-[100dvh] text-foreground transition-colors duration-300 overflow-x-hidden flex flex-col">
           <IntroLoader theme={theme} onComplete={handleIntroComplete} />
           <div className="site-ambience" aria-hidden="true">
@@ -100,7 +102,9 @@ function App() {
             <div className="ambient-orb ambient-orb-gold" />
             <div className="ambient-orb ambient-orb-blue" />
             <div className="ambient-halo" />
+            <PointerAura />
           </div>
+          <div className="lux-grain" aria-hidden="true" />
           <Helmet>
             <title>UBD</title>
             <meta name="description" content={appText.description} />

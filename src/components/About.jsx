@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import { Instagram, Globe, Search, ChevronLeft, ChevronRight, MenuSquare } from 'lucide-react';
+import { SpotlightCard, SectionHeading, LUX_EASE } from '@/components/lux/Lux';
 
 export const PROJECTS = [
   {
@@ -200,29 +201,34 @@ const ABOUT_TRANSLATIONS = {
 };
 
 const ProjectCard = ({ project, index }) => (
-  <motion.article
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.4 }}
-    transition={{ duration: 0.45, delay: Math.min(index, 4) * 0.08 }}
-    whileHover={{ y: -6, scale: 1.02, boxShadow: '0 12px 34px rgba(1, 151, 178, 0.16)' }}
-    className="snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] bg-slate-800/50 border border-slate-700/50 rounded-2xl p-5 project-card transition-all duration-300"
+  <SpotlightCard
+    as="article"
+    initial={{ opacity: 0, y: 40, scale: 0.94 }}
+    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+    viewport={{ once: true, amount: 0.3 }}
+    transition={{ duration: 0.8, ease: LUX_EASE, delay: Math.min(index, 4) * 0.09 }}
+    tilt={7}
+    className="project-card snap-start min-w-[280px] sm:min-w-[320px] md:min-w-[340px] max-w-[340px] rounded-3xl p-6"
   >
-    <a href={project.imageLink || '#'} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center mb-4">
-      <motion.img
-        whileHover={{ scale: 1.06, rotate: 3 }}
-        src={project.image}
-        alt={project.alt}
-        onError={(event) => {
-          if (event.currentTarget.src.includes('/AZ.png')) {
-            event.currentTarget.src = '/AG.png';
-          }
-        }}
-        className="w-20 h-20 rounded-full object-contain bg-slate-700 p-2 hover:ring-2 hover:ring-primary transition-all"
-      />
+    <a href={project.imageLink || '#'} target="_blank" rel="noopener noreferrer" className="relative z-10 inline-flex items-center justify-center mb-5">
+      <span className="lux-logo-ring">
+        <span className="lux-logo-ring__spin" aria-hidden="true" />
+        <motion.img
+          whileHover={{ scale: 1.1, rotate: 4 }}
+          transition={{ type: 'spring', stiffness: 260, damping: 14 }}
+          src={project.image}
+          alt={project.alt}
+          onError={(event) => {
+            if (event.currentTarget.src.includes('/AZ.png')) {
+              event.currentTarget.src = '/AG.png';
+            }
+          }}
+          className="lux-logo-ring__img"
+        />
+      </span>
     </a>
-    <h4 className="text-lg font-bold text-white mb-3 leading-tight min-h-[3.2rem]">{project.title}</h4>
-    <div className="flex items-center gap-3">
+    <h4 className="relative z-10 text-lg font-bold text-white mb-4 leading-tight min-h-[3.2rem]">{project.title}</h4>
+    <div className="relative z-10 flex items-center gap-2.5">
       {project.links.map((link, linkIndex) => (
         link.url ? (
           <motion.a
@@ -232,24 +238,28 @@ const ProjectCard = ({ project, index }) => (
             rel="noopener noreferrer"
             aria-label={link.label}
             title={link.label}
-            whileHover={{ scale: 1.18, y: -2 }}
-            className="text-gray-300 hover:text-primary transition-colors"
+            whileHover={{ scale: 1.15, y: -3 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 16 }}
+            className="lux-chip text-gray-300 hover:text-primary"
           >
             {link.icon}
           </motion.a>
         ) : (
-          <span key={linkIndex} title={link.label} className="text-gray-500 opacity-50 cursor-not-allowed">
+          <span key={linkIndex} title={link.label} className="lux-chip text-gray-500 opacity-50 cursor-not-allowed">
             {link.icon}
           </span>
         )
       ))}
     </div>
-  </motion.article>
+  </SpotlightCard>
 );
 
 const About = ({ language }) => {
   const t = ABOUT_TRANSLATIONS[language] || ABOUT_TRANSLATIONS.el;
   const railRef = useRef(null);
+  const { scrollXProgress } = useScroll({ container: railRef });
+  const progress = useSpring(scrollXProgress, { stiffness: 140, damping: 24 });
 
   const scrollRail = (direction) => {
     const rail = railRef.current;
@@ -263,59 +273,50 @@ const About = ({ language }) => {
   };
 
   return (
-    <section id="about" className="py-20 md:py-28">
-      <div className="container mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <motion.h2
-            className="relative text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 inline-block whitespace-nowrap group"
-            whileHover="hover"
-            initial="rest"
-          >
-            {t.titlePrefix} <span className="text-primary">{t.titleAccent}</span> {t.titleSuffix}
-            <motion.div
-              className="absolute bottom-[-10px] left-0 right-0 h-1 bg-primary"
-              variants={{
-                rest: { scaleX: 0, transition: { duration: 0.6, ease: 'easeOut' } },
-                hover: { scaleX: 1, transition: { duration: 0.4, ease: 'easeIn' } },
-              }}
-              initial={{ scaleX: 0 }}
-              whileInView={{ scaleX: 1, transition: { duration: 0.8, ease: 'easeOut', once: true } }}
-            />
-          </motion.h2>
-        </motion.div>
+    <section id="about" className="lux-section relative py-24 md:py-32">
+      <div className="lux-section__glow lux-section__glow--right" aria-hidden="true" />
+      <div className="container mx-auto px-6 relative">
+        <SectionHeading
+          prefix={t.titlePrefix}
+          accent={t.titleAccent}
+          suffix={t.titleSuffix}
+          className="mb-12 md:mb-14"
+        />
 
-        <div className="flex items-center justify-end gap-2 mb-4">
-          <button
+        <div className="flex items-center justify-end gap-3 mb-6">
+          <motion.button
             type="button"
             onClick={() => scrollRail('prev')}
             aria-label={t.prev}
-            className="p-2.5 rounded-xl border border-slate-700/60 bg-slate-800/50 text-gray-300 hover:text-primary hover:border-primary/60 transition-colors"
+            whileHover={{ scale: 1.08, x: -2 }}
+            whileTap={{ scale: 0.94 }}
+            className="lux-round-btn"
           >
             <ChevronLeft className="w-5 h-5" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             type="button"
             onClick={() => scrollRail('next')}
             aria-label={t.next}
-            className="p-2.5 rounded-xl border border-slate-700/60 bg-slate-800/50 text-gray-300 hover:text-primary hover:border-primary/60 transition-colors"
+            whileHover={{ scale: 1.08, x: 2 }}
+            whileTap={{ scale: 0.94 }}
+            className="lux-round-btn"
           >
             <ChevronRight className="w-5 h-5" />
-          </button>
+          </motion.button>
         </div>
 
         <div
           ref={railRef}
-          className="flex gap-4 md:gap-5 overflow-x-auto pb-3 snap-x snap-mandatory [scrollbar-width:thin]"
+          className="lux-rail flex gap-5 md:gap-6 overflow-x-auto px-1 pt-4 pb-20 -mb-12 snap-x snap-mandatory"
         >
           {[...PROJECTS].reverse().map((project, index) => (
             <ProjectCard key={`${project.title}-${index}`} project={project} index={index} />
           ))}
+        </div>
+
+        <div className="lux-rail-progress" aria-hidden="true">
+          <motion.span className="lux-rail-progress__fill" style={{ scaleX: progress }} />
         </div>
       </div>
     </section>

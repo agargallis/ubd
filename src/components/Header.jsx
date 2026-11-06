@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Sun, Moon, BriefcaseBusiness, Users, PhoneCall } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -50,6 +50,7 @@ const LanguageButton = ({ code, label, flag, isActive, onClick }) => (
 
 const Header = ({ theme, setTheme, language, setLanguage }) => {
   const [activeSection, setActiveSection] = useState('');
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const t = HEADER_TRANSLATIONS[language] || HEADER_TRANSLATIONS.el;
@@ -74,6 +75,13 @@ const Header = ({ theme, setTheme, language, setLanguage }) => {
       }
     }
   };
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 24);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark');
@@ -113,21 +121,26 @@ const Header = ({ theme, setTheme, language, setLanguage }) => {
 
   return (
     <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      initial={{ y: -120, opacity: 0, filter: 'blur(10px)' }}
+      animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
       className="fixed top-3 left-0 right-0 z-50"
     >
       <div className="container mx-auto px-4 md:px-6">
-        <div className="glass-shell rounded-[2rem] px-4 py-2.5 md:px-7 md:py-4 flex justify-between items-center backdrop-blur-xl">
-          <div className="flex items-center">
+        <div className={`glass-shell lux-header rounded-[2rem] px-4 py-2.5 md:px-7 flex justify-between items-center backdrop-blur-xl ${isScrolled ? 'lux-header--scrolled md:py-2.5' : 'md:py-4'}`}>
+          <span className="lux-header__line" aria-hidden="true" />
+          <motion.div
+            className="flex items-center"
+            whileHover={{ scale: 1.04 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+          >
             <img
               alt="UBD Logo"
-              className="h-12 md:h-20 w-auto site-logo"
+              className={`w-auto site-logo transition-all duration-500 ${isScrolled ? 'h-11 md:h-14' : 'h-12 md:h-20'}`}
               src="https://i.imgur.com/I7mGxrV.png"
               style={{ filter: logoFilter }}
             />
-          </div>
+          </motion.div>
 
           <nav className="flex md:hidden items-center gap-1.5">
             {navItems.map(item => {
@@ -148,7 +161,7 @@ const Header = ({ theme, setTheme, language, setLanguage }) => {
             })}
           </nav>
 
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center gap-3 lux-nav">
             {navItems.map(item => {
               const Icon = item.icon;
               const isActive = location.pathname === '/' && activeSection === item.id;
@@ -158,17 +171,22 @@ const Header = ({ theme, setTheme, language, setLanguage }) => {
                   onClick={() => scrollToSection(item.id)}
                   title={item.label}
                   aria-label={item.label}
-                  className={`relative rounded-full px-3 py-1.5 transition-colors duration-300 touch-manipulation [webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${isActive ? 'text-primary bg-primary/10' : 'text-foreground/80 hover:text-primary hover:bg-primary/5'}`}
+                  className={`lux-nav__item group relative rounded-full px-4 py-2 transition-colors duration-300 touch-manipulation [webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 ${isActive ? 'text-primary' : 'text-foreground/80 hover:text-primary'}`}
                 >
-                  <Icon className="h-5 w-5" />
+                  {isActive && (
+                    <motion.span
+                      className="lux-nav__pill"
+                      layoutId="lux-nav-pill"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <Icon className="relative z-10 h-5 w-5 transition-transform duration-300 group-hover:scale-110" />
                   <span className="sr-only">{item.label}</span>
                   {isActive && (
                     <motion.div
-                      className="absolute bottom-[-4px] left-3 right-3 h-[2px] bg-primary"
+                      className="absolute bottom-[-6px] left-1/2 h-[3px] w-6 -translate-x-1/2 rounded-full lux-nav__dot"
                       layoutId="underline"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
                   )}
                 </button>
@@ -211,17 +229,29 @@ const Header = ({ theme, setTheme, language, setLanguage }) => {
               />
             </div>
 
-            <button
+            <motion.button
               onClick={toggleTheme}
-              className="p-2.5 rounded-full border border-border/60 transition-all duration-300 md:hover:bg-muted md:hover:scale-105 md:hover:shadow-[0_0_20px_rgba(73,226,255,0.35)] touch-manipulation [webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+              whileTap={{ scale: 0.88 }}
+              className="lux-theme-toggle p-2.5 rounded-full border border-border/60 transition-all duration-300 md:hover:bg-muted md:hover:scale-105 md:hover:shadow-[0_0_20px_rgba(73,226,255,0.35)] touch-manipulation [webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
               aria-label={t.toggleTheme}
             >
-              {theme === 'dark' ? (
-                <Sun className="h-6 w-6 text-yellow-400" />
-              ) : (
-                <Moon className="h-6 w-6 text-slate-800" />
-              )}
-            </button>
+              <AnimatePresence mode="wait" initial={false}>
+                <motion.span
+                  key={theme}
+                  className="block"
+                  initial={{ rotate: -120, scale: 0.4, opacity: 0 }}
+                  animate={{ rotate: 0, scale: 1, opacity: 1 }}
+                  exit={{ rotate: 120, scale: 0.4, opacity: 0 }}
+                  transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  {theme === 'dark' ? (
+                    <Sun className="h-6 w-6 text-yellow-400" />
+                  ) : (
+                    <Moon className="h-6 w-6 text-slate-800" />
+                  )}
+                </motion.span>
+              </AnimatePresence>
+            </motion.button>
           </div>
         </div>
       </div>
