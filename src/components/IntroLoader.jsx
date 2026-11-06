@@ -34,31 +34,46 @@ const IntroLoader = ({ theme = 'light', onComplete }) => {
     const previousOverflow = root.style.overflow;
     root.style.overflow = 'hidden';
 
-    const startedAt = performance.now();
+    let isFinished = false;
+    let welcomeTimeoutId;
+
+    // Always hand scrolling back, even if timers get throttled on mobile.
+    const finish = () => {
+      if (isFinished) return;
+      isFinished = true;
+      window.clearInterval(intervalId);
+      window.clearTimeout(welcomeTimeoutId);
+      window.clearTimeout(safetyTimeoutId);
+      root.style.overflow = previousOverflow;
+      setIsVisible(false);
+      onCompleteRef.current?.();
+    };
+
+    // Progress is driven by wall-clock time, not requestAnimationFrame,
+    // which mobile browsers pause or slow down (low power, in-app browsers).
+    const startedAt = Date.now();
     const tick = () => {
-      const elapsed = performance.now() - startedAt;
+      const elapsed = Date.now() - startedAt;
       const nextProgress = Math.min(100, Math.ceil((elapsed / LOADING_DURATION_MS) * 100));
       setProgress(nextProgress);
 
-      if (nextProgress < 100) {
-        frameId = window.requestAnimationFrame(tick);
-        return;
-      }
+      if (nextProgress < 100 || welcomeTimeoutId) return;
 
+      window.clearInterval(intervalId);
       setPhase('welcome');
-      welcomeTimeoutId = window.setTimeout(() => {
-        setIsVisible(false);
-        root.style.overflow = previousOverflow;
-        onCompleteRef.current?.();
-      }, WELCOME_DURATION_MS);
+      welcomeTimeoutId = window.setTimeout(finish, WELCOME_DURATION_MS);
     };
 
-    let frameId = window.requestAnimationFrame(tick);
-    let welcomeTimeoutId;
+    const intervalId = window.setInterval(tick, 40);
+    const safetyTimeoutId = window.setTimeout(finish, LOADING_DURATION_MS + WELCOME_DURATION_MS + 1500);
+    const skip = () => finish();
+    window.addEventListener('pointerdown', skip, { once: true });
 
     return () => {
-      window.cancelAnimationFrame(frameId);
+      window.clearInterval(intervalId);
       window.clearTimeout(welcomeTimeoutId);
+      window.clearTimeout(safetyTimeoutId);
+      window.removeEventListener('pointerdown', skip);
       root.style.overflow = previousOverflow;
     };
   }, []);

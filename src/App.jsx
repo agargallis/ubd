@@ -95,7 +95,7 @@ function App() {
         <ScrollToSection />
         <CustomCursor />
         <ScrollProgress />
-        <div className="relative isolate min-h-screen min-h-[100dvh] text-foreground transition-colors duration-300 overflow-x-hidden flex flex-col">
+        <div className="relative isolate min-h-screen min-h-[100dvh] text-foreground transition-colors duration-300 lux-app flex flex-col">
           <IntroLoader theme={theme} onComplete={handleIntroComplete} />
           <div className="site-ambience" aria-hidden="true">
             <div className="ambient-orb ambient-orb-cyan" />

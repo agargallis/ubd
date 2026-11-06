@@ -135,7 +135,7 @@ const Hero = ({ language }) => {
       onPointerMove={handlePointerMove}
       className="lux-hero relative -mt-24 pt-44 pb-20 md:mt-0 md:pt-32 md:pb-24 text-white overflow-hidden"
     >
-      <motion.div className="lux-hero__stage" style={{ scale: stageScale }} aria-hidden="true">
+      <motion.div className="lux-hero__stage" style={isFine ? { scale: stageScale } : undefined} aria-hidden="true">
         <div className="lux-hero__grid" />
         <div className="lux-aurora">
           <span className="lux-aurora__band lux-aurora__band--one" />
