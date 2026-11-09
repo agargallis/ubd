@@ -1,4 +1,4 @@
-/* Layout for 1080×1350 Instagram canvases. Colours, gradients, cards and
+/* Layout for 1080×1440 (3:4) Instagram canvases. Colours, gradients, cards and
    buttons come from the site's own index.css + luxury.css. */
 
 html,
@@ -19,7 +19,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 1080px;
-  height: 1350px;
+  height: 1440px;
   overflow: hidden;
   padding: 64px 84px 56px;
   box-sizing: border-box;

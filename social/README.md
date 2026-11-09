@@ -11,7 +11,7 @@ npm run social              # όλα τα posts → social/output/*.png
 npm run social -- <κομμάτι> # μόνο όσα ids περιέχουν το <κομμάτι>
 ```
 
-Καμβάς 1080×1350 (4:5), export @2x → PNG 2160×2700. Προεπισκόπηση: `npx vite --config social/vite.config.mjs`
+Καμβάς **1080×1440 (3:4)** — πάντα αυτή η αναλογία — export @2x → PNG 2160×2880. Προεπισκόπηση: `npx vite --config social/vite.config.mjs`
 και άνοιγμα `/?post=<id>` (ή `&theme=light|dark`).
 
 ## Νέο post

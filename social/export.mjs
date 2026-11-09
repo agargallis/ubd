@@ -1,4 +1,4 @@
-// Renders every social post to social/output/<id>.png (1080×1350 @2x).
+// Renders every social post to social/output/<id>.png (1080×1440, 3:4, @2x).
 // Usage: npm run social            (all posts)
 //        npm run social -- hero    (only ids containing "hero")
 // Set CHROME_PATH if Chrome/Edge is installed somewhere unusual.
@@ -39,7 +39,7 @@ const browser = await puppeteer.launch({ executablePath, headless: 'new' });
 
 try {
   const page = await browser.newPage();
-  await page.setViewport({ width: 1080, height: 1350, deviceScaleFactor: 2 });
+  await page.setViewport({ width: 1080, height: 1440, deviceScaleFactor: 2 });
   await page.emulateMediaFeatures([{ name: 'prefers-reduced-motion', value: 'no-preference' }]);
 
   await page.goto(baseUrl, { waitUntil: 'networkidle0' });
@@ -54,7 +54,7 @@ try {
     await page.evaluate(() => document.fonts.ready);
     await page.waitForFunction(() => window.__SOCIAL_READY === true, { timeout: 30000 });
     const file = path.join(outputDir, `${id}.png`);
-    await page.screenshot({ path: file, clip: { x: 0, y: 0, width: 1080, height: 1350 } });
+    await page.screenshot({ path: file, clip: { x: 0, y: 0, width: 1080, height: 1440 } });
     console.log('✓', path.relative(process.cwd(), file));
   }
 } finally {
