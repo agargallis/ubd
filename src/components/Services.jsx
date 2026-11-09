@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Share2, Globe, Home, MapPin, Wrench, BarChart, ArrowRight } from 'lucide-react';
 import { SpotlightCard, SectionHeading, LUX_EASE } from '@/components/lux/Lux';
 
-const SERVICES_TRANSLATIONS = {
+export const SERVICES_TRANSLATIONS = {
   el: {
     titlePrefix: 'Οι',
     titleAccent: 'υπηρεσίες',
@@ -82,7 +82,7 @@ const SERVICES_TRANSLATIONS = {
   },
 };
 
-const SERVICE_META = [
+export const SERVICE_META = [
   { icon: <Share2 className="h-8 w-8 text-white" />, color: 'cyan' },
   { icon: <Globe className="h-8 w-8 text-white" />, color: 'blue' },
   { icon: <Home className="h-8 w-8 text-white" />, color: 'green' },
@@ -90,7 +90,7 @@ const SERVICE_META = [
   { icon: <Wrench className="h-8 w-8 text-white" />, color: 'orange' },
   { icon: <BarChart className="h-8 w-8 text-white" />, color: 'purple' },
 ];
-const colorVariants = {
+export const colorVariants = {
   cyan: { iconBg: "bg-cyan-500", colorVar: "#06b6d4" },
   blue: { iconBg: "bg-blue-500", colorVar: "#3b82f6" },
   green: { iconBg: "bg-green-500", colorVar: "#22c55e" },
@@ -98,7 +98,7 @@ const colorVariants = {
   orange: { iconBg: "bg-orange-500", colorVar: "#f97316" },
   purple: { iconBg: "bg-purple-500", colorVar: "#a855f7" }
 };
-const ServiceCard = ({ service, ctaLabel, index }) => {
+export const ServiceCard = ({ service, ctaLabel, index }) => {
   const colors = colorVariants[service.color] || colorVariants.cyan;
   const scrollToContact = () => {
     const contactSection = document.getElementById('contact');

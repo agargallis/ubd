@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Star, ArrowRight, Quote } from 'lucide-react';
 import { SpotlightCard, SectionHeading, LUX_EASE } from '@/components/lux/Lux';
 
-const TESTIMONIALS_TRANSLATIONS = {
+export const TESTIMONIALS_TRANSLATIONS = {
   el: {
     titlePrefix: 'Τι λένε οι',
     titleAccent: 'πελάτες',
@@ -48,7 +48,7 @@ const TESTIMONIALS_TRANSLATIONS = {
   },
 };
 
-const TESTIMONIAL_META = [
+export const TESTIMONIAL_META = [
   {
     image: 'https://i.imgur.com/6bWOW3A.png',
     alt: 'Profile picture of a client named Metaxu mas in a restaurant',

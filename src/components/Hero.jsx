@@ -4,7 +4,7 @@ import { CheckCircle, TrendingUp, Sparkles, Users, ArrowUpRight, ChevronDown } f
 import { PROJECTS } from '@/components/About';
 import { SpotlightCard, Magnetic, WordReveal, LUX_EASE, useFinePointer } from '@/components/lux/Lux';
 
-const HERO_TRANSLATIONS = {
+export const HERO_TRANSLATIONS = {
   el: {
     headingTop: 'Ενδυναμώστε την επιχείρησή σας με',
     headingAccent: 'σύγχρονη τεχνολογία',

@@ -183,7 +183,7 @@ export const PROJECTS = [
   },
 ];
   
-const ABOUT_TRANSLATIONS = {
+export const ABOUT_TRANSLATIONS = {
   el: {
     titlePrefix: 'Τα',
     titleAccent: 'projects',

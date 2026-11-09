@@ -1,0 +1,251 @@
+/* Layout for 1080×1350 Instagram canvases. Colours, gradients, cards and
+   buttons come from the site's own index.css + luxury.css. */
+
+html,
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.social-index {
+  padding: 3rem;
+  overflow: auto;
+  height: 100vh;
+}
+
+.social-frame {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  width: 1080px;
+  height: 1350px;
+  overflow: hidden;
+  padding: 64px 84px 56px;
+  box-sizing: border-box;
+  background-color: hsl(var(--background));
+  background-image: var(--site-background-image);
+  color: hsl(var(--foreground));
+}
+
+.social-frame__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.social-frame__bg .lux-hero__rings {
+  top: 46%;
+}
+
+/* A still image can afford the soft blur the live site drops for speed. */
+.social-frame__bg .lux-aurora {
+  filter: blur(70px);
+}
+
+/* Frozen backdrop: a still image should not depend on animation timing. */
+.social-frame__bg *,
+.social-frame__bg *::before {
+  animation: none !important;
+}
+
+.social-frame .lux-grain {
+  position: absolute;
+}
+
+.social-frame__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 96px;
+}
+
+.social-frame__logo {
+  height: 96px;
+  width: auto;
+}
+
+.social-frame__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-frame__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  min-height: 64px;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  color: var(--lux-ink);
+  opacity: 0.85;
+}
+
+.social-frame__rule {
+  flex: 1;
+}
+
+/* Section heading at post scale */
+.social-frame .lux-heading h2 {
+  font-size: 4.6rem;
+}
+
+.social-frame .lux-ornament__line {
+  width: 6rem;
+}
+
+.social-frame .lux-ornament__diamond {
+  width: 0.8rem;
+  height: 0.8rem;
+}
+
+/* Progress "0X / 06" */
+.social-progress {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 2.25rem;
+}
+
+.social-progress__count {
+  font-size: 2.2rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.social-progress__track {
+  flex: 1;
+  width: auto;
+  height: 4px;
+  margin: 0;
+}
+
+/* Hero */
+.social-cta {
+  gap: 1rem;
+  padding: 1.9rem 4.2rem;
+  font-size: 2.4rem;
+}
+
+.social-frame .lux-hero__swash {
+  bottom: -0.36em;
+}
+
+.social-theme-pill {
+  display: inline-flex;
+  width: 4.5rem;
+  height: 4.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: var(--lux-gold);
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-surface-border);
+  box-shadow: var(--lux-surface-shadow);
+}
+
+/* Testimonials */
+.social-testimonial {
+  width: 100%;
+}
+
+.social-testimonial__quote {
+  width: 7rem;
+  height: 7rem;
+  top: 2.5rem;
+  right: 3rem;
+}
+
+.social-testimonial__text {
+  font-size: 2.15rem;
+}
+
+/* New project */
+.social-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1rem 2.2rem;
+  border-radius: 9999px;
+  font-size: 1.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #04131f;
+  background: linear-gradient(120deg, #f2cf7c, #53f2ff);
+  box-shadow: 0 14px 34px -14px rgba(242, 207, 124, 0.8);
+}
+
+.social-project__ring {
+  width: 10rem;
+  height: 10rem;
+  flex-shrink: 0;
+}
+
+.social-project__ring .lux-logo-ring__spin {
+  opacity: 1;
+}
+
+.social-project__logo {
+  width: 8.9rem;
+  height: 8.9rem;
+  padding: 1rem;
+}
+
+.social-mockup {
+  width: 100%;
+  overflow: hidden;
+}
+
+.social-mockup__bar {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid var(--lux-surface-border);
+}
+
+.social-mockup__dot {
+  width: 0.9rem;
+  height: 0.9rem;
+  border-radius: 9999px;
+}
+
+.social-mockup__url {
+  flex: 1;
+  margin-left: 1rem;
+  padding: 0.45rem 1.1rem;
+  border-radius: 9999px;
+  font-size: 1.15rem;
+  text-align: left;
+  color: var(--lux-ink);
+  opacity: 0.75;
+  background: rgba(127, 127, 127, 0.1);
+}
+
+.social-mockup__screen {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  height: 430px;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem;
+  border-radius: 1.2rem;
+  border: 2px dashed var(--lux-surface-border);
+  font-size: 1.8rem;
+  letter-spacing: 0.08em;
+  color: var(--lux-ink);
+  opacity: 0.6;
+}
+
+.social-tag {
+  padding: 0.9rem 1.8rem;
+  font-size: 1.6rem;
+}

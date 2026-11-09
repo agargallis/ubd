@@ -4,10 +4,9 @@
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"jsx": "react-jsx",
-		"baseUrl": ".",
 		"paths": {
 			"@/*": ["./src/*"]
 		}
 	},
-	"include": ["src", "vite.config.js", "plugins"]
+	"include": ["src", "vite.config.js", "plugins", "social"]
 }
