@@ -249,3 +249,52 @@ body {
   padding: 0.9rem 1.8rem;
   font-size: 1.6rem;
 }
+
+/* Pinned reels rebuilt: services lists + purpose */
+.social-volume {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.6rem;
+  border-radius: 9999px;
+  font-size: 1.6rem;
+  letter-spacing: 0.12em;
+  color: #04131f;
+  background: linear-gradient(120deg, #f2cf7c, #53f2ff);
+  box-shadow: 0 12px 30px -14px rgba(242, 207, 124, 0.8);
+}
+
+.social-keyword {
+  font-weight: 700;
+}
+
+.social-list__bullet {
+  width: 0.85rem;
+  height: 0.85rem;
+  margin-top: 0.95rem;
+  flex-shrink: 0;
+}
+
+.social-list__text {
+  font-size: 1.95rem;
+  line-height: 1.45;
+}
+
+.social-purpose__intro {
+  font-size: 2.2rem;
+  text-align: center;
+}
+
+.social-purpose__text {
+  font-size: 1.65rem;
+  line-height: 1.5;
+}
+
+.social-purpose__icon {
+  width: 4.75rem;
+  height: 4.75rem;
+}
+
+.social-world-pill {
+  padding: 0.55rem 1.2rem;
+  font-size: 1.35rem;
+}

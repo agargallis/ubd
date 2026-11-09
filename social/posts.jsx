@@ -1,10 +1,11 @@
 import React from 'react';
-import { Sparkles, ArrowUpRight, Quote, Star, Sun, Moon, Globe, Instagram, Search } from 'lucide-react';
+import { Sparkles, ArrowUpRight, Quote, Star, Sun, Moon, Globe, Instagram, Search, Rocket, TrendingUp } from 'lucide-react';
 import { SpotlightCard, SectionHeading, WordReveal } from '@/components/lux/Lux';
 import { HERO_TRANSLATIONS } from '@/components/Hero';
 import { SERVICES_TRANSLATIONS, SERVICE_META, ServiceCard } from '@/components/Services';
 import { TESTIMONIALS_TRANSLATIONS, TESTIMONIAL_META } from '@/components/Testimonials';
 import { PROJECTS } from '@/components/About';
+import { SERVICES_VOL_1, SERVICES_VOL_2, PURPOSE } from './content/pinned-reels';
 
 const LANG = 'el';
 const LOGO_URL = 'https://i.imgur.com/I7mGxrV.png';
@@ -231,6 +232,74 @@ const NewProjectPost = ({ theme, project }) => {
   );
 };
 
+/* ---------- Pinned reels, rebuilt in the site UI ---------- */
+
+// Renders **keyword** as the site's gradient accent.
+const Highlighted = ({ text }) =>
+  text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean).map((part, index) =>
+    part.startsWith('**') ? (
+      <span key={index} className="lux-gold-text social-keyword">{part.slice(2, -2)}</span>
+    ) : (
+      <React.Fragment key={index}>{part}</React.Fragment>
+    )
+  );
+
+const VolumePill = ({ children }) => <span className="social-volume">{children}</span>;
+
+const ServicesListPost = ({ theme, items, volume }) => {
+  const t = SERVICES_TRANSLATIONS[LANG];
+  return (
+    <Frame theme={theme} corner={<VolumePill>Vol. {volume}</VolumePill>}>
+      <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-10" />
+      <SpotlightCard tilt={0} className="social-list rounded-[2.5rem] px-14 py-12 w-full">
+        <ul className="relative z-10 space-y-7 text-left">
+          {items.map((item, index) => (
+            <li key={index} className="flex items-start gap-6">
+              <span className="lux-bullet social-list__bullet" />
+              <span className="social-list__text text-gray-300"><Highlighted text={item} /></span>
+            </li>
+          ))}
+        </ul>
+      </SpotlightCard>
+    </Frame>
+  );
+};
+
+const PURPOSE_ICONS = [Rocket, TrendingUp];
+
+const PurposePost = ({ theme }) => (
+  <Frame theme={theme}>
+    <SectionHeading prefix="Ο" accent="σκοπός" suffix="μας" className="mb-8" />
+    <p className="social-purpose__intro text-white mb-8">{PURPOSE.intro}</p>
+    <div className="grid grid-cols-2 gap-6 w-full mb-8">
+      {PURPOSE.categories.map((category, index) => {
+        const Icon = PURPOSE_ICONS[index];
+        return (
+          <SpotlightCard key={category.label} tilt={0} className="rounded-[2rem] p-9 text-left">
+            <span className="lux-icon-orb social-purpose__icon relative z-10 mb-5">
+              <span className="lux-icon-orb__ring" aria-hidden="true" />
+              <Icon className="relative z-10 h-9 w-9 text-primary" />
+            </span>
+            <h3 className="relative z-10 text-[2.1rem] font-bold text-white mb-3 leading-tight">{category.label}</h3>
+            <p className="relative z-10 social-purpose__text text-gray-300"><Highlighted text={category.text} /></p>
+          </SpotlightCard>
+        );
+      })}
+    </div>
+    <SpotlightCard tilt={0} className="rounded-[2rem] px-10 py-8 w-full text-left">
+      <p className="relative z-10 social-purpose__text text-gray-300 mb-5">{PURPOSE.worldIntro}</p>
+      <div className="relative z-10 flex flex-wrap gap-3 mb-5">
+        {PURPOSE.world.map((item) => (
+          <span key={item} className="lux-pill social-world-pill">
+            <span className="relative z-10">{item}</span>
+          </span>
+        ))}
+      </div>
+      <p className="relative z-10 social-purpose__text text-gray-300"><Highlighted text={PURPOSE.outro} /></p>
+    </SpotlightCard>
+  </Frame>
+);
+
 /* ---------- Registry ---------- */
 
 // PROJECTS is ordered oldest → newest (the site shows it reversed).
@@ -254,6 +323,9 @@ export const POSTS = [
     render: (theme) => <TestimonialPost theme={theme} index={index} />,
   })),
   { id: 'new-project', theme: 'dark', render: (theme) => <NewProjectPost theme={theme} project={projectFromQuery()} /> },
+  { id: 'pinned-1-services-vol-1', theme: 'dark', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
+  { id: 'pinned-2-services-vol-2', theme: 'dark', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
+  { id: 'pinned-3-purpose', theme: 'dark', render: (theme) => <PurposePost theme={theme} /> },
   { id: 'dark-vs-light-1-dark', theme: 'dark', render: (theme) => <HeroPost theme={theme} showThemePill /> },
   { id: 'dark-vs-light-2-light', theme: 'light', render: (theme) => <HeroPost theme={theme} showThemePill /> },
 ];
