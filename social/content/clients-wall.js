@@ -1,8 +1,8 @@
-// "Μας εμπιστεύτηκαν" — logo wall of every client, from the site's PROJECTS.
+// "Αυτοί είναι ήδη online" — logo wall of every client, from the site's PROJECTS.
 // Counts are computed from each project's links, never typed in.
 
-// Not clients: demo apps and Antonis' own portfolio.
-export const CLIENTS_EXCLUDE = ['Barbershop Queue System', 'Barbershop Booking App', 'Antonis Gargallis'];
+// Left out: demo apps, Antonis' own portfolio, and Aggelos Zaxariou (Antonis' call).
+export const CLIENTS_EXCLUDE = ['Barbershop Queue System', 'Barbershop Booking App', 'Antonis Gargallis', 'Aggelos Zaxariou'];
 
 // Service rows: label + which project link labels count towards it.
 export const CLIENT_SERVICES = [
@@ -13,9 +13,7 @@ export const CLIENT_SERVICES = [
 ];
 
 export const CLIENTS_COPY = {
-  badge: 'Τι κάνουμε',
-  titlePrefix: 'Μας',
-  titleAccent: 'εμπιστεύτηκαν',
-  servicesIntro: 'Στήνουμε όλη την ψηφιακή παρουσία μιας επιχείρησης:',
-  outro: 'Η επόμενη μπορεί να είναι η δική σου!',
+  titlePrefix: 'Αυτοί είναι ήδη',
+  titleAccent: 'online',
+  outro: 'Εσύ πότε μπαίνεις;',
 };

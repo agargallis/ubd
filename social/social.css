@@ -1080,3 +1080,17 @@ img.social-box__mark {
   font-size: 2.1rem;
   text-align: center;
 }
+
+.social-clients__outro {
+  font-size: 3.4rem;
+  line-height: 1.15;
+}
+
+.social-client__logo {
+  width: 124px;
+  height: 124px;
+}
+
+.social-clients {
+  gap: 2rem 1.4rem;
+}

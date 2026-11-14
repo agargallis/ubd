@@ -690,9 +690,9 @@ const ClientsWallPost = ({ theme }) => {
 
   return (
     <Frame theme={theme}>
-      <SectionHeading prefix={c.titlePrefix} accent={c.titleAccent} className="mb-10" />
+      <SectionHeading prefix={c.titlePrefix} accent={c.titleAccent} className="mb-12" />
 
-      <div className="social-clients w-full mb-11">
+      <div className="social-clients w-full mb-14">
         {clients.map((client) => (
           <div key={client.title} className="social-client">
             <span className="social-client__logo">
@@ -703,12 +703,7 @@ const ClientsWallPost = ({ theme }) => {
         ))}
       </div>
 
-      <span className="social-badge mb-6">
-        <Sparkles className="h-7 w-7" />
-        {c.badge}
-      </span>
-      <p className="social-clients__intro text-gray-300 text-center mb-7">{c.servicesIntro}</p>
-      <div className="social-clients__services w-full mb-9">
+      <div className="social-clients__services w-full mb-10">
         {counts.map(({ icon, label, count }) => {
           const Icon = CLIENT_ICONS[icon];
           return (
@@ -720,7 +715,9 @@ const ClientsWallPost = ({ theme }) => {
           );
         })}
       </div>
-      <p className="social-clients__outro font-bold text-white">{c.outro}</p>
+      <p className="social-clients__outro font-bold text-white luxury-heading">
+        <span className="lux-gold-text">{c.outro}</span>
+      </p>
     </Frame>
   );
 };
@@ -751,7 +748,7 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
-  { id: 'clients-wall', theme: 'light', render: (theme) => <ClientsWallPost theme={theme} /> },
+  { id: 'clients-wall', theme: 'dark', render: (theme) => <ClientsWallPost theme={theme} /> },
   { id: 'barber-booking-01-cover', theme: 'light', render: (theme) => <BookingCover theme={theme} /> },
   { id: 'barber-booking-02-steps', theme: 'light', render: (theme) => <BookingSteps theme={theme} /> },
   { id: 'barber-booking-03-benefits', theme: 'light', render: (theme) => <BookingBenefits theme={theme} /> },
