@@ -13,7 +13,7 @@ export const GOOGLE_REVIEWS = [
   {
     name: 'aggelos myriounis',
     category: 'Κάτοχος Σύγχρονου Ψητοπωλείου',
-    avatar: { project: 'Άσπρο Πρόβατο Κρεατοφαγείον' },
+    avatar: { project: 'Άσπρο Πρόβατο Κρεατοφαγείον', fill: '#fff' }, // transparent sheep → white
     text: 'Πολύ φιλικός ο Αντώνης, συνεργάσιμος, έκατσε και άκουσε τι ήθελα και **το αποτέλεσμα ήταν εκπληκτικό!!!**',
   },
   {

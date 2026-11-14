@@ -803,6 +803,6 @@ img.social-box__mark {
 }
 
 .social-review__avatar--logo {
-  padding: 0.35rem;
-  border: 2px solid var(--lux-surface-border);
+  object-fit: cover;
+  background: transparent;
 }
