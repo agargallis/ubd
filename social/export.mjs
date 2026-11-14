@@ -54,11 +54,19 @@ try {
 
   fs.mkdirSync(outputDir, { recursive: true });
   for (const id of selected) {
-    await page.goto(`${baseUrl}?post=${id}${forcedTheme ? `&theme=${forcedTheme}` : ''}`, { waitUntil: 'networkidle0' });
+    const url = `${baseUrl}?post=${id}${forcedTheme ? `&theme=${forcedTheme}` : ''}`;
+    // Posts may declare their own canvas (e.g. 1080×1920 story / highlight covers).
+    await page.setViewport({ width: 1080, height: 1440, deviceScaleFactor: 2 });
+    await page.goto(url, { waitUntil: 'networkidle0' });
+    const [width, height] = await page.evaluate(() => window.__SOCIAL_SIZE || [1080, 1440]);
+    if (height !== 1440 || width !== 1080) {
+      await page.setViewport({ width, height, deviceScaleFactor: 2 });
+      await page.goto(url, { waitUntil: 'networkidle0' });
+    }
     await page.evaluate(() => document.fonts.ready);
     await page.waitForFunction(() => window.__SOCIAL_READY === true, { timeout: 30000 });
     const file = path.join(outputDir, `${id}${forcedTheme ? `-${forcedTheme}` : ''}.png`);
-    await page.screenshot({ path: file, clip: { x: 0, y: 0, width: 1080, height: 1440 } });
+    await page.screenshot({ path: file, clip: { x: 0, y: 0, width, height } });
     console.log('✓', path.relative(process.cwd(), file));
   }
 } finally {

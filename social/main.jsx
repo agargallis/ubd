@@ -9,6 +9,8 @@ const params = new URLSearchParams(window.location.search);
 const post = POSTS.find((item) => item.id === params.get('post'));
 const theme = params.get('theme') || post?.theme || 'dark';
 
+window.__SOCIAL_SIZE = post?.size || [1080, 1440];
+
 const root = document.documentElement;
 root.classList.add(theme);
 root.setAttribute('data-theme', theme);

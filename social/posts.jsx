@@ -14,7 +14,7 @@ import { BARBER_BOOKING } from './content/barber-booking';
 import { CLIENTS_EXCLUDE, CLIENT_STEPS, CLIENTS_COPY } from './content/clients-wall';
 import koulisBarbers from './assets/projects/koulis-barbers.jpg';
 import koulisCalendar from './assets/projects/koulis-calendar.jpg';
-import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow } from 'lucide-react';
+import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow, Handshake, Wrench } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const AVATAR_FILES = Object.fromEntries(
@@ -720,6 +720,41 @@ const ClientsWallPost = ({ theme }) => {
   );
 };
 
+/* ---------- Instagram highlight covers (1080×1920) ---------- */
+
+const HighlightCover = ({ icon: Icon, id }) => (
+  <div className="social-highlight">
+    <div className="social-frame__bg" aria-hidden="true">
+      <div className="lux-hero__grid" />
+      <div className="lux-aurora">
+        <span className="lux-aurora__band lux-aurora__band--one" />
+        <span className="lux-aurora__band lux-aurora__band--two" />
+        <span className="lux-aurora__band lux-aurora__band--three" />
+      </div>
+    </div>
+    <div className="lux-grain" aria-hidden="true" />
+    <svg width="0" height="0" className="absolute" aria-hidden="true">
+      <defs>
+        <linearGradient id={`hl-${id}`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#53f2ff" />
+          <stop offset="55%" stopColor="#22d3ee" />
+          <stop offset="100%" stopColor="#f2cf7c" />
+        </linearGradient>
+      </defs>
+    </svg>
+    <span className="social-highlight__ring">
+      <span className="social-highlight__disc">
+        <Icon className="social-highlight__icon" stroke={`url(#hl-${id})`} strokeWidth={1.6} />
+      </span>
+    </span>
+  </div>
+);
+
+const HIGHLIGHTS = [
+  { id: 'clients', icon: Handshake },
+  { id: 'tools', icon: Wrench },
+];
+
 /* ---------- Registry ---------- */
 
 // PROJECTS is ordered oldest → newest (the site shows it reversed).
@@ -746,6 +781,12 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  ...HIGHLIGHTS.map(({ id, icon }) => ({
+    id: `highlight-${id}`,
+    theme: 'dark',
+    size: [1080, 1920],
+    render: () => <HighlightCover id={id} icon={icon} />,
+  })),
   { id: 'clients-wall', theme: 'dark', render: (theme) => <ClientsWallPost theme={theme} /> },
   { id: 'barber-booking-01-cover', theme: 'light', render: (theme) => <BookingCover theme={theme} /> },
   { id: 'barber-booking-02-steps', theme: 'light', render: (theme) => <BookingSteps theme={theme} /> },

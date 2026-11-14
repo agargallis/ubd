@@ -1129,3 +1129,82 @@ img.social-box__mark {
   color: #04131f;
   background: linear-gradient(120deg, #f2cf7c, #53f2ff);
 }
+
+/* ---------- Instagram highlight covers (1080×1920, icon in the centre circle) ---------- */
+.social-highlight {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: 1080px;
+  height: 1920px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background-color: hsl(var(--background));
+  background-image: var(--site-background-image);
+}
+
+.social-highlight .lux-grain {
+  position: absolute;
+}
+
+.social-highlight .lux-aurora {
+  filter: blur(80px);
+}
+
+.social-highlight__ring {
+  display: inline-flex;
+  width: 620px;
+  height: 620px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  padding: 10px;
+  background: linear-gradient(135deg, #f2cf7c, #53f2ff 50%, #22d3ee);
+  box-shadow: 0 0 120px -20px rgba(83, 242, 255, 0.55), 0 0 80px -30px rgba(242, 207, 124, 0.6);
+}
+
+.social-highlight__disc {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 25%, #10233a, #050c16 70%);
+}
+
+[data-theme='light'] .social-highlight__disc {
+  background: radial-gradient(circle at 30% 25%, #ffffff, #eef5f8 70%);
+}
+
+.social-highlight__icon {
+  width: 300px;
+  height: 300px;
+}
+
+/* Big blurred box-shadows tile into squares in headless Chrome: glow via a gradient instead. */
+.social-highlight::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 50%;
+  width: 1080px;
+  height: 1080px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(83, 242, 255, 0.28) 30%, rgba(242, 207, 124, 0.1) 45%, transparent 65%);
+}
+
+.social-highlight__ring {
+  width: 780px;
+  height: 780px;
+  padding: 12px;
+  box-shadow: none;
+}
+
+.social-highlight__icon {
+  width: 390px;
+  height: 390px;
+}

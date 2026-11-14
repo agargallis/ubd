@@ -44,3 +44,8 @@ SOCIAL_THEME=dark npm run social -- <κομμάτι>  # όλα σε dark (ή lig
 
 - Ενσωματωμένα: `content/brand-logos.js` (simple-icons CC0· Arcticons CC BY-SA 4.0 για Photoroom, Edits, CapCut).
 - Επίσημο logo → αποθήκευσέ το ως `social/assets/logos/<slug>.svg|png|webp` (π.χ. `photoroom.png`) και αντικαθιστά αυτόματα το ενσωματωμένο.
+
+## Highlight covers
+
+`npm run social -- highlight` → `highlight-<id>.png` σε 1080×1920 (story), με το εικονίδιο στο κέντρο
+ώστε να κόβεται σωστά στον κύκλο του Instagram. Ένα post δηλώνει άλλο μέγεθος καμβά με `size: [w, h]` στο `POSTS`.
