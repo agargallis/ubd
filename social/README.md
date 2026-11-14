@@ -9,6 +9,7 @@
 ```bash
 npm run social              # όλα τα posts → social/output/*.png
 npm run social -- <κομμάτι> # μόνο όσα ids περιέχουν το <κομμάτι>
+SOCIAL_THEME=dark npm run social -- <κομμάτι>  # όλα σε dark (ή light) → <id>-dark.png
 ```
 
 Καμβάς **1080×1440 (3:4)** — πάντα αυτή η αναλογία — export @2x → PNG 2160×2880. Προεπισκόπηση: `npx vite --config social/vite.config.mjs`

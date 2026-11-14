@@ -11,6 +11,8 @@ import puppeteer from 'puppeteer-core';
 const socialDir = path.dirname(fileURLToPath(import.meta.url));
 const outputDir = path.join(socialDir, 'output');
 const filter = process.argv[2];
+// SOCIAL_THEME=dark|light renders every post in that theme, saved as <id>-<theme>.png.
+const forcedTheme = process.env.SOCIAL_THEME;
 
 const BROWSER_CANDIDATES = [
   process.env.CHROME_PATH,
@@ -52,10 +54,10 @@ try {
 
   fs.mkdirSync(outputDir, { recursive: true });
   for (const id of selected) {
-    await page.goto(`${baseUrl}?post=${id}`, { waitUntil: 'networkidle0' });
+    await page.goto(`${baseUrl}?post=${id}${forcedTheme ? `&theme=${forcedTheme}` : ''}`, { waitUntil: 'networkidle0' });
     await page.evaluate(() => document.fonts.ready);
     await page.waitForFunction(() => window.__SOCIAL_READY === true, { timeout: 30000 });
-    const file = path.join(outputDir, `${id}.png`);
+    const file = path.join(outputDir, `${id}${forcedTheme ? `-${forcedTheme}` : ''}.png`);
     await page.screenshot({ path: file, clip: { x: 0, y: 0, width: 1080, height: 1440 } });
     console.log('✓', path.relative(process.cwd(), file));
   }

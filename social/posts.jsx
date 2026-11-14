@@ -6,9 +6,9 @@ import { SERVICES_TRANSLATIONS, SERVICE_META, ServiceCard } from '@/components/S
 import { TESTIMONIALS_TRANSLATIONS, TESTIMONIAL_META } from '@/components/Testimonials';
 import { PROJECTS } from '@/components/About';
 import { SERVICES_VOL_1, SERVICES_VOL_2, PURPOSE } from './content/pinned-reels';
-import { TOOL_CATEGORIES, BONUS_LABEL, LIMITED_NOTE, OUTRO } from './content/free-tools';
+import { TOOL_CATEGORIES, TOOLS_COVER, BONUS_LABEL, LIMITED_NOTE, OUTRO } from './content/free-tools';
 import { LOGOS } from './content/brand-logos';
-import { Bookmark, Type } from 'lucide-react';
+import { Bookmark, Type, ArrowRight } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const LOGO_FILES = Object.fromEntries(
@@ -330,51 +330,105 @@ const BrandLogo = ({ slug, color, className = '' }) => {
   );
 };
 
-const FreeToolsPost = ({ theme, data }) => (
-  <Frame theme={theme}>
-    <span className="social-badge mb-8">
-      <Sparkles className="h-7 w-7" />
-      {data.category}
-    </span>
-    <SectionHeading prefix={data.titlePrefix} accent={data.titleAccent} suffix={data.titleSuffix} className="mb-10" />
+const TOOLS_TOTAL = TOOL_CATEGORIES.length + 1;
 
-    <div className={`social-tools w-full mb-5 ${data.main.length <= 4 ? 'social-tools--roomy' : ''} ${data.main.length >= 6 ? 'social-tools--dense' : ''}`}>
-      {data.main.map((tool, index) => (
-        <SpotlightCard key={tool.slug} tilt={0} className="social-tool rounded-[1.75rem] text-left">
+const PlanPill = ({ tool, className = '' }) => (
+  <span className={`social-tool__plan social-tool__plan--free relative z-10 ${className}`}>Free{tool.limited ? '*' : ''}</span>
+);
+
+const ToolsCover = ({ theme }) => (
+  <Frame theme={theme} footer={<Progress current={1} total={TOOLS_TOTAL} />}>
+    <span className="social-badge mb-10">
+      <Sparkles className="h-7 w-7" />
+      {TOOLS_COVER.badge}
+    </span>
+
+    <h1 className="social-cover__title font-bold text-white luxury-heading text-center mb-8">
+      {TOOLS_COVER.titleTop} <span className="lux-gold-text">{TOOLS_COVER.titleAccent}</span>
+      <br />
+      {TOOLS_COVER.titleBottom}
+    </h1>
+    <p className="social-cover__intro text-gray-300 text-center mb-12">{TOOLS_COVER.intro}</p>
+
+    <div className="social-cover__list w-full mb-12">
+      {TOOL_CATEGORIES.map((data, index) => (
+        <SpotlightCard key={data.id} tilt={0} className="social-cover__item rounded-[2rem] text-left">
           <span className="social-tool__index relative z-10" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-          <span className="social-tool__logo relative z-10" style={{ '--brand': tool.color || 'var(--lux-cyan)' }}>
-            <BrandLogo slug={tool.slug} color={tool.color} className="social-tool__mark" />
-          </span>
           <div className="relative z-10 min-w-0 flex-1">
-            <h3 className="social-tool__name font-bold text-white">{tool.name}</h3>
-            <p className="social-tool__role text-gray-300">{tool.role}</p>
+            <h3 className="social-cover__name font-bold text-white">{data.category}</h3>
+            <p className="social-cover__count text-gray-300">
+              {data.main.length} εργαλεία · +{data.bonus.length} έξτρα
+            </p>
           </div>
-          <span className="social-tool__plan social-tool__plan--free relative z-10">Free{tool.limited ? '*' : ''}</span>
+          <div className="social-cover__stack relative z-10">
+            {data.main.map((tool) => (
+              <span key={tool.slug} className="social-cover__chip">
+                <BrandLogo slug={tool.slug} color={tool.color} className="social-cover__mark" />
+              </span>
+            ))}
+          </div>
         </SpotlightCard>
       ))}
     </div>
 
-    {data.main.some((tool) => tool.limited) && <p className="social-tools__note w-full mb-7">{LIMITED_NOTE}</p>}
-
-    <div className="social-bonus w-full">
-      <span className="social-bonus__label">+ {BONUS_LABEL}</span>
-      <span className="lux-divider social-bonus__rule" />
-      <div className="flex gap-4">
-        {data.bonus.map((tool) => (
-          <span key={tool.slug} className="lux-pill social-bonus__pill">
-            <BrandLogo slug={tool.slug} color={tool.color} className="social-bonus__mark relative z-10" />
-            <span className="relative z-10">{tool.name}</span>
-          </span>
-        ))}
-      </div>
-    </div>
-
-    <p className="social-tools__outro mt-9">
+    <span className="lux-btn lux-btn--primary social-cta social-cover__swipe">
+      <span className="lux-btn__glow" aria-hidden="true" />
+      <span className="relative z-10">{TOOLS_COVER.swipe}</span>
+      <ArrowRight className="relative z-10 h-9 w-9" />
+    </span>
+    <p className="social-tools__outro mt-8">
       <Bookmark className="h-7 w-7" />
       {OUTRO}
     </p>
   </Frame>
 );
+
+const FreeToolsPost = ({ theme, data, index }) => {
+  const dense = data.main.length > 4;
+  return (
+    <Frame theme={theme} footer={<Progress current={index + 2} total={TOOLS_TOTAL} />}>
+      <span className={`social-badge ${dense ? 'mb-5' : 'mb-7'}`}>
+        <Sparkles className="h-7 w-7" />
+        {data.category}
+      </span>
+      <SectionHeading prefix={data.titlePrefix} accent={data.titleAccent} suffix={data.titleSuffix} className={dense ? 'mb-7' : 'mb-9'} />
+
+      <div className={`social-grid w-full mb-6 ${dense ? 'social-grid--dense' : ''}`}>
+        {data.main.map((tool, toolIndex) => (
+          <SpotlightCard key={tool.slug} tilt={0} className="social-box rounded-[2rem] text-left">
+            <span className="lux-card__index social-box__index" aria-hidden="true">{String(toolIndex + 1).padStart(2, '0')}</span>
+            <div className="social-box__head relative z-10">
+              <span className="social-box__logo" style={{ '--brand': tool.color || 'var(--lux-cyan)' }}>
+                <BrandLogo slug={tool.slug} color={tool.color} className="social-box__mark" />
+              </span>
+              {dense && <PlanPill tool={tool} />}
+            </div>
+            <div className="relative z-10">
+              <h3 className="social-box__name font-bold text-white">{tool.name}</h3>
+              <p className="social-box__role text-gray-300">{tool.role}</p>
+            </div>
+            {!dense && <PlanPill tool={tool} className="social-box__plan" />}
+          </SpotlightCard>
+        ))}
+      </div>
+
+      {data.main.some((tool) => tool.limited) && <p className="social-tools__note w-full mb-6">{LIMITED_NOTE}</p>}
+
+      <div className="social-bonus w-full">
+        <span className="social-bonus__label">+ {BONUS_LABEL}</span>
+        <span className="lux-divider social-bonus__rule" />
+        <div className="flex gap-4">
+          {data.bonus.map((tool) => (
+            <span key={tool.slug} className="lux-pill social-bonus__pill">
+              <BrandLogo slug={tool.slug} color={tool.color} className="social-bonus__mark relative z-10" />
+              <span className="relative z-10">{tool.name}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+    </Frame>
+  );
+};
 
 /* ---------- Registry ---------- */
 
@@ -402,10 +456,11 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  { id: 'free-tools-01-cover', theme: 'light', render: (theme) => <ToolsCover theme={theme} /> },
   ...TOOL_CATEGORIES.map((data, index) => ({
-    id: `free-tools-${String(index + 1).padStart(2, '0')}-${data.id}`,
+    id: `free-tools-${String(index + 2).padStart(2, '0')}-${data.id}`,
     theme: 'light',
-    render: (theme) => <FreeToolsPost theme={theme} data={data} />,
+    render: (theme) => <FreeToolsPost theme={theme} data={data} index={index} />,
   })),
   { id: 'dark-vs-light-1-dark', theme: 'dark', render: (theme) => <HeroPost theme={theme} showThemePill /> },
   { id: 'dark-vs-light-2-light', theme: 'light', render: (theme) => <HeroPost theme={theme} showThemePill /> },

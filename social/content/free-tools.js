@@ -43,6 +43,15 @@ export const TOOL_CATEGORIES = [
   },
 ];
 
+export const TOOLS_COVER = {
+  badge: 'Νέα σειρά',
+  titleTop: 'Τα',
+  titleAccent: 'δωρεάν',
+  titleBottom: 'εργαλεία μου',
+  intro: 'Όσα χρησιμοποιώ καθημερινά, ανά κατηγορία:',
+  swipe: 'Σύρε για να τα δεις',
+};
+
 export const BONUS_LABEL = 'Έξτρα';
 export const LIMITED_NOTE = '* Δωρεάν πλάνο με όρια χρήσης';
 export const OUTRO = 'Αποθήκευσέ το για αργότερα';

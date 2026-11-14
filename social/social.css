@@ -502,3 +502,181 @@ img.social-tool__mark {
   height: 3.9rem;
   border-radius: 0.9rem;
 }
+
+/* ---------- Free tools carousel ---------- */
+
+/* Cover */
+.social-cover__title {
+  font-size: 5.4rem;
+  line-height: 1.12;
+}
+
+.social-cover__intro {
+  font-size: 2rem;
+}
+
+.social-cover__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.social-cover__item {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+  padding: 2.4rem 2.6rem;
+}
+
+.social-cover__name {
+  font-size: 2.7rem;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.social-cover__count {
+  font-size: 1.6rem;
+}
+
+.social-cover__stack {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.social-cover__chip {
+  display: inline-flex;
+  width: 4.6rem;
+  height: 4.6rem;
+  align-items: center;
+  justify-content: center;
+  margin-left: -1rem;
+  border-radius: 9999px;
+  background: hsl(var(--background));
+  border: 2px solid var(--lux-surface-border);
+  box-shadow: 0 10px 22px -14px rgba(0, 0, 0, 0.45);
+}
+
+.social-cover__mark {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+img.social-cover__mark {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 9999px;
+}
+
+.social-cover__swipe {
+  gap: 1.2rem;
+}
+
+/* Tool boxes: 2 columns, rows sized to the number of tools */
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+
+.social-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.3rem;
+  padding: 2.3rem 2.3rem 2.1rem;
+  min-height: 300px;
+}
+
+.social-box__index {
+  top: 1.3rem;
+  right: 1.8rem;
+  font-size: 3rem;
+  -webkit-text-stroke-color: var(--lux-gold);
+  opacity: 0.6;
+}
+
+.social-box__logo {
+  display: inline-flex;
+  width: 5.8rem;
+  height: 5.8rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.3rem;
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-surface-border);
+  box-shadow: 0 16px 34px -18px var(--brand);
+}
+
+.social-box__mark {
+  width: 3.1rem;
+  height: 3.1rem;
+}
+
+img.social-box__mark {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.9rem;
+}
+
+.social-box__name {
+  font-size: 2.4rem;
+  line-height: 1.1;
+  margin-bottom: 0.4rem;
+}
+
+.social-box__role {
+  font-size: 1.5rem;
+  line-height: 1.38;
+}
+
+.social-box__plan {
+  margin-top: auto;
+}
+
+.social-grid--dense {
+  gap: 1.1rem;
+}
+
+.social-grid--dense .social-box {
+  gap: 0.9rem;
+  padding: 1.7rem 1.9rem 1.6rem;
+  min-height: 0;
+}
+
+.social-grid--dense .social-box__logo {
+  width: 4.8rem;
+  height: 4.8rem;
+}
+
+.social-grid--dense .social-box__mark {
+  width: 2.6rem;
+  height: 2.6rem;
+}
+
+.social-grid--dense img.social-box__mark {
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+.social-grid--dense .social-box__name {
+  font-size: 2.1rem;
+}
+
+.social-grid--dense .social-box__role {
+  font-size: 1.35rem;
+}
+
+.social-grid--dense .social-box__index {
+  font-size: 2.6rem;
+}
+
+.social-box__head {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+}
+
+.social-grid--dense .social-box {
+  gap: 0.8rem;
+  padding: 1.6rem 1.9rem 1.7rem;
+}
