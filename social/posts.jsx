@@ -8,9 +8,9 @@ import { PROJECTS } from '@/components/About';
 import { SERVICES_VOL_1, SERVICES_VOL_2, PURPOSE } from './content/pinned-reels';
 import { TOOL_CATEGORIES, TOOLS_COVER, BONUS_LABEL, LIMITED_NOTE, OUTRO } from './content/free-tools';
 import { LOGOS } from './content/brand-logos';
-import { GOOGLE_REVIEWS, REVIEW_SLIDES, REVIEWS_COPY } from './content/google-reviews';
+import { GOOGLE_REVIEWS, REVIEW_SLIDES, REVIEW_HEADINGS, REVIEWS_COPY } from './content/google-reviews';
 import { GOOGLE_G } from './content/google-logo';
-import { Bookmark, Type, ArrowRight } from 'lucide-react';
+import { Bookmark, Type, ArrowRight, UtensilsCrossed } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const AVATAR_FILES = Object.fromEntries(
@@ -467,6 +467,10 @@ const ReviewCard = ({ review }) => (
       <ReviewAvatar avatar={review.avatar} name={review.name} />
       <div className="min-w-0 flex-1">
         <h4 className="social-review__name font-bold text-white">{review.name}</h4>
+        <p className="social-review__category">
+          <UtensilsCrossed className="h-[1.1em] w-[1.1em]" />
+          {review.category}
+        </p>
         <Stars className="social-review__stars" />
       </div>
       <GoogleG className="social-review__g" />
@@ -481,6 +485,7 @@ const ReviewsSlide = ({ theme, slide }) => {
   const t = TESTIMONIALS_TRANSLATIONS[LANG];
   const total = REVIEW_SLIDES.length;
   const last = slide === total - 1;
+  const heading = REVIEW_HEADINGS[slide] || { prefix: t.titlePrefix, accent: t.titleAccent, suffix: t.titleSuffix };
   return (
     <Frame
       theme={theme}
@@ -493,7 +498,7 @@ const ReviewsSlide = ({ theme, slide }) => {
         </span>
       }
     >
-      <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-10" />
+      <SectionHeading prefix={heading.prefix} accent={heading.accent} suffix={heading.suffix} className="mb-10" />
       <div className="social-reviews w-full">
         {REVIEW_SLIDES[slide].map((index) => (
           <ReviewCard key={index} review={GOOGLE_REVIEWS[index]} />

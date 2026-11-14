@@ -791,3 +791,13 @@ img.social-box__mark {
 .social-review__text {
   padding-right: 4.5rem;
 }
+
+.social-review__category {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 0.55rem;
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+  color: var(--lux-gold);
+}
