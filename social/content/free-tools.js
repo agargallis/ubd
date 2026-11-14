@@ -35,7 +35,7 @@ export const TOOL_CATEGORIES = [
       { slug: 'edits', name: 'Edits', role: 'Μοντάζ για Reels, από το Instagram', color: null },
       { slug: 'pixlr', name: 'Pixlr', role: 'Επεξεργασία φωτογραφιών online', color: '#3EBBDF' },
       { slug: 'imgur', name: 'Imgur', role: 'Ανεβάζεις εικόνες & παίρνεις link', color: '#1BB76E' },
-      { slug: 'greek-fonts', name: '[PLACEHOLDER]', role: 'Ελληνικές γραμματοσειρές', color: null },
+      { slug: 'fontspace', name: 'FontSpace', role: 'Δωρεάν ελληνικές γραμματοσειρές', color: null },
     ],
     bonus: [
       { slug: 'capcut', name: 'CapCut', color: null },
