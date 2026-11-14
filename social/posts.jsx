@@ -6,6 +6,9 @@ import { SERVICES_TRANSLATIONS, SERVICE_META, ServiceCard } from '@/components/S
 import { TESTIMONIALS_TRANSLATIONS, TESTIMONIAL_META } from '@/components/Testimonials';
 import { PROJECTS } from '@/components/About';
 import { SERVICES_VOL_1, SERVICES_VOL_2, PURPOSE } from './content/pinned-reels';
+import { FREE_TOOLS } from './content/free-tools';
+import { BRAND_PATHS } from './content/brand-logos';
+import { Bookmark } from 'lucide-react';
 
 const LANG = 'el';
 const LOGO_URL = 'https://i.imgur.com/I7mGxrV.png';
@@ -303,6 +306,61 @@ const PurposePost = ({ theme }) => (
   </Frame>
 );
 
+/* ---------- Free tools ---------- */
+
+const BrandLogo = ({ slug, color, className = '' }) => (
+  <svg viewBox="0 0 24 24" className={className} style={{ fill: color || 'var(--lux-ink)' }} aria-hidden="true">
+    <path d={BRAND_PATHS[slug]} />
+  </svg>
+);
+
+const FreeToolsPost = ({ theme }) => {
+  const t = FREE_TOOLS;
+  return (
+    <Frame theme={theme}>
+      <span className="social-badge mb-8">
+        <Sparkles className="h-7 w-7" />
+        {t.kicker}
+      </span>
+      <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-12" />
+
+      <div className="social-tools w-full mb-10">
+        {t.main.map((tool, index) => (
+          <SpotlightCard key={tool.slug} tilt={0} className="social-tool rounded-[2rem] text-left">
+            <span className="lux-card__index social-tool__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <span className="social-tool__logo relative z-10" style={{ '--brand': tool.color || 'var(--lux-cyan)' }}>
+              <BrandLogo slug={tool.slug} color={tool.color} className="social-tool__mark" />
+            </span>
+            <div className="relative z-10">
+              <h3 className="social-tool__name font-bold text-white">{tool.name}</h3>
+              <p className="social-tool__role text-gray-300">{tool.role}</p>
+            </div>
+            <span className={`social-tool__plan relative z-10 ${tool.plan === 'Free' ? 'social-tool__plan--free' : ''}`}>{tool.plan}</span>
+          </SpotlightCard>
+        ))}
+      </div>
+
+      <div className="social-bonus w-full">
+        <span className="social-bonus__label">+ {t.bonusLabel}</span>
+        <span className="lux-divider social-bonus__rule" />
+        <div className="flex gap-4">
+          {t.bonus.map((tool) => (
+            <span key={tool.slug} className="lux-pill social-bonus__pill">
+              <BrandLogo slug={tool.slug} color={tool.color} className="social-bonus__mark relative z-10" />
+              <span className="relative z-10">{tool.name}</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      <p className="social-tools__outro mt-10">
+        <Bookmark className="h-7 w-7" />
+        {t.outro}
+      </p>
+    </Frame>
+  );
+};
+
 /* ---------- Registry ---------- */
 
 // PROJECTS is ordered oldest → newest (the site shows it reversed).
@@ -329,6 +387,7 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  { id: 'free-tools', theme: 'dark', render: (theme) => <FreeToolsPost theme={theme} /> },
   { id: 'dark-vs-light-1-dark', theme: 'dark', render: (theme) => <HeroPost theme={theme} showThemePill /> },
   { id: 'dark-vs-light-2-light', theme: 'light', render: (theme) => <HeroPost theme={theme} showThemePill /> },
 ];

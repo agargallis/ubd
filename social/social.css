@@ -334,3 +334,124 @@ body {
 .social-purpose__step .social-purpose__text {
   padding-right: 3.5rem;
 }
+
+/* Free tools: 2×2 logo cards + bonus row */
+.social-tools {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.social-tool {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
+  padding: 2.4rem 2.4rem 2.2rem;
+  min-height: 330px;
+}
+
+.social-tool__index {
+  top: 1.4rem;
+  right: 1.9rem;
+  font-size: 3.2rem;
+  -webkit-text-stroke-color: var(--lux-gold);
+  opacity: 0.5;
+}
+
+.social-tool__logo {
+  display: inline-flex;
+  width: 6.4rem;
+  height: 6.4rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1.4rem;
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-surface-border);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 18px 40px -18px var(--brand);
+}
+
+.social-tool__mark {
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+.social-tool__name {
+  font-size: 2.5rem;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.social-tool__role {
+  font-size: 1.6rem;
+  line-height: 1.4;
+}
+
+.social-tool__plan {
+  margin-top: auto;
+  padding: 0.45rem 1.2rem;
+  border-radius: 9999px;
+  font-size: 1.25rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--lux-ink);
+  border: 1px solid var(--lux-surface-border);
+}
+
+.social-tool__plan--free {
+  color: #04131f;
+  border-color: transparent;
+  background: linear-gradient(120deg, #f2cf7c, #53f2ff);
+}
+
+.social-bonus {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.social-bonus__label {
+  font-size: 1.5rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--lux-gold);
+}
+
+.social-bonus__rule {
+  flex: 1;
+  min-width: 2rem;
+}
+
+.social-bonus__pill {
+  gap: 0.7rem;
+  padding: 0.7rem 1.3rem;
+  font-size: 1.4rem;
+}
+
+.social-bonus__mark {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.social-tools__outro {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.6rem;
+  letter-spacing: 0.06em;
+  color: var(--lux-ink);
+  opacity: 0.8;
+}
+
+/* Still images: no hover sweep/spotlight caught mid-animation. */
+.social-frame .lux-card__sheen,
+.social-frame .lux-card__spotlight {
+  display: none;
+}
+
+/* The rings' will-change layer renders as stray grey blocks at @2x in
+   headless Chrome; a still backdrop needs no compositor layer. */
+.social-frame__bg .lux-ring::before {
+  will-change: auto;
+}

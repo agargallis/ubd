@@ -35,7 +35,9 @@ const server = await createServer({
 await server.listen();
 const baseUrl = server.resolvedUrls.local[0];
 
-const browser = await puppeteer.launch({ executablePath, headless: 'new' });
+// CHROME_NO_SANDBOX=1 for containers that run as root.
+const args = process.env.CHROME_NO_SANDBOX ? ['--no-sandbox'] : [];
+const browser = await puppeteer.launch({ executablePath, headless: 'new', args });
 
 try {
   const page = await browser.newPage();
