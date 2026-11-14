@@ -6,9 +6,15 @@ import { SERVICES_TRANSLATIONS, SERVICE_META, ServiceCard } from '@/components/S
 import { TESTIMONIALS_TRANSLATIONS, TESTIMONIAL_META } from '@/components/Testimonials';
 import { PROJECTS } from '@/components/About';
 import { SERVICES_VOL_1, SERVICES_VOL_2, PURPOSE } from './content/pinned-reels';
-import { TOOL_CATEGORIES, BONUS_LABEL, OUTRO } from './content/free-tools';
+import { TOOL_CATEGORIES, BONUS_LABEL, LIMITED_NOTE, OUTRO } from './content/free-tools';
 import { LOGOS } from './content/brand-logos';
-import { Bookmark } from 'lucide-react';
+import { Bookmark, Type } from 'lucide-react';
+
+// Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
+const LOGO_FILES = Object.fromEntries(
+  Object.entries(import.meta.glob('./assets/logos/*.{svg,png,webp,jpg}', { eager: true, import: 'default' }))
+    .map(([file, url]) => [file.split('/').pop().replace(/\.[^.]+$/, ''), url])
+);
 
 const LANG = 'el';
 const LOGO_URL = 'https://i.imgur.com/I7mGxrV.png';
@@ -310,7 +316,9 @@ const PurposePost = ({ theme }) => (
 
 // Static, bundled SVG bodies (simple-icons / Arcticons), never user input.
 const BrandLogo = ({ slug, color, className = '' }) => {
+  if (LOGO_FILES[slug]) return <img src={LOGO_FILES[slug]} alt="" className={`${className} object-contain`} />;
   const logo = LOGOS[slug];
+  if (!logo) return <Type className={className} style={{ color: 'var(--lux-ink)' }} aria-hidden="true" />;
   return (
     <svg
       viewBox={logo.viewBox}
@@ -330,9 +338,10 @@ const FreeToolsPost = ({ theme, data }) => (
     </span>
     <SectionHeading prefix={data.titlePrefix} accent={data.titleAccent} suffix={data.titleSuffix} className="mb-10" />
 
-    <div className={`social-tools w-full mb-9 ${data.main.length <= 3 ? 'social-tools--roomy' : ''}`}>
-      {data.main.map((tool) => (
+    <div className={`social-tools w-full mb-5 ${data.main.length <= 4 ? 'social-tools--roomy' : ''} ${data.main.length >= 6 ? 'social-tools--dense' : ''}`}>
+      {data.main.map((tool, index) => (
         <SpotlightCard key={tool.slug} tilt={0} className="social-tool rounded-[1.75rem] text-left">
+          <span className="social-tool__index relative z-10" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
           <span className="social-tool__logo relative z-10" style={{ '--brand': tool.color || 'var(--lux-cyan)' }}>
             <BrandLogo slug={tool.slug} color={tool.color} className="social-tool__mark" />
           </span>
@@ -340,10 +349,12 @@ const FreeToolsPost = ({ theme, data }) => (
             <h3 className="social-tool__name font-bold text-white">{tool.name}</h3>
             <p className="social-tool__role text-gray-300">{tool.role}</p>
           </div>
-          <span className={`social-tool__plan relative z-10 ${tool.plan === 'Free' ? 'social-tool__plan--free' : ''}`}>{tool.plan}</span>
+          <span className="social-tool__plan social-tool__plan--free relative z-10">Free{tool.limited ? '*' : ''}</span>
         </SpotlightCard>
       ))}
     </div>
+
+    {data.main.some((tool) => tool.limited) && <p className="social-tools__note w-full mb-7">{LIMITED_NOTE}</p>}
 
     <div className="social-bonus w-full">
       <span className="social-bonus__label">+ {BONUS_LABEL}</span>
