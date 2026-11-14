@@ -11,7 +11,7 @@ import { LOGOS } from './content/brand-logos';
 import { GOOGLE_REVIEWS, REVIEW_SLIDES, REVIEW_HEADINGS, REVIEWS_COPY } from './content/google-reviews';
 import { GOOGLE_G } from './content/google-logo';
 import { BARBER_BOOKING } from './content/barber-booking';
-import { CLIENTS_EXCLUDE, CLIENT_SERVICES, CLIENTS_COPY } from './content/clients-wall';
+import { CLIENTS_EXCLUDE, CLIENT_STEPS, CLIENTS_COPY } from './content/clients-wall';
 import koulisBarbers from './assets/projects/koulis-barbers.jpg';
 import koulisCalendar from './assets/projects/koulis-calendar.jpg';
 import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow } from 'lucide-react';
@@ -678,15 +678,11 @@ const BookingCta = ({ theme }) => {
 
 /* ---------- Clients logo wall ---------- */
 
-const CLIENT_ICONS = { globe: Globe, instagram: Instagram, search: Search, app: AppWindow };
+const CLIENT_ICONS = { globe: Globe, message: MessageCircle, sliders: SlidersHorizontal, rocket: Rocket };
 
 const ClientsWallPost = ({ theme }) => {
   const c = CLIENTS_COPY;
   const clients = PROJECTS.filter((item) => item.image && !CLIENTS_EXCLUDE.includes(item.title)).slice().reverse();
-  const counts = CLIENT_SERVICES.map((service) => ({
-    ...service,
-    count: clients.filter((client) => (client.links || []).some((link) => service.match.test(link.label))).length,
-  })).filter((service) => service.count > 0);
 
   return (
     <Frame theme={theme}>
@@ -704,13 +700,15 @@ const ClientsWallPost = ({ theme }) => {
       </div>
 
       <div className="social-clients__services w-full mb-10">
-        {counts.map(({ icon, label, count }) => {
+        {CLIENT_STEPS.map(({ icon, label, text }, index) => {
           const Icon = CLIENT_ICONS[icon];
           return (
             <SpotlightCard key={label} tilt={0} className="social-service rounded-[1.6rem]">
+              <span className="relative z-10 social-service__step">{String(index + 1).padStart(2, '0')}</span>
               <Icon className="relative z-10 social-service__icon text-primary" />
-              <span className="relative z-10 social-service__count lux-gold-text font-bold">{count}</span>
-              <span className="relative z-10 social-service__label text-gray-300">{label}</span>
+              <span className="relative z-10 social-service__title font-bold text-white">{label}</span>
+              <span className="relative z-10 social-service__label text-gray-300">{text}</span>
+              {index < CLIENT_STEPS.length - 1 && <ArrowRight className="social-service__arrow" aria-hidden="true" />}
             </SpotlightCard>
           );
         })}

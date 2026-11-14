@@ -1094,3 +1094,38 @@ img.social-box__mark {
 .social-clients {
   gap: 2rem 1.4rem;
 }
+
+/* Clients wall: 4 "how it works" steps */
+.social-service {
+  overflow: visible;
+}
+
+.social-service__step {
+  font-size: 1.2rem;
+  letter-spacing: 0.16em;
+  color: var(--lux-gold);
+}
+
+.social-service__title {
+  font-size: 1.9rem;
+  line-height: 1.15;
+}
+
+.social-service__label {
+  font-size: 1.25rem;
+  line-height: 1.3;
+}
+
+.social-service__arrow {
+  position: absolute;
+  top: 50%;
+  right: -1.15rem;
+  z-index: 5;
+  width: 1.8rem;
+  height: 1.8rem;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  transform: translateY(-50%);
+  color: #04131f;
+  background: linear-gradient(120deg, #f2cf7c, #53f2ff);
+}
