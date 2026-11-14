@@ -962,3 +962,38 @@ img.social-box__mark {
 .social-phone__screen {
   border-radius: 1.2rem 1.2rem 2.6rem 2.6rem;
 }
+
+/* Phones follow the screenshot's own aspect ratio: nothing is cropped. */
+.social-booking-cover__phone,
+.social-booking-steps__phone {
+  height: auto;
+}
+
+.social-booking-cover__phone .social-phone__screen,
+.social-booking-steps__phone .social-phone__screen {
+  height: auto;
+  object-fit: contain;
+}
+
+.social-booking-cover__phone {
+  width: 400px;
+  transform: rotate(2deg);
+}
+
+.social-booking-steps__phone {
+  width: 350px;
+}
+
+.social-booking-benefits--dense .social-booking-benefit__icon {
+  width: 4.4rem;
+  height: 4.4rem;
+}
+
+.social-booking-benefits--dense .social-box {
+  min-height: 230px;
+}
+
+/* A rotated phone triggers the headless compositing glitch (pale block behind it). */
+.social-booking-cover__phone {
+  transform: none;
+}

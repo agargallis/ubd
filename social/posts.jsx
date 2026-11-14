@@ -13,7 +13,7 @@ import { GOOGLE_G } from './content/google-logo';
 import { BARBER_BOOKING } from './content/barber-booking';
 import koulisBarbers from './assets/projects/koulis-barbers.jpg';
 import koulisCalendar from './assets/projects/koulis-calendar.jpg';
-import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette } from 'lucide-react';
+import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const AVATAR_FILES = Object.fromEntries(
@@ -545,6 +545,10 @@ const BOOKING_ICONS = {
   clock: Clock,
   languages: Languages,
   palette: Palette,
+  sparkles: Sparkles,
+  sliders: SlidersHorizontal,
+  zap: Zap,
+  dashboard: LayoutDashboard,
 };
 const BOOKING_TOTAL = 4;
 const bookingProject = () => PROJECTS.find((item) => item.title === BARBER_BOOKING.project);
@@ -622,8 +626,8 @@ const BookingBenefits = ({ theme }) => {
   const t = BARBER_BOOKING.benefits;
   return (
     <Frame theme={theme} footer={<Progress current={3} total={BOOKING_TOTAL} />}>
-      <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-12" />
-      <div className="social-grid w-full">
+      <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-10" />
+      <div className={`social-grid w-full ${t.items.length > 4 ? 'social-grid--dense social-booking-benefits--dense' : ''}`}>
         {t.items.map((item, index) => {
           const Icon = BOOKING_ICONS[item.icon];
           return (
@@ -697,10 +701,10 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
-  { id: 'barber-booking-01-cover', theme: 'dark', render: (theme) => <BookingCover theme={theme} /> },
-  { id: 'barber-booking-02-steps', theme: 'dark', render: (theme) => <BookingSteps theme={theme} /> },
-  { id: 'barber-booking-03-benefits', theme: 'dark', render: (theme) => <BookingBenefits theme={theme} /> },
-  { id: 'barber-booking-04-cta', theme: 'dark', render: (theme) => <BookingCta theme={theme} /> },
+  { id: 'barber-booking-01-cover', theme: 'light', render: (theme) => <BookingCover theme={theme} /> },
+  { id: 'barber-booking-02-steps', theme: 'light', render: (theme) => <BookingSteps theme={theme} /> },
+  { id: 'barber-booking-03-benefits', theme: 'light', render: (theme) => <BookingBenefits theme={theme} /> },
+  { id: 'barber-booking-04-cta', theme: 'light', render: (theme) => <BookingCta theme={theme} /> },
   ...REVIEW_SLIDES.map((_, slide) => ({
     id: `google-reviews-${String(slide + 1).padStart(2, '0')}`,
     theme: 'dark',
