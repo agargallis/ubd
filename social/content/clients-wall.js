@@ -14,6 +14,6 @@ export const CLIENT_SERVICES = [
 
 export const CLIENTS_COPY = {
   titlePrefix: 'Αυτοί είναι ήδη',
-  titleAccent: 'online',
+  titleAccent: 'online…',
   outro: 'Εσύ πότε μπαίνεις;',
 };
