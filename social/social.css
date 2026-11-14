@@ -688,3 +688,8 @@ img.social-box__mark {
   font-size: 1.15em;
   letter-spacing: 0.02em;
 }
+
+/* Category slides: the category is the heading. */
+.social-frame .social-category-heading h2 {
+  font-size: 5.2rem;
+}

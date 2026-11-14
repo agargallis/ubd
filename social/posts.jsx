@@ -389,11 +389,7 @@ const FreeToolsPost = ({ theme, data, index }) => {
   const dense = data.main.length > 4;
   return (
     <Frame theme={theme} footer={<Progress current={index + 2} total={TOOLS_TOTAL} />}>
-      <span className={`social-badge ${dense ? 'mb-5' : 'mb-7'}`}>
-        <Sparkles className="h-7 w-7" />
-        {data.category}
-      </span>
-      <SectionHeading prefix={data.titlePrefix} accent={data.titleAccent} suffix={data.titleSuffix} className={dense ? 'mb-7' : 'mb-9'} />
+      <SectionHeading prefix={data.titlePrefix} accent={data.titleAccent} className={`social-category-heading ${dense ? 'mb-9' : 'mb-12'}`} />
 
       <div className={`social-grid w-full mb-6 ${dense ? 'social-grid--dense' : ''}`}>
         {data.main.map((tool, toolIndex) => (

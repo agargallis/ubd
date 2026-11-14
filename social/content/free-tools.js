@@ -4,13 +4,12 @@
 // An official logo file at social/assets/logos/<slug>.(svg|png|webp) replaces the bundled mark.
 // `limited` = free plan with usage limits (shown as FREE* + footnote).
 
-const TITLE = { titlePrefix: 'Τα', titleAccent: 'δωρεάν', titleSuffix: 'εργαλεία μου' };
-
 export const TOOL_CATEGORIES = [
   {
     id: 'web',
     category: 'Web Associated',
-    ...TITLE,
+    titlePrefix: 'Web',
+    titleAccent: 'Associated',
     main: [
       { slug: 'vercel', name: 'Vercel', role: 'Ανεβάζει το project σου online', color: null },
       { slug: 'supabase', name: 'Supabase', role: 'Βάση δεδομένων & login', color: '#3FCF8E' },
@@ -28,7 +27,8 @@ export const TOOL_CATEGORIES = [
   {
     id: 'social',
     category: 'Social Media',
-    ...TITLE,
+    titlePrefix: 'Social',
+    titleAccent: 'Media',
     main: [
       { slug: 'canva', name: 'Canva', role: 'Σχέδια για posts, stories & logos', color: null },
       { slug: 'photoroom', name: 'Photoroom', role: 'Επαγγελματικές φωτογραφίες προϊόντων', color: null },
