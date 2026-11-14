@@ -449,6 +449,10 @@ const Stars = ({ className = '' }) => (
 );
 
 const ReviewAvatar = ({ avatar, name }) => {
+  const project = avatar.project && PROJECTS.find((item) => item.title === avatar.project);
+  if (project) {
+    return <img src={project.image} alt={project.alt} className="social-review__avatar social-review__avatar--logo object-contain" />;
+  }
   if (avatar.image) {
     const src = AVATAR_FILES[avatar.image] || avatar.image;
     return <img src={src} alt={name} className="social-review__avatar object-cover" />;

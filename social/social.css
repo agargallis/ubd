@@ -801,3 +801,8 @@ img.social-box__mark {
   letter-spacing: 0.04em;
   color: var(--lux-gold);
 }
+
+.social-review__avatar--logo {
+  padding: 0.35rem;
+  border: 2px solid var(--lux-surface-border);
+}
