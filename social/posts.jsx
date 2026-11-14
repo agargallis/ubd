@@ -11,9 +11,10 @@ import { LOGOS } from './content/brand-logos';
 import { GOOGLE_REVIEWS, REVIEW_SLIDES, REVIEW_HEADINGS, REVIEWS_COPY } from './content/google-reviews';
 import { GOOGLE_G } from './content/google-logo';
 import { BARBER_BOOKING } from './content/barber-booking';
+import { CLIENTS_EXCLUDE, CLIENT_SERVICES, CLIENTS_COPY } from './content/clients-wall';
 import koulisBarbers from './assets/projects/koulis-barbers.jpg';
 import koulisCalendar from './assets/projects/koulis-calendar.jpg';
-import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard } from 'lucide-react';
+import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const AVATAR_FILES = Object.fromEntries(
@@ -675,6 +676,55 @@ const BookingCta = ({ theme }) => {
   );
 };
 
+/* ---------- Clients logo wall ---------- */
+
+const CLIENT_ICONS = { globe: Globe, instagram: Instagram, search: Search, app: AppWindow };
+
+const ClientsWallPost = ({ theme }) => {
+  const c = CLIENTS_COPY;
+  const clients = PROJECTS.filter((item) => item.image && !CLIENTS_EXCLUDE.includes(item.title)).slice().reverse();
+  const counts = CLIENT_SERVICES.map((service) => ({
+    ...service,
+    count: clients.filter((client) => (client.links || []).some((link) => service.match.test(link.label))).length,
+  })).filter((service) => service.count > 0);
+
+  return (
+    <Frame theme={theme}>
+      <SectionHeading prefix={c.titlePrefix} accent={c.titleAccent} className="mb-10" />
+
+      <div className="social-clients w-full mb-11">
+        {clients.map((client) => (
+          <div key={client.title} className="social-client">
+            <span className="social-client__logo">
+              <img src={client.image} alt={client.alt} />
+            </span>
+            <span className="social-client__name">{client.title}</span>
+          </div>
+        ))}
+      </div>
+
+      <span className="social-badge mb-6">
+        <Sparkles className="h-7 w-7" />
+        {c.badge}
+      </span>
+      <p className="social-clients__intro text-gray-300 text-center mb-7">{c.servicesIntro}</p>
+      <div className="social-clients__services w-full mb-9">
+        {counts.map(({ icon, label, count }) => {
+          const Icon = CLIENT_ICONS[icon];
+          return (
+            <SpotlightCard key={label} tilt={0} className="social-service rounded-[1.6rem]">
+              <Icon className="relative z-10 social-service__icon text-primary" />
+              <span className="relative z-10 social-service__count lux-gold-text font-bold">{count}</span>
+              <span className="relative z-10 social-service__label text-gray-300">{label}</span>
+            </SpotlightCard>
+          );
+        })}
+      </div>
+      <p className="social-clients__outro font-bold text-white">{c.outro}</p>
+    </Frame>
+  );
+};
+
 /* ---------- Registry ---------- */
 
 // PROJECTS is ordered oldest → newest (the site shows it reversed).
@@ -701,6 +751,7 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  { id: 'clients-wall', theme: 'light', render: (theme) => <ClientsWallPost theme={theme} /> },
   { id: 'barber-booking-01-cover', theme: 'light', render: (theme) => <BookingCover theme={theme} /> },
   { id: 'barber-booking-02-steps', theme: 'light', render: (theme) => <BookingSteps theme={theme} /> },
   { id: 'barber-booking-03-benefits', theme: 'light', render: (theme) => <BookingBenefits theme={theme} /> },
