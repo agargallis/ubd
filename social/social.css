@@ -680,3 +680,11 @@ img.social-box__mark {
   gap: 0.8rem;
   padding: 1.6rem 1.9rem 1.7rem;
 }
+
+/* Whiz Bang draws 0 and € like O and E: prices use a plain sans. */
+.social-price {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 1.15em;
+  letter-spacing: 0.02em;
+}

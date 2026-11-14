@@ -44,7 +44,7 @@ export const TOOL_CATEGORIES = [
 ];
 
 export const TOOLS_COVER = {
-  badge: 'Νέα σειρά',
+  badge: '0€ για να ξεκινήσεις',
   titleTop: 'Τα',
   titleAccent: 'δωρεάν',
   titleBottom: 'εργαλεία μου',

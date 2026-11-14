@@ -340,7 +340,9 @@ const ToolsCover = ({ theme }) => (
   <Frame theme={theme} footer={<Progress current={1} total={TOOLS_TOTAL} />}>
     <span className="social-badge mb-10">
       <Sparkles className="h-7 w-7" />
-      {TOOLS_COVER.badge}
+      {TOOLS_COVER.badge.split(/(\d+€)/).map((part, i) =>
+        /^\d+€$/.test(part) ? <span key={i} className="social-price">{part}</span> : part
+      )}
     </span>
 
     <h1 className="social-cover__title font-bold text-white luxury-heading text-center mb-8">
