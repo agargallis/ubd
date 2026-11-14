@@ -10,7 +10,10 @@ import { TOOL_CATEGORIES, TOOLS_COVER, BONUS_LABEL, LIMITED_NOTE, OUTRO } from '
 import { LOGOS } from './content/brand-logos';
 import { GOOGLE_REVIEWS, REVIEW_SLIDES, REVIEW_HEADINGS, REVIEWS_COPY } from './content/google-reviews';
 import { GOOGLE_G } from './content/google-logo';
-import { Bookmark, Type, ArrowRight, UtensilsCrossed } from 'lucide-react';
+import { BARBER_BOOKING } from './content/barber-booking';
+import koulisBarbers from './assets/projects/koulis-barbers.jpg';
+import koulisCalendar from './assets/projects/koulis-calendar.jpg';
+import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const AVATAR_FILES = Object.fromEntries(
@@ -531,6 +534,143 @@ const ReviewsSlide = ({ theme, slide }) => {
   );
 };
 
+/* ---------- Barber booking pitch (Koulis 1980 as example) ---------- */
+
+const BOOKING_ICONS = {
+  user: UserRound,
+  scissors: Scissors,
+  calendar: CalendarCheck,
+  message: MessageCircle,
+  phoneOff: PhoneOff,
+  clock: Clock,
+  languages: Languages,
+  palette: Palette,
+};
+const BOOKING_TOTAL = 4;
+const bookingProject = () => PROJECTS.find((item) => item.title === BARBER_BOOKING.project);
+const bookingDomain = () => (bookingProject()?.imageLink || '').replace(/^https?:\/\//, '').replace(/\/$/, '');
+
+const PhoneMockup = ({ src, alt, className = '' }) => (
+  <div className={`social-phone ${className}`}>
+    <span className="social-phone__notch" aria-hidden="true" />
+    <img src={src} alt={alt} className="social-phone__screen" />
+  </div>
+);
+
+const BookingCover = ({ theme }) => {
+  const c = BARBER_BOOKING.cover;
+  const project = bookingProject();
+  return (
+    <Frame theme={theme} footer={<Progress current={1} total={BOOKING_TOTAL} />}>
+      <div className="social-booking-cover w-full">
+        <div className="social-booking-cover__copy">
+          <span className="social-badge mb-9">
+            <Scissors className="h-7 w-7" />
+            {c.badge}
+          </span>
+          <h1 className="social-booking-cover__title font-bold text-white luxury-heading mb-7">
+            {c.titleTop}
+            <br />
+            <span className="lux-gold-text">{c.titleAccent}</span> {c.titleBottom}
+          </h1>
+          <p className="social-booking-cover__intro text-gray-300 mb-10">{c.intro}</p>
+          <span className="lux-pill social-booking-live">
+            <img src={project.image} alt={project.alt} className="social-booking-live__logo relative z-10" />
+            <span className="relative z-10">
+              {c.example} <strong className="text-white">{bookingDomain()}</strong>
+            </span>
+          </span>
+        </div>
+        <PhoneMockup src={koulisBarbers} alt="Επιλογή κουρέα στο koulis80.gr" className="social-booking-cover__phone" />
+      </div>
+    </Frame>
+  );
+};
+
+const BookingSteps = ({ theme }) => {
+  const t = BARBER_BOOKING.steps;
+  return (
+    <Frame theme={theme} footer={<Progress current={2} total={BOOKING_TOTAL} />}>
+      <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-10" />
+      <div className="social-booking-steps w-full">
+        <ol className="social-booking-steps__list">
+          {t.items.map((item, index) => {
+            const Icon = BOOKING_ICONS[item.icon];
+            return (
+              <li key={item.label}>
+                <SpotlightCard tilt={0} className="social-booking-step rounded-[1.6rem] text-left">
+                  <span className="social-booking-step__num relative z-10">{index + 1}</span>
+                  <div className="relative z-10 min-w-0">
+                    <h3 className="social-booking-step__label font-bold text-white">
+                      <Icon className="h-[0.9em] w-[0.9em] text-primary" />
+                      {item.label}
+                    </h3>
+                    <p className="social-booking-step__text text-gray-300">{item.text}</p>
+                  </div>
+                </SpotlightCard>
+              </li>
+            );
+          })}
+        </ol>
+        <PhoneMockup src={koulisCalendar} alt="Ημερολόγιο κρατήσεων στο koulis80.gr" className="social-booking-steps__phone" />
+      </div>
+    </Frame>
+  );
+};
+
+const BookingBenefits = ({ theme }) => {
+  const t = BARBER_BOOKING.benefits;
+  return (
+    <Frame theme={theme} footer={<Progress current={3} total={BOOKING_TOTAL} />}>
+      <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-12" />
+      <div className="social-grid w-full">
+        {t.items.map((item, index) => {
+          const Icon = BOOKING_ICONS[item.icon];
+          return (
+            <SpotlightCard key={item.label} tilt={0} className="social-box rounded-[2rem] text-left">
+              <span className="lux-card__index social-box__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span className="lux-icon-orb social-booking-benefit__icon relative z-10">
+                <span className="lux-icon-orb__ring" aria-hidden="true" />
+                <Icon className="relative z-10 h-9 w-9 text-primary" />
+              </span>
+              <div className="relative z-10">
+                <h3 className="social-box__name font-bold text-white">{item.label}</h3>
+                <p className="social-box__role text-gray-300">{item.text}</p>
+              </div>
+            </SpotlightCard>
+          );
+        })}
+      </div>
+    </Frame>
+  );
+};
+
+const BookingCta = ({ theme }) => {
+  const t = BARBER_BOOKING.cta;
+  const project = bookingProject();
+  return (
+    <Frame theme={theme} footer={<Progress current={4} total={BOOKING_TOTAL} />}>
+      <div className="flex flex-col items-center text-center">
+        <span className="lux-logo-ring social-project__ring mb-10">
+          <span className="lux-logo-ring__spin" aria-hidden="true" />
+          <img src={project.image} alt={project.alt} className="lux-logo-ring__img social-project__logo" />
+        </span>
+        <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-8" />
+        <p className="social-booking-cta__text text-gray-300 mb-12">{t.text}</p>
+        <span className="lux-btn lux-btn--primary social-cta mb-10">
+          <span className="lux-btn__glow" aria-hidden="true" />
+          <MessageCircle className="relative z-10 h-9 w-9" />
+          <span className="relative z-10">{t.button}</span>
+        </span>
+        <p className="social-tools__outro">
+          <Globe className="h-7 w-7" />
+          Δες το live: {bookingDomain()}
+        </p>
+      </div>
+    </Frame>
+  );
+};
+
 /* ---------- Registry ---------- */
 
 // PROJECTS is ordered oldest → newest (the site shows it reversed).
@@ -557,6 +697,10 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  { id: 'barber-booking-01-cover', theme: 'dark', render: (theme) => <BookingCover theme={theme} /> },
+  { id: 'barber-booking-02-steps', theme: 'dark', render: (theme) => <BookingSteps theme={theme} /> },
+  { id: 'barber-booking-03-benefits', theme: 'dark', render: (theme) => <BookingBenefits theme={theme} /> },
+  { id: 'barber-booking-04-cta', theme: 'dark', render: (theme) => <BookingCta theme={theme} /> },
   ...REVIEW_SLIDES.map((_, slide) => ({
     id: `google-reviews-${String(slide + 1).padStart(2, '0')}`,
     theme: 'dark',
