@@ -8,9 +8,15 @@ import { PROJECTS } from '@/components/About';
 import { SERVICES_VOL_1, SERVICES_VOL_2, PURPOSE } from './content/pinned-reels';
 import { TOOL_CATEGORIES, TOOLS_COVER, BONUS_LABEL, LIMITED_NOTE, OUTRO } from './content/free-tools';
 import { LOGOS } from './content/brand-logos';
+import { GOOGLE_REVIEWS, REVIEW_SLIDES, REVIEWS_COPY } from './content/google-reviews';
+import { GOOGLE_G } from './content/google-logo';
 import { Bookmark, Type, ArrowRight } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
+const AVATAR_FILES = Object.fromEntries(
+  Object.entries(import.meta.glob('./assets/avatars/*.{svg,png,webp,jpg}', { eager: true, import: 'default' }))
+    .map(([file, url]) => [file.split('/').pop().replace(/\.[^.]+$/, ''), url])
+);
 const LOGO_FILES = Object.fromEntries(
   Object.entries(import.meta.glob('./assets/logos/*.{svg,png,webp,jpg}', { eager: true, import: 'default' }))
     .map(([file, url]) => [file.split('/').pop().replace(/\.[^.]+$/, ''), url])
@@ -428,6 +434,87 @@ const FreeToolsPost = ({ theme, data, index }) => {
   );
 };
 
+/* ---------- Google reviews ---------- */
+
+const GoogleG = ({ className = '' }) => (
+  <svg viewBox={GOOGLE_G.viewBox} className={className} aria-hidden="true" dangerouslySetInnerHTML={{ __html: GOOGLE_G.body }} />
+);
+
+const Stars = ({ className = '' }) => (
+  <span className={`flex gap-1 text-yellow-400 ${className}`}>
+    {[...Array(5)].map((_, i) => (
+      <Star key={i} className="h-full w-auto aspect-square fill-current lux-star" />
+    ))}
+  </span>
+);
+
+const ReviewAvatar = ({ avatar, name }) => {
+  if (avatar.image) {
+    const src = AVATAR_FILES[avatar.image] || avatar.image;
+    return <img src={src} alt={name} className="social-review__avatar object-cover" />;
+  }
+  return (
+    <span className="social-review__avatar social-review__avatar--letter" style={{ background: avatar.color }}>
+      {avatar.letter}
+    </span>
+  );
+};
+
+const ReviewCard = ({ review }) => (
+  <SpotlightCard tilt={0} className="testimonial-card social-review rounded-[2rem] text-left">
+    <Quote className="lux-quote-mark social-review__quote" aria-hidden="true" />
+    <div className="relative z-10 flex items-center gap-5 mb-5">
+      <ReviewAvatar avatar={review.avatar} name={review.name} />
+      <div className="min-w-0 flex-1">
+        <h4 className="social-review__name font-bold text-white">{review.name}</h4>
+        <Stars className="social-review__stars" />
+      </div>
+      <GoogleG className="social-review__g" />
+    </div>
+    <p className="relative z-10 social-review__text text-gray-300">
+      <Highlighted text={review.text} />
+    </p>
+  </SpotlightCard>
+);
+
+const ReviewsSlide = ({ theme, slide }) => {
+  const t = TESTIMONIALS_TRANSLATIONS[LANG];
+  const total = REVIEW_SLIDES.length;
+  const last = slide === total - 1;
+  return (
+    <Frame
+      theme={theme}
+      footer={<Progress current={slide + 1} total={total} />}
+      corner={
+        <span className="social-google-pill">
+          <GoogleG className="social-google-pill__g" />
+          <span>{REVIEWS_COPY.source}</span>
+          <Stars className="social-google-pill__stars" />
+        </span>
+      }
+    >
+      <SectionHeading prefix={t.titlePrefix} accent={t.titleAccent} suffix={t.titleSuffix} className="mb-10" />
+      <div className="social-reviews w-full">
+        {REVIEW_SLIDES[slide].map((index) => (
+          <ReviewCard key={index} review={GOOGLE_REVIEWS[index]} />
+        ))}
+      </div>
+      {last ? (
+        <span className="lux-btn lux-btn--primary social-cta social-reviews__cta mt-10">
+          <span className="lux-btn__glow" aria-hidden="true" />
+          <GoogleG className="relative z-10 social-reviews__cta-g" />
+          <span className="relative z-10">{REVIEWS_COPY.cta}</span>
+        </span>
+      ) : (
+        <p className="social-tools__outro mt-10">
+          Σύρε για περισσότερες
+          <ArrowRight className="h-7 w-7" />
+        </p>
+      )}
+    </Frame>
+  );
+};
+
 /* ---------- Registry ---------- */
 
 // PROJECTS is ordered oldest → newest (the site shows it reversed).
@@ -454,6 +541,11 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  ...REVIEW_SLIDES.map((_, slide) => ({
+    id: `google-reviews-${String(slide + 1).padStart(2, '0')}`,
+    theme: 'dark',
+    render: (theme) => <ReviewsSlide theme={theme} slide={slide} />,
+  })),
   { id: 'free-tools-01-cover', theme: 'light', render: (theme) => <ToolsCover theme={theme} /> },
   ...TOOL_CATEGORIES.map((data, index) => ({
     id: `free-tools-${String(index + 2).padStart(2, '0')}-${data.id}`,

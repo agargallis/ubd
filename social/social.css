@@ -693,3 +693,101 @@ img.social-box__mark {
 .social-frame .social-category-heading h2 {
   font-size: 5.2rem;
 }
+
+/* ---------- Google reviews ---------- */
+.social-google-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.8rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1.45rem;
+  color: var(--lux-ink);
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-surface-border);
+  box-shadow: var(--lux-surface-shadow);
+}
+
+.social-google-pill__g {
+  width: 2rem;
+  height: 2rem;
+}
+
+.social-google-pill__stars {
+  height: 1.5rem;
+}
+
+.social-reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.social-review {
+  padding: 2.5rem 2.8rem 2.6rem;
+}
+
+.social-review__quote {
+  width: 5rem;
+  height: 5rem;
+  top: auto;
+  bottom: 1.6rem;
+  right: 2.2rem;
+}
+
+.social-review__avatar {
+  width: 5.2rem;
+  height: 5.2rem;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  background: #fff;
+}
+
+.social-review__avatar--letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  font-size: 2.4rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.social-review__name {
+  font-size: 2.2rem;
+  line-height: 1.15;
+  margin-bottom: 0.35rem;
+}
+
+.social-review__stars {
+  height: 1.9rem;
+}
+
+.social-review__g {
+  width: 3.4rem;
+  height: 3.4rem;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+.social-review__text {
+  font-size: 1.75rem;
+  line-height: 1.5;
+}
+
+.social-reviews__cta {
+  gap: 1.1rem;
+  font-size: 2.1rem;
+}
+
+.social-reviews__cta-g {
+  width: 2.6rem;
+  height: 2.6rem;
+  padding: 0.3rem;
+  border-radius: 9999px;
+  background: #fff;
+}
+
+.social-review__text {
+  padding-right: 4.5rem;
+}
