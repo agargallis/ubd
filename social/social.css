@@ -63,6 +63,9 @@ body {
 
 .social-frame__logo {
   height: 96px;
+  max-width: 320px;
+  object-fit: contain;
+  object-position: left center;
   width: auto;
 }
 
@@ -335,60 +338,59 @@ body {
   padding-right: 3.5rem;
 }
 
-/* Free tools: 2×2 logo cards + bonus row */
+/* Free tools: one row per tool + bonus row */
 .social-tools {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
 }
 
 .social-tool {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.6rem;
-  padding: 2.4rem 2.4rem 2.2rem;
-  min-height: 330px;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.5rem 2rem;
 }
 
-.social-tool__index {
-  top: 1.4rem;
-  right: 1.9rem;
-  font-size: 3.2rem;
-  -webkit-text-stroke-color: var(--lux-gold);
-  opacity: 0.5;
+.social-tools--roomy {
+  gap: 1.5rem;
+}
+
+.social-tools--roomy .social-tool {
+  padding: 2.4rem 2.4rem;
 }
 
 .social-tool__logo {
   display: inline-flex;
-  width: 6.4rem;
-  height: 6.4rem;
+  flex-shrink: 0;
+  width: 5.6rem;
+  height: 5.6rem;
   align-items: center;
   justify-content: center;
-  border-radius: 1.4rem;
+  border-radius: 1.3rem;
   background: var(--lux-surface);
   border: 1px solid var(--lux-surface-border);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04), 0 18px 40px -18px var(--brand);
+  box-shadow: 0 16px 34px -18px var(--brand);
 }
 
 .social-tool__mark {
-  width: 3.4rem;
-  height: 3.4rem;
+  width: 3rem;
+  height: 3rem;
 }
 
 .social-tool__name {
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   line-height: 1.1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
 }
 
 .social-tool__role {
-  font-size: 1.6rem;
-  line-height: 1.4;
+  font-size: 1.55rem;
+  line-height: 1.35;
 }
 
 .social-tool__plan {
-  margin-top: auto;
+  flex-shrink: 0;
   padding: 0.45rem 1.2rem;
   border-radius: 9999px;
   font-size: 1.25rem;
@@ -454,4 +456,9 @@ body {
    headless Chrome; a still backdrop needs no compositor layer. */
 .social-frame__bg .lux-ring::before {
   will-change: auto;
+}
+
+/* Arcticons are line icons: thicken them to sit beside the filled marks. */
+.brand-logo--outline * {
+  stroke-width: 2.6;
 }
