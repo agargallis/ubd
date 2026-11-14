@@ -36,7 +36,7 @@ export const REVIEW_SLIDES = [[0, 1], [2, 3]];
 // Heading per slide, so the title is not repeated.
 export const REVIEW_HEADINGS = [
   null, // slide 1: the site's «Τι λένε οι πελάτες μας;»
-  { prefix: 'Κι', accent: 'άλλοι', suffix: 'πελάτες' },
+  { prefix: 'Κι', accent: 'άλλοι', suffix: 'πελάτες…' },
 ];
 
 export const REVIEWS_COPY = {
