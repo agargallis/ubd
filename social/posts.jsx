@@ -14,7 +14,7 @@ import { BARBER_BOOKING } from './content/barber-booking';
 import { CLIENTS_EXCLUDE, CLIENT_STEPS, CLIENTS_COPY } from './content/clients-wall';
 import koulisBarbers from './assets/projects/koulis-barbers.jpg';
 import koulisCalendar from './assets/projects/koulis-calendar.jpg';
-import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow, Handshake, Wrench } from 'lucide-react';
+import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow, Handshake, Wrench, Layers, Send, Smartphone } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const AVATAR_FILES = Object.fromEntries(
@@ -735,7 +735,8 @@ const HighlightCover = ({ icon: Icon, id }) => (
     <div className="lux-grain" aria-hidden="true" />
     <svg width="0" height="0" className="absolute" aria-hidden="true">
       <defs>
-        <linearGradient id={`hl-${id}`} x1="0" y1="0" x2="1" y2="1">
+        {/* userSpaceOnUse: bounding-box gradients vanish on straight (zero-width) strokes. */}
+        <linearGradient id={`hl-${id}`} gradientUnits="userSpaceOnUse" x1="2" y1="2" x2="22" y2="22">
           <stop offset="0%" stopColor="#53f2ff" />
           <stop offset="55%" stopColor="#22d3ee" />
           <stop offset="100%" stopColor="#f2cf7c" />
@@ -750,9 +751,14 @@ const HighlightCover = ({ icon: Icon, id }) => (
   </div>
 );
 
+// Suggested highlight names in comments; the covers carry no text.
 const HIGHLIGHTS = [
-  { id: 'clients', icon: Handshake },
-  { id: 'tools', icon: Wrench },
+  { id: 'clients', icon: Handshake }, // Πελάτες — «Αυτοί είναι ήδη online…»
+  { id: 'tools', icon: Wrench }, // Free Tools — «0€ για να ξεκινήσεις»
+  { id: 'reviews', icon: Star }, // Κριτικές — Google reviews
+  { id: 'apps', icon: Smartphone }, // Apps — barber booking carousel
+  { id: 'services', icon: Layers }, // Υπηρεσίες — pinned services / purpose
+  { id: 'contact', icon: Send }, // Επικοινωνία
 ];
 
 /* ---------- Registry ---------- */
