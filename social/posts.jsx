@@ -721,74 +721,123 @@ const ClientsWallPost = ({ theme }) => {
   );
 };
 
-/* ---------- New business guide ---------- */
+/* ---------- New business guide (editorial layout: story bars, left-aligned) ---------- */
 
 const NB_ICONS = { palette: Palette, map: MapPin, instagram: Instagram, globe: Globe, mail: Mail, qr: QrCode, zap: Zap };
-const NbIcon = ({ icon, className }) => {
-  if (icon === 'google') return <GoogleG className={className} />;
+const NbIcon = ({ icon, className = '' }) => {
+  if (icon === 'google') {
+    return (
+      <svg viewBox={LOGOS.google.viewBox} className={`${className} text-primary`} aria-hidden="true" dangerouslySetInnerHTML={{ __html: LOGOS.google.body }} />
+    );
+  }
   const Icon = NB_ICONS[icon];
   return <Icon className={`${className} text-primary`} />;
 };
 const NB_TOTAL = NEW_BUSINESS.stepSlides.length + 2;
 const nbClients = () => PROJECTS.filter((item) => item.image && !CLIENTS_EXCLUDE.includes(item.title)).slice().reverse();
 
+// Its own frame: Instagram-story progress bars on top, «Σύρε» bottom right.
+const NbFrame = ({ theme, current, children }) => (
+  <div className="social-frame social-nbf">
+    <div className="social-frame__bg" aria-hidden="true">
+      <div className="lux-hero__grid" />
+      <div className="lux-aurora">
+        <span className="lux-aurora__band lux-aurora__band--one" />
+        <span className="lux-aurora__band lux-aurora__band--two" />
+        <span className="lux-aurora__band lux-aurora__band--three" />
+      </div>
+      <span className="social-nbf__orb" />
+    </div>
+    <div className="lux-grain" aria-hidden="true" />
+
+    <div className="social-nbf__bars">
+      {Array.from({ length: NB_TOTAL }, (_, i) => (
+        <span key={i} className={`social-nbf__bar ${i < current ? 'is-done' : ''}`} />
+      ))}
+    </div>
+
+    <header className="social-nbf__top">
+      <img src={LOGO_URL} alt="UBD" className="social-frame__logo" style={{ filter: LOGO_FILTER[theme] }} />
+      <span className="social-nbf__count">
+        <span className="lux-gold-text">{String(current).padStart(2, '0')}</span>
+        <span className="social-nbf__count-total">/{String(NB_TOTAL).padStart(2, '0')}</span>
+      </span>
+    </header>
+
+    <main className="social-nbf__body">{children}</main>
+
+    <footer className="social-nbf__bottom">
+      <span>@ubd.gr</span>
+      {current < NB_TOTAL ? (
+        <span className="social-nbf__swipe">
+          Σύρε <ArrowRight className="h-7 w-7" />
+        </span>
+      ) : (
+        <span>ubd.gr</span>
+      )}
+    </footer>
+  </div>
+);
+
+const NbHeading = ({ kicker, prefix, accent, suffix }) => (
+  <div className="social-nbf__heading">
+    {kicker && <span className="social-nbf__kicker">{kicker}</span>}
+    <h2 className="social-nbf__h2 font-bold text-white luxury-heading">
+      {prefix} <span className="lux-gold-text">{accent}</span>{suffix ? ` ${suffix}` : ''}
+    </h2>
+  </div>
+);
+
 const NewBusinessCover = ({ theme }) => {
   const c = NEW_BUSINESS.cover;
   return (
-    <Frame theme={theme} footer={<Progress current={1} total={NB_TOTAL} />}>
-      <span className="social-badge mb-10">
+    <NbFrame theme={theme} current={1}>
+      <span className="social-nbf__tag">
         <Store className="h-7 w-7" />
         {c.badge}
       </span>
-      <h1 className="social-nb__title font-bold text-white luxury-heading text-center mb-8">
-        {c.titleTop} <span className="lux-gold-text">{c.titleAccent}</span>
-        <br />
-        {c.titleBottom}
+      <h1 className="social-nbf__h1 font-bold text-white luxury-heading">
+        {c.titleTop} <span className="lux-gold-text">{c.titleAccent}</span> {c.titleBottom}
       </h1>
-      <p className="social-nb__intro text-gray-300 text-center mb-12">{c.intro}</p>
-      <div className="social-nb__tiles w-full mb-12">
+      <p className="social-nbf__lead text-gray-300">{c.intro}</p>
+      <div className="social-nbf__bento w-full">
         {NEW_BUSINESS.steps.map((step, index) => (
-          <SpotlightCard key={step.title} tilt={0} className="social-nb__tile rounded-[1.8rem]">
-            <span className="social-nb__tile-num relative z-10">{String(index + 1).padStart(2, '0')}</span>
-            <NbIcon icon={step.icon} className="relative z-10 social-nb__tile-icon" />
-            <span className="relative z-10 social-nb__tile-label font-bold text-white">{step.title}</span>
+          <SpotlightCard key={step.title} tilt={0} className="social-nbf__cell rounded-[1.6rem] text-left">
+            <span className="social-nbf__cell-num relative z-10" aria-hidden="true">{index + 1}</span>
+            <NbIcon icon={step.icon} className="relative z-10 social-nbf__cell-icon" />
+            <span className="relative z-10 social-nbf__cell-label font-bold text-white">{step.title}</span>
           </SpotlightCard>
         ))}
       </div>
-      <span className="lux-btn lux-btn--primary social-cta social-cover__swipe">
-        <span className="lux-btn__glow" aria-hidden="true" />
-        <span className="relative z-10">{c.swipe}</span>
-        <ArrowRight className="relative z-10 h-9 w-9" />
-      </span>
-    </Frame>
+    </NbFrame>
   );
 };
 
 const NewBusinessSteps = ({ theme, slide }) => {
   const s = NEW_BUSINESS.stepSlides[slide];
+  const first = s.items[0] + 1;
+  const last = s.items[s.items.length - 1] + 1;
   return (
-    <Frame theme={theme} footer={<Progress current={slide + 2} total={NB_TOTAL} />}>
-      <SectionHeading prefix={s.titlePrefix} accent={s.titleAccent} suffix={s.titleSuffix} className="mb-12" />
-      <ol className="social-nb__timeline w-full">
+    <NbFrame theme={theme} current={slide + 2}>
+      <NbHeading kicker={`Βήματα ${first}–${last}`} prefix={s.titlePrefix} accent={s.titleAccent} suffix={s.titleSuffix} />
+      <ol className="social-nbf__list w-full">
         {s.items.map((index) => {
           const step = NEW_BUSINESS.steps[index];
           return (
-            <li key={step.title} className="social-nb__node">
-              <span className="social-nb__dot">{String(index + 1).padStart(2, '0')}</span>
-              <SpotlightCard tilt={0} className="social-nb__card rounded-[2rem] text-left">
-                <span className="social-nb__card-icon relative z-10">
-                  <NbIcon icon={step.icon} className="social-nb__card-mark" />
-                </span>
-                <div className="relative z-10 min-w-0">
-                  <h3 className="social-nb__step-title font-bold text-white">{step.title}</h3>
-                  <p className="social-nb__step-text text-gray-300">{step.text}</p>
-                </div>
-              </SpotlightCard>
+            <li key={step.title} className="social-nbf__row">
+              <span className="social-nbf__big-num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <div className="social-nbf__row-body">
+                <h3 className="social-nbf__row-title font-bold text-white">
+                  <NbIcon icon={step.icon} className="social-nbf__row-icon" />
+                  {step.title}
+                </h3>
+                <p className="social-nbf__row-text text-gray-300">{step.text}</p>
+              </div>
             </li>
           );
         })}
       </ol>
-    </Frame>
+    </NbFrame>
   );
 };
 
@@ -796,29 +845,27 @@ const NewBusinessCta = ({ theme }) => {
   const c = NEW_BUSINESS.cta;
   const clients = nbClients();
   return (
-    <Frame theme={theme} footer={<Progress current={NB_TOTAL} total={NB_TOTAL} />}>
-      <div className="flex flex-col items-center text-center">
-        <SectionHeading prefix={c.titlePrefix} accent={c.titleAccent} className="mb-8" />
-        <p className="social-booking-cta__text text-gray-300 mb-12">{c.text}</p>
-        <span className="lux-btn lux-btn--primary social-cta mb-14">
-          <span className="lux-btn__glow" aria-hidden="true" />
-          <MessageCircle className="relative z-10 h-9 w-9" />
-          <span className="relative z-10">{c.button}</span>
-        </span>
-        <div className="social-nb__proof">
-          <div className="social-cover__stack social-nb__stack">
-            {clients.map((client) => (
-              <span key={client.title} className="social-cover__chip social-nb__proof-chip">
-                <img src={client.image} alt={client.alt} />
-              </span>
-            ))}
-          </div>
-          <p className="social-nb__proof-text text-gray-300">
-            <strong className="lux-gold-text">{clients.length}</strong> {c.proof}
-          </p>
+    <NbFrame theme={theme} current={NB_TOTAL}>
+      <NbHeading kicker="Το επόμενο βήμα είναι δικό σου" prefix={c.titlePrefix} accent={c.titleAccent} />
+      <p className="social-nbf__lead text-gray-300">{c.text}</p>
+      <span className="lux-btn lux-btn--primary social-cta social-nbf__cta">
+        <span className="lux-btn__glow" aria-hidden="true" />
+        <MessageCircle className="relative z-10 h-9 w-9" />
+        <span className="relative z-10">{c.button}</span>
+      </span>
+      <SpotlightCard tilt={0} className="social-nbf__proof rounded-[2rem] w-full">
+        <div className="relative z-10 social-nbf__logos">
+          {clients.map((client) => (
+            <span key={client.title} className="social-nbf__logo">
+              <img src={client.image} alt={client.alt} />
+            </span>
+          ))}
         </div>
-      </div>
-    </Frame>
+        <p className="relative z-10 social-nbf__proof-text text-gray-300">
+          <strong className="lux-gold-text">{clients.length}</strong> {c.proof}
+        </p>
+      </SpotlightCard>
+    </NbFrame>
   );
 };
 
