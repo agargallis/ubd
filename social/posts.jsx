@@ -12,9 +12,10 @@ import { GOOGLE_REVIEWS, REVIEW_SLIDES, REVIEW_HEADINGS, REVIEWS_COPY } from './
 import { GOOGLE_G } from './content/google-logo';
 import { BARBER_BOOKING } from './content/barber-booking';
 import { CLIENTS_EXCLUDE, CLIENT_STEPS, CLIENTS_COPY } from './content/clients-wall';
+import { NEW_BUSINESS } from './content/new-business';
 import koulisBarbers from './assets/projects/koulis-barbers.jpg';
 import koulisCalendar from './assets/projects/koulis-calendar.jpg';
-import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow, Handshake, Wrench, Layers, Send, Smartphone } from 'lucide-react';
+import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow, Handshake, Wrench, Layers, Send, Smartphone, MapPin, Mail, QrCode, Store } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const AVATAR_FILES = Object.fromEntries(
@@ -720,6 +721,105 @@ const ClientsWallPost = ({ theme }) => {
   );
 };
 
+/* ---------- New business guide ---------- */
+
+const NB_ICONS = { palette: Palette, map: MapPin, instagram: Instagram, globe: Globe, mail: Mail, qr: QrCode };
+const NB_TOTAL = NEW_BUSINESS.stepSlides.length + 2;
+const nbClients = () => PROJECTS.filter((item) => item.image && !CLIENTS_EXCLUDE.includes(item.title)).slice().reverse();
+
+const NewBusinessCover = ({ theme }) => {
+  const c = NEW_BUSINESS.cover;
+  return (
+    <Frame theme={theme} footer={<Progress current={1} total={NB_TOTAL} />}>
+      <span className="social-badge mb-10">
+        <Store className="h-7 w-7" />
+        {c.badge}
+      </span>
+      <h1 className="social-nb__title font-bold text-white luxury-heading text-center mb-8">
+        {c.titleTop} <span className="lux-gold-text">{c.titleAccent}</span>
+        <br />
+        {c.titleBottom}
+      </h1>
+      <p className="social-nb__intro text-gray-300 text-center mb-12">{c.intro}</p>
+      <div className="social-nb__chips w-full mb-12">
+        {NEW_BUSINESS.steps.map((step, index) => {
+          const Icon = NB_ICONS[step.icon];
+          return (
+            <span key={step.title} className="lux-pill social-nb__chip">
+              <span className="social-nb__chip-num relative z-10">{index + 1}</span>
+              <Icon className="relative z-10 h-7 w-7 text-primary" />
+              <span className="relative z-10">{step.title}</span>
+            </span>
+          );
+        })}
+      </div>
+      <span className="lux-btn lux-btn--primary social-cta social-cover__swipe">
+        <span className="lux-btn__glow" aria-hidden="true" />
+        <span className="relative z-10">{c.swipe}</span>
+        <ArrowRight className="relative z-10 h-9 w-9" />
+      </span>
+    </Frame>
+  );
+};
+
+const NewBusinessSteps = ({ theme, slide }) => {
+  const s = NEW_BUSINESS.stepSlides[slide];
+  return (
+    <Frame theme={theme} footer={<Progress current={slide + 2} total={NB_TOTAL} />}>
+      <SectionHeading prefix={s.titlePrefix} accent={s.titleAccent} suffix={s.titleSuffix} className="mb-12" />
+      <div className="social-nb__steps w-full">
+        {s.items.map((index) => {
+          const step = NEW_BUSINESS.steps[index];
+          const Icon = NB_ICONS[step.icon];
+          return (
+            <SpotlightCard key={step.title} tilt={0} className="social-nb__step rounded-[2rem] text-left">
+              <span className="lux-card__index social-nb__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+              <span className="lux-icon-orb social-nb__icon relative z-10">
+                <span className="lux-icon-orb__ring" aria-hidden="true" />
+                <Icon className="relative z-10 h-11 w-11 text-primary" />
+              </span>
+              <div className="relative z-10 min-w-0">
+                <h3 className="social-nb__step-title font-bold text-white">{step.title}</h3>
+                <p className="social-nb__step-text text-gray-300">{step.text}</p>
+              </div>
+            </SpotlightCard>
+          );
+        })}
+      </div>
+    </Frame>
+  );
+};
+
+const NewBusinessCta = ({ theme }) => {
+  const c = NEW_BUSINESS.cta;
+  const clients = nbClients();
+  return (
+    <Frame theme={theme} footer={<Progress current={NB_TOTAL} total={NB_TOTAL} />}>
+      <div className="flex flex-col items-center text-center">
+        <SectionHeading prefix={c.titlePrefix} accent={c.titleAccent} className="mb-8" />
+        <p className="social-booking-cta__text text-gray-300 mb-12">{c.text}</p>
+        <span className="lux-btn lux-btn--primary social-cta mb-14">
+          <span className="lux-btn__glow" aria-hidden="true" />
+          <MessageCircle className="relative z-10 h-9 w-9" />
+          <span className="relative z-10">{c.button}</span>
+        </span>
+        <div className="social-nb__proof">
+          <div className="social-cover__stack social-nb__stack">
+            {clients.map((client) => (
+              <span key={client.title} className="social-cover__chip social-nb__proof-chip">
+                <img src={client.image} alt={client.alt} />
+              </span>
+            ))}
+          </div>
+          <p className="social-nb__proof-text text-gray-300">
+            <strong className="lux-gold-text">{clients.length}</strong> {c.proof}
+          </p>
+        </div>
+      </div>
+    </Frame>
+  );
+};
+
 /* ---------- Instagram highlight covers (1080×1920) ---------- */
 
 const HighlightCover = ({ icon: Icon, id }) => (
@@ -787,6 +887,13 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  { id: 'new-business-01-cover', theme: 'light', render: (theme) => <NewBusinessCover theme={theme} /> },
+  ...NEW_BUSINESS.stepSlides.map((_, slide) => ({
+    id: `new-business-${String(slide + 2).padStart(2, '0')}-steps`,
+    theme: 'light',
+    render: (theme) => <NewBusinessSteps theme={theme} slide={slide} />,
+  })),
+  { id: `new-business-${String(NEW_BUSINESS.stepSlides.length + 2).padStart(2, '0')}-cta`, theme: 'light', render: (theme) => <NewBusinessCta theme={theme} /> },
   ...HIGHLIGHTS.map(({ id, icon }) => ({
     id: `highlight-${id}`,
     theme: 'dark',
