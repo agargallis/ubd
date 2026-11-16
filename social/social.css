@@ -1693,3 +1693,23 @@ img.social-box__mark {
 .social-nbf__cell-label {
   padding-right: 0;
 }
+
+/* CTA proof: the overlapping logo row, left-aligned in the editorial frame. */
+.social-nbf__stack-proof {
+  align-items: flex-start;
+}
+
+.social-nbf__stack-proof .social-nb__proof-chip {
+  width: 6.4rem;
+  height: 6.4rem;
+}
+
+.social-nbf__stack-proof .social-nb__proof-text {
+  font-size: 2rem;
+}
+
+.social-nbf__stack-proof .social-nb__proof-chip {
+  width: 5.6rem;
+  height: 5.6rem;
+  margin-left: -1.1rem;
+}

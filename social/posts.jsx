@@ -853,18 +853,18 @@ const NewBusinessCta = ({ theme }) => {
         <MessageCircle className="relative z-10 h-9 w-9" />
         <span className="relative z-10">{c.button}</span>
       </span>
-      <SpotlightCard tilt={0} className="social-nbf__proof rounded-[2rem] w-full">
-        <div className="relative z-10 social-nbf__logos">
+      <div className="social-nb__proof social-nbf__stack-proof">
+        <div className="social-cover__stack social-nb__stack">
           {clients.map((client) => (
-            <span key={client.title} className="social-nbf__logo">
+            <span key={client.title} className="social-cover__chip social-nb__proof-chip">
               <img src={client.image} alt={client.alt} />
             </span>
           ))}
         </div>
-        <p className="relative z-10 social-nbf__proof-text text-gray-300">
+        <p className="social-nb__proof-text text-gray-300">
           <strong className="lux-gold-text">{clients.length}</strong> {c.proof}
         </p>
-      </SpotlightCard>
+      </div>
     </NbFrame>
   );
 };
