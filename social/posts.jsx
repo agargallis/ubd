@@ -723,7 +723,12 @@ const ClientsWallPost = ({ theme }) => {
 
 /* ---------- New business guide ---------- */
 
-const NB_ICONS = { palette: Palette, map: MapPin, instagram: Instagram, globe: Globe, mail: Mail, qr: QrCode };
+const NB_ICONS = { palette: Palette, map: MapPin, instagram: Instagram, globe: Globe, mail: Mail, qr: QrCode, zap: Zap };
+const NbIcon = ({ icon, className }) => {
+  if (icon === 'google') return <GoogleG className={className} />;
+  const Icon = NB_ICONS[icon];
+  return <Icon className={`${className} text-primary`} />;
+};
 const NB_TOTAL = NEW_BUSINESS.stepSlides.length + 2;
 const nbClients = () => PROJECTS.filter((item) => item.image && !CLIENTS_EXCLUDE.includes(item.title)).slice().reverse();
 
@@ -741,17 +746,14 @@ const NewBusinessCover = ({ theme }) => {
         {c.titleBottom}
       </h1>
       <p className="social-nb__intro text-gray-300 text-center mb-12">{c.intro}</p>
-      <div className="social-nb__chips w-full mb-12">
-        {NEW_BUSINESS.steps.map((step, index) => {
-          const Icon = NB_ICONS[step.icon];
-          return (
-            <span key={step.title} className="lux-pill social-nb__chip">
-              <span className="social-nb__chip-num relative z-10">{index + 1}</span>
-              <Icon className="relative z-10 h-7 w-7 text-primary" />
-              <span className="relative z-10">{step.title}</span>
-            </span>
-          );
-        })}
+      <div className="social-nb__tiles w-full mb-12">
+        {NEW_BUSINESS.steps.map((step, index) => (
+          <SpotlightCard key={step.title} tilt={0} className="social-nb__tile rounded-[1.8rem]">
+            <span className="social-nb__tile-num relative z-10">{String(index + 1).padStart(2, '0')}</span>
+            <NbIcon icon={step.icon} className="relative z-10 social-nb__tile-icon" />
+            <span className="relative z-10 social-nb__tile-label font-bold text-white">{step.title}</span>
+          </SpotlightCard>
+        ))}
       </div>
       <span className="lux-btn lux-btn--primary social-cta social-cover__swipe">
         <span className="lux-btn__glow" aria-hidden="true" />
@@ -767,25 +769,25 @@ const NewBusinessSteps = ({ theme, slide }) => {
   return (
     <Frame theme={theme} footer={<Progress current={slide + 2} total={NB_TOTAL} />}>
       <SectionHeading prefix={s.titlePrefix} accent={s.titleAccent} suffix={s.titleSuffix} className="mb-12" />
-      <div className="social-nb__steps w-full">
+      <ol className="social-nb__timeline w-full">
         {s.items.map((index) => {
           const step = NEW_BUSINESS.steps[index];
-          const Icon = NB_ICONS[step.icon];
           return (
-            <SpotlightCard key={step.title} tilt={0} className="social-nb__step rounded-[2rem] text-left">
-              <span className="lux-card__index social-nb__index" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-              <span className="lux-icon-orb social-nb__icon relative z-10">
-                <span className="lux-icon-orb__ring" aria-hidden="true" />
-                <Icon className="relative z-10 h-11 w-11 text-primary" />
-              </span>
-              <div className="relative z-10 min-w-0">
-                <h3 className="social-nb__step-title font-bold text-white">{step.title}</h3>
-                <p className="social-nb__step-text text-gray-300">{step.text}</p>
-              </div>
-            </SpotlightCard>
+            <li key={step.title} className="social-nb__node">
+              <span className="social-nb__dot">{String(index + 1).padStart(2, '0')}</span>
+              <SpotlightCard tilt={0} className="social-nb__card rounded-[2rem] text-left">
+                <span className="social-nb__card-icon relative z-10">
+                  <NbIcon icon={step.icon} className="social-nb__card-mark" />
+                </span>
+                <div className="relative z-10 min-w-0">
+                  <h3 className="social-nb__step-title font-bold text-white">{step.title}</h3>
+                  <p className="social-nb__step-text text-gray-300">{step.text}</p>
+                </div>
+              </SpotlightCard>
+            </li>
           );
         })}
-      </div>
+      </ol>
     </Frame>
   );
 };
