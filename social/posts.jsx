@@ -13,6 +13,7 @@ import { GOOGLE_G } from './content/google-logo';
 import { BARBER_BOOKING } from './content/barber-booking';
 import { CLIENTS_EXCLUDE, CLIENT_STEPS, CLIENTS_COPY } from './content/clients-wall';
 import { NEW_BUSINESS } from './content/new-business';
+import { SHUTTERS } from './content/shutters';
 import koulisBarbers from './assets/projects/koulis-barbers.jpg';
 import koulisCalendar from './assets/projects/koulis-calendar.jpg';
 import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow, Handshake, Wrench, Layers, Send, Smartphone, MapPin, Mail, QrCode, Store } from 'lucide-react';
@@ -737,7 +738,7 @@ const NB_TOTAL = NEW_BUSINESS.stepSlides.length + 2;
 const nbClients = () => PROJECTS.filter((item) => item.image && !CLIENTS_EXCLUDE.includes(item.title)).slice().reverse();
 
 // Its own frame: Instagram-story progress bars on top, «Σύρε» bottom right.
-const NbFrame = ({ theme, current, children }) => (
+const NbFrame = ({ theme, current, total = NB_TOTAL, children }) => (
   <div className="social-frame social-nbf">
     <div className="social-frame__bg" aria-hidden="true">
       <div className="lux-hero__grid" />
@@ -751,7 +752,7 @@ const NbFrame = ({ theme, current, children }) => (
     <div className="lux-grain" aria-hidden="true" />
 
     <div className="social-nbf__bars">
-      {Array.from({ length: NB_TOTAL }, (_, i) => (
+      {Array.from({ length: total }, (_, i) => (
         <span key={i} className={`social-nbf__bar ${i < current ? 'is-done' : ''}`} />
       ))}
     </div>
@@ -760,7 +761,7 @@ const NbFrame = ({ theme, current, children }) => (
       <img src={LOGO_URL} alt="UBD" className="social-frame__logo" style={{ filter: LOGO_FILTER[theme] }} />
       <span className="social-nbf__count">
         <span className="lux-gold-text">{String(current).padStart(2, '0')}</span>
-        <span className="social-nbf__count-total">/{String(NB_TOTAL).padStart(2, '0')}</span>
+        <span className="social-nbf__count-total">/{String(total).padStart(2, '0')}</span>
       </span>
     </header>
 
@@ -768,7 +769,7 @@ const NbFrame = ({ theme, current, children }) => (
 
     <footer className="social-nbf__bottom">
       <span>@ubd.gr</span>
-      {current < NB_TOTAL ? (
+      {current < total ? (
         <span className="social-nbf__swipe">
           Σύρε <ArrowRight className="h-7 w-7" />
         </span>
@@ -869,6 +870,142 @@ const NewBusinessCta = ({ theme }) => {
   );
 };
 
+/* ---------- «Κατεβασμένα ρολά» persuasion carousel ---------- */
+
+const SH_TOTAL = 5;
+
+const Shutter = ({ sign, open = false }) => (
+  <div className={`social-sh__shop ${open ? 'is-open' : ''}`} aria-hidden="true">
+    <div className="social-sh__awning" />
+    <div className="social-sh__shutter">
+      {open && <span className="social-sh__rolled" />}
+      <span className="social-sh__sign">{sign}</span>
+    </div>
+  </div>
+);
+
+const ShuttersHook = ({ theme }) => {
+  const h = SHUTTERS.hook;
+  return (
+    <NbFrame theme={theme} current={1} total={SH_TOTAL}>
+      <span className="social-nbf__tag">
+        <Store className="h-7 w-7" />
+        {h.tag}
+      </span>
+      <h1 className="social-sh__mega font-bold text-white luxury-heading">
+        {h.lines.map((line) => (
+          <span key={line} className="block">{line}</span>
+        ))}
+        <span className="block lux-gold-text">{h.accent}</span>
+      </h1>
+      <div className="social-sh__hook-bottom w-full">
+        <p className="social-sh__sub text-gray-300">{h.sub}</p>
+        <Shutter sign={h.sign} />
+      </div>
+    </NbFrame>
+  );
+};
+
+const ShuttersEra = ({ theme }) => {
+  const e = SHUTTERS.era;
+  const Column = ({ data, now }) => (
+    <SpotlightCard tilt={0} className={`social-sh__col rounded-[2rem] text-left ${now ? 'social-sh__col--now' : ''}`}>
+      <span className={`relative z-10 social-sh__col-label ${now ? 'lux-gold-text' : ''}`}>{data.label}</span>
+      <ul className="relative z-10 social-sh__col-list">
+        {data.items.map((item) => (
+          <li key={item} className={now ? 'text-white' : 'social-sh__then-item'}>{item}</li>
+        ))}
+      </ul>
+    </SpotlightCard>
+  );
+  return (
+    <NbFrame theme={theme} current={2} total={SH_TOTAL}>
+      <NbHeading kicker={e.kicker} prefix={e.titlePrefix} accent={e.titleAccent} />
+      <div className="social-sh__cols w-full">
+        <Column data={e.then} />
+        <span className="social-sh__vs"><ArrowRight className="h-9 w-9" /></span>
+        <Column data={e.now} now />
+      </div>
+    </NbFrame>
+  );
+};
+
+const ShuttersWom = ({ theme }) => {
+  const w = SHUTTERS.wom;
+  return (
+    <NbFrame theme={theme} current={3} total={SH_TOTAL}>
+      <span className="social-nbf__kicker mb-6">{w.kicker}</span>
+      <h2 className="social-sh__big font-bold text-white luxury-heading">
+        {w.title} <span className="lux-gold-text">{w.accent}</span>
+      </h2>
+      <SpotlightCard tilt={0} className="social-sh__search rounded-[2rem] w-full">
+        <div className="relative z-10 social-sh__search-bar">
+          <Search className="h-8 w-8 text-primary" />
+          <span className="social-sh__query">{w.query}</span>
+          <span className="social-sh__caret" />
+        </div>
+        <div className="relative z-10 social-sh__empty">
+          <span className="social-sh__empty-line" />
+          <span className="social-sh__empty-line social-sh__empty-line--short" />
+          <p className="social-sh__empty-text">{w.empty}</p>
+        </div>
+      </SpotlightCard>
+      <p className="social-sh__punch font-bold">{w.punch}</p>
+    </NbFrame>
+  );
+};
+
+const ShuttersLift = ({ theme }) => {
+  const l = SHUTTERS.lift;
+  const clients = nbClients();
+  return (
+    <NbFrame theme={theme} current={4} total={SH_TOTAL}>
+      <NbHeading kicker={l.kicker} prefix={l.titlePrefix} accent={l.titleAccent} />
+      <p className="social-nbf__lead text-gray-300">{l.text}</p>
+      <div className="social-sh__chips w-full">
+        {l.items.map((item, index) => (
+          <span key={item} className={`lux-pill social-sh__chip ${index === l.items.length - 1 ? 'social-sh__chip--more' : ''}`}>
+            <span className="relative z-10">{item}</span>
+          </span>
+        ))}
+      </div>
+      <div className="social-nb__proof social-nbf__stack-proof">
+        <div className="social-cover__stack social-nb__stack">
+          {clients.map((client) => (
+            <span key={client.title} className="social-cover__chip social-nb__proof-chip">
+              <img src={client.image} alt={client.alt} />
+            </span>
+          ))}
+        </div>
+        <p className="social-nb__proof-text text-gray-300">
+          <strong className="lux-gold-text">{clients.length}</strong> {l.proof}
+        </p>
+      </div>
+    </NbFrame>
+  );
+};
+
+const ShuttersCta = ({ theme }) => {
+  const c = SHUTTERS.cta;
+  return (
+    <NbFrame theme={theme} current={5} total={SH_TOTAL}>
+      <span className="social-nbf__kicker mb-6">{c.kicker}</span>
+      <h2 className="social-sh__mega font-bold text-white luxury-heading">
+        {c.titlePrefix} <span className="lux-gold-text">{c.titleAccent}</span>
+      </h2>
+      <p className="social-nbf__lead text-gray-300">{c.text}</p>
+      <span className="lux-btn lux-btn--primary social-cta social-sh__cta">
+        <span className="lux-btn__glow" aria-hidden="true" />
+        <Send className="relative z-10 h-9 w-9" />
+        <span className="relative z-10">{c.button}</span>
+      </span>
+      <div className="social-sh__cta-shop w-full">
+        <Shutter sign={SHUTTERS.hook.sign} open />
+      </div>
+    </NbFrame>
+  );
+};
+
 /* ---------- Instagram highlight covers (1080×1920) ---------- */
 
 const HighlightCover = ({ icon: Icon, id }) => (
@@ -936,6 +1073,11 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  { id: 'shutters-01-hook', theme: 'dark', render: (theme) => <ShuttersHook theme={theme} /> },
+  { id: 'shutters-02-era', theme: 'dark', render: (theme) => <ShuttersEra theme={theme} /> },
+  { id: 'shutters-03-wom', theme: 'dark', render: (theme) => <ShuttersWom theme={theme} /> },
+  { id: 'shutters-04-lift', theme: 'dark', render: (theme) => <ShuttersLift theme={theme} /> },
+  { id: 'shutters-05-cta', theme: 'dark', render: (theme) => <ShuttersCta theme={theme} /> },
   { id: 'new-business-01-cover', theme: 'light', render: (theme) => <NewBusinessCover theme={theme} /> },
   ...NEW_BUSINESS.stepSlides.map((_, slide) => ({
     id: `new-business-${String(slide + 2).padStart(2, '0')}-steps`,

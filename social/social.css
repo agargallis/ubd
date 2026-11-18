@@ -1713,3 +1713,223 @@ img.social-box__mark {
   height: 5.6rem;
   margin-left: -1.1rem;
 }
+
+/* ---------- «Κατεβασμένα ρολά» ---------- */
+.social-sh__mega {
+  font-size: 6.6rem;
+  line-height: 1.08;
+  margin-bottom: 3rem;
+}
+
+.social-sh__hook-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.social-sh__sub {
+  flex: 1;
+  font-size: 2.4rem;
+  line-height: 1.4;
+}
+
+.social-sh__shop {
+  flex-shrink: 0;
+  width: 360px;
+}
+
+.social-sh__awning {
+  height: 54px;
+  border-radius: 18px 18px 6px 6px;
+  background: repeating-linear-gradient(90deg, #53f2ff 0 45px, #f2cf7c 45px 90px);
+}
+
+.social-sh__shutter {
+  position: relative;
+  height: 330px;
+  margin: 0 14px;
+  border-radius: 0 0 10px 10px;
+  border: 3px solid var(--lux-surface-border);
+  border-top: none;
+  background: repeating-linear-gradient(180deg, rgba(148, 163, 184, 0.55) 0 22px, rgba(100, 116, 139, 0.65) 22px 26px);
+}
+
+.social-sh__sign {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0.6rem 1.4rem;
+  border-radius: 0.6rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(15, 23, 42, 0.75);
+  border: 2px dashed rgba(255, 255, 255, 0.35);
+}
+
+.social-sh__cols {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  gap: 1.4rem;
+}
+
+.social-sh__col {
+  padding: 3rem 2.6rem;
+}
+
+.social-sh__col--now {
+  box-shadow: 0 0 0 2px rgba(83, 242, 255, 0.55);
+}
+
+.social-sh__col-label {
+  display: block;
+  margin-bottom: 2.2rem;
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--lux-ink);
+  opacity: 0.9;
+}
+
+.social-sh__col-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 2.2rem;
+  line-height: 1.3;
+}
+
+.social-sh__then-item {
+  color: var(--lux-ink);
+  opacity: 0.55;
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
+}
+
+.social-sh__vs {
+  align-self: center;
+  display: inline-flex;
+  width: 5rem;
+  height: 5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: #04131f;
+  background: linear-gradient(120deg, #f2cf7c, #53f2ff);
+}
+
+.social-sh__big {
+  font-size: 5.4rem;
+  line-height: 1.12;
+  margin-bottom: 3.4rem;
+}
+
+.social-sh__search {
+  padding: 2.4rem 2.6rem 2.8rem;
+  margin-bottom: 3rem;
+}
+
+.social-sh__search-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.4rem 2rem;
+  margin-bottom: 2.4rem;
+  border-radius: 9999px;
+  border: 2px solid var(--lux-surface-border);
+  font-size: 2.2rem;
+  color: var(--lux-ink);
+}
+
+.social-sh__caret {
+  width: 3px;
+  height: 2.6rem;
+  background: var(--lux-cyan);
+}
+
+.social-sh__empty {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0 0.6rem;
+}
+
+.social-sh__empty-line {
+  height: 14px;
+  width: 80%;
+  border-radius: 9999px;
+  background: var(--lux-surface-border);
+  opacity: 0.6;
+}
+
+.social-sh__empty-line--short {
+  width: 50%;
+}
+
+.social-sh__empty-text {
+  margin-top: 1.2rem;
+  font-size: 2.2rem;
+  color: var(--lux-ink);
+  opacity: 0.7;
+}
+
+.social-sh__punch {
+  font-size: 4.6rem;
+  line-height: 1.1;
+  color: #f87171;
+}
+
+.social-sh__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.1rem;
+  margin-bottom: 4rem;
+}
+
+.social-sh__chip {
+  padding: 1rem 1.9rem;
+  font-size: 2rem;
+}
+
+.social-sh__chip--more {
+  color: #04131f;
+  background: linear-gradient(120deg, #f2cf7c, #53f2ff);
+}
+
+.social-sh__cta {
+  gap: 1.1rem;
+  margin-top: 1rem;
+}
+
+/* CTA: the same shop, shutters up, sign lit */
+.social-sh__cta-shop {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.social-sh__shop.is-open .social-sh__shutter {
+  background: linear-gradient(180deg, rgba(83, 242, 255, 0.18), rgba(242, 207, 124, 0.14));
+}
+
+.social-sh__rolled {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 34px;
+  background: repeating-linear-gradient(180deg, rgba(148, 163, 184, 0.7) 0 7px, rgba(100, 116, 139, 0.8) 7px 9px);
+}
+
+.social-sh__shop.is-open .social-sh__sign {
+  color: #04131f;
+  border: none;
+  background: linear-gradient(120deg, #f2cf7c, #53f2ff);
+}
