@@ -1058,7 +1058,7 @@ const Bubble = ({ from, children, label }) => (
 const ExcusesCover = ({ theme }) => {
   const c = EXCUSES.cover;
   return (
-    <ChatFrame theme={theme} current={1}>
+    <NbFrame theme={theme} current={1} total={EX_TOTAL}>
       <span className="social-nbf__kicker mb-6">{c.kicker}</span>
       <h1 className="social-chat__title font-bold text-white luxury-heading">
         {c.titlePrefix} <span className="lux-gold-text">{c.titleAccent}</span> {c.titleSuffix}
@@ -1073,14 +1073,14 @@ const ExcusesCover = ({ theme }) => {
       <p className="social-chat__hint">
         Σύρε για τις απαντήσεις <ArrowRight className="h-7 w-7" />
       </p>
-    </ChatFrame>
+    </NbFrame>
   );
 };
 
 const ExcuseSlide = ({ theme, index }) => {
   const item = EXCUSES.items[index];
   return (
-    <ChatFrame theme={theme} current={index + 2}>
+    <NbFrame theme={theme} current={index + 2} total={EX_TOTAL}>
       <span className="social-chat__num">
         <span className="lux-gold-text">{String(index + 1).padStart(2, '0')}</span>
         <span className="social-chat__num-total"> / {String(EXCUSES.items.length).padStart(2, '0')}</span>
@@ -1097,14 +1097,14 @@ const ExcuseSlide = ({ theme, index }) => {
           </span>
         </Bubble>
       </div>
-    </ChatFrame>
+    </NbFrame>
   );
 };
 
 const ExcusesCta = ({ theme }) => {
   const c = EXCUSES.cta;
   return (
-    <ChatFrame theme={theme} current={EX_TOTAL} draft={c.draft}>
+    <NbFrame theme={theme} current={EX_TOTAL} total={EX_TOTAL}>
       <h2 className="social-chat__title social-chat__title--cta font-bold text-white luxury-heading">
         {c.titlePrefix}
         <br />
@@ -1115,8 +1115,13 @@ const ExcusesCta = ({ theme }) => {
         <MessageCircle className="relative z-10 h-9 w-9" />
         <span className="relative z-10">{c.button}</span>
       </span>
-      <p className="social-chat__handle">@ubd.gr · ubd.gr</p>
-    </ChatFrame>
+      <div className="social-chat__input social-chat__input--inline w-full">
+        <span className="social-chat__field is-filled">{c.draft}</span>
+        <span className="social-chat__send">
+          <Send className="h-8 w-8" />
+        </span>
+      </div>
+    </NbFrame>
   );
 };
 

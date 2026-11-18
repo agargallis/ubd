@@ -2190,3 +2190,20 @@ img.social-box__mark {
 .social-chat__title--cta {
   font-size: 6.4rem;
 }
+
+/* Excuses inside the editorial frame */
+.social-nbf .social-chat__title {
+  font-size: 5rem;
+}
+
+.social-nbf .social-chat__num {
+  margin-bottom: 2.4rem;
+}
+
+.social-chat__input--inline {
+  margin-top: 3rem;
+}
+
+.social-nbf .social-chat__cta {
+  margin-bottom: 0;
+}
