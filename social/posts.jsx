@@ -1009,7 +1009,7 @@ const ShuttersCta = ({ theme }) => {
 
 /* ---------- «Οι δικαιολογίες» — DM-style carousel ---------- */
 
-const EX_TOTAL = EXCUSES.items.length + 2;
+const EX_TOTAL = EXCUSES.slides.length + 2;
 
 const ChatFrame = ({ theme, current, draft, children }) => (
   <div className="social-frame social-chat">
@@ -1077,25 +1077,28 @@ const ExcusesCover = ({ theme }) => {
   );
 };
 
-const ExcuseSlide = ({ theme, index }) => {
-  const item = EXCUSES.items[index];
+const ExcuseSlide = ({ theme, slide }) => {
+  const indexes = EXCUSES.slides[slide];
+  const pad = (n) => String(n).padStart(2, '0');
   return (
-    <NbFrame theme={theme} current={index + 2} total={EX_TOTAL}>
-      <span className="social-chat__num">
-        <span className="lux-gold-text">{String(index + 1).padStart(2, '0')}</span>
-        <span className="social-chat__num-total"> / {String(EXCUSES.items.length).padStart(2, '0')}</span>
+    <NbFrame theme={theme} current={slide + 2} total={EX_TOTAL}>
+      <span className="social-nbf__kicker mb-8">
+        Δικαιολογίες {pad(indexes[0] + 1)}–{pad(indexes[indexes.length - 1] + 1)} / {pad(EXCUSES.items.length)}
       </span>
-      <div className="social-chat__thread w-full">
-        <Bubble from="them" label={EXCUSES.sender}>
-          <p className="social-bubble__excuse">{item.excuse}</p>
-        </Bubble>
-        <Bubble from="us" label={EXCUSES.replier}>
-          <p className="social-bubble__reply">{item.reply}</p>
-          <span className="social-bubble__seen">
-            <Check className="h-6 w-6" />
-            <Check className="h-6 w-6 -ml-4" />
-          </span>
-        </Bubble>
+      <div className="social-chat__thread social-chat__thread--compact w-full">
+        {indexes.map((index) => {
+          const item = EXCUSES.items[index];
+          return (
+            <div key={item.excuse} className="social-chat__pair">
+              <Bubble from="them" label={`${pad(index + 1)} · ${EXCUSES.sender}`}>
+                <p className="social-bubble__excuse">{item.excuse}</p>
+              </Bubble>
+              <Bubble from="us" label={EXCUSES.replier}>
+                <p className="social-bubble__reply">{item.reply}</p>
+              </Bubble>
+            </div>
+          );
+        })}
       </div>
     </NbFrame>
   );
@@ -1193,12 +1196,12 @@ export const POSTS = [
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
   { id: 'excuses-01-cover', theme: 'light', render: (theme) => <ExcusesCover theme={theme} /> },
-  ...EXCUSES.items.map((_, index) => ({
-    id: `excuses-${String(index + 2).padStart(2, '0')}`,
+  ...EXCUSES.slides.map((_, slide) => ({
+    id: `excuses-${String(slide + 2).padStart(2, '0')}`,
     theme: 'light',
-    render: (theme) => <ExcuseSlide theme={theme} index={index} />,
+    render: (theme) => <ExcuseSlide theme={theme} slide={slide} />,
   })),
-  { id: `excuses-${String(EXCUSES.items.length + 2).padStart(2, '0')}-cta`, theme: 'light', render: (theme) => <ExcusesCta theme={theme} /> },
+  { id: `excuses-${String(EXCUSES.slides.length + 2).padStart(2, '0')}-cta`, theme: 'light', render: (theme) => <ExcusesCta theme={theme} /> },
   { id: 'shutters-01-hook', theme: 'dark', render: (theme) => <ShuttersHook theme={theme} /> },
   { id: 'shutters-02-era', theme: 'dark', render: (theme) => <ShuttersEra theme={theme} /> },
   { id: 'shutters-03-wom', theme: 'dark', render: (theme) => <ShuttersWom theme={theme} /> },

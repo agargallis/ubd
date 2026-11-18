@@ -24,4 +24,6 @@ export const EXCUSES = {
     button: 'Στείλε μας μήνυμα!',
   },
   placeholder: 'Γράψε ένα μήνυμα…',
+  // Excuses per slide (keeps the carousel at 4 slides).
+  slides: [[0, 1, 2], [3, 4]],
 };
