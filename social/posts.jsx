@@ -1078,19 +1078,18 @@ const ExcusesCover = ({ theme }) => {
 };
 
 const ExcuseSlide = ({ theme, slide }) => {
-  const indexes = EXCUSES.slides[slide];
-  const pad = (n) => String(n).padStart(2, '0');
+  const s = EXCUSES.slides[slide];
   return (
     <NbFrame theme={theme} current={slide + 2} total={EX_TOTAL}>
-      <span className="social-nbf__kicker mb-8">
-        Δικαιολογίες {pad(indexes[0] + 1)}–{pad(indexes[indexes.length - 1] + 1)} / {pad(EXCUSES.items.length)}
-      </span>
+      <h2 className="social-chat__slide-title font-bold text-white luxury-heading">
+        {s.titlePrefix} <span className="lux-gold-text">{s.titleAccent}</span>
+      </h2>
       <div className="social-chat__thread social-chat__thread--compact w-full">
-        {indexes.map((index) => {
+        {s.items.map((index) => {
           const item = EXCUSES.items[index];
           return (
             <div key={item.excuse} className="social-chat__pair">
-              <Bubble from="them" label={`${pad(index + 1)} · ${EXCUSES.sender}`}>
+              <Bubble from="them" label={EXCUSES.sender}>
                 <p className="social-bubble__excuse">{item.excuse}</p>
               </Bubble>
               <Bubble from="us" label={EXCUSES.replier}>

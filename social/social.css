@@ -2240,3 +2240,44 @@ img.social-box__mark {
 .social-chat__thread--compact .social-bubble__label {
   font-size: 1.3rem;
 }
+
+.social-chat__slide-title {
+  font-size: 4.4rem;
+  line-height: 1.1;
+  margin-bottom: 2.4rem;
+}
+
+.social-chat__thread--compact {
+  gap: 2rem;
+}
+
+/* Tighter compact thread so 3 pairs breathe */
+.social-chat__slide-title {
+  margin-top: 2.4rem;
+  margin-bottom: 2rem;
+  font-size: 4.2rem;
+}
+
+.social-chat__thread--compact {
+  gap: 1.5rem;
+}
+
+.social-chat__thread--compact .social-chat__pair {
+  gap: 0.5rem;
+}
+
+.social-chat__thread--compact .social-bubble__body {
+  padding: 1.2rem 2rem;
+}
+
+.social-chat__thread--compact .social-bubble__excuse {
+  font-size: 2.2rem;
+}
+
+.social-chat__thread--compact .social-bubble__reply {
+  font-size: 1.75rem;
+}
+
+.social-chat__thread--compact .social-bubble__label {
+  font-size: 1.2rem;
+}

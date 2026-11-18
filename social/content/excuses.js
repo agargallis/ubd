@@ -6,7 +6,7 @@ export const EXCUSES = {
     kicker: 'Τις έχεις πει κι εσύ;',
     titlePrefix: 'Οι 5',
     titleAccent: 'δικαιολογίες',
-    titleSuffix: 'που κρατάνε την επιχείρησή σου offline',
+    titleSuffix: 'που κρατάνε την επιχείρησή σου offline!',
   },
   sender: 'Εσύ',
   replier: 'UBD',
@@ -25,5 +25,8 @@ export const EXCUSES = {
   },
   placeholder: 'Γράψε ένα μήνυμα…',
   // Excuses per slide (keeps the carousel at 4 slides).
-  slides: [[0, 1, 2], [3, 4]],
+  slides: [
+    { titlePrefix: 'Τις ακούμε', titleAccent: 'συνέχεια…', items: [0, 1, 2] },
+    { titlePrefix: 'Και οι πιο', titleAccent: 'κλασικές!', items: [3, 4] },
+  ],
 };
