@@ -1070,9 +1070,6 @@ const ExcusesCover = ({ theme }) => {
           </span>
         ))}
       </div>
-      <p className="social-chat__hint">
-        Σύρε για τις απαντήσεις <ArrowRight className="h-7 w-7" />
-      </p>
     </NbFrame>
   );
 };
