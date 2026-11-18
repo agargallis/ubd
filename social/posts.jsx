@@ -14,9 +14,10 @@ import { BARBER_BOOKING } from './content/barber-booking';
 import { CLIENTS_EXCLUDE, CLIENT_STEPS, CLIENTS_COPY } from './content/clients-wall';
 import { NEW_BUSINESS } from './content/new-business';
 import { SHUTTERS } from './content/shutters';
+import { EXCUSES } from './content/excuses';
 import koulisBarbers from './assets/projects/koulis-barbers.jpg';
 import koulisCalendar from './assets/projects/koulis-calendar.jpg';
-import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow, Handshake, Wrench, Layers, Send, Smartphone, MapPin, Mail, QrCode, Store } from 'lucide-react';
+import { Bookmark, Type, ArrowRight, UtensilsCrossed, UserRound, Scissors, CalendarCheck, MessageCircle, PhoneOff, Clock, Languages, Palette, SlidersHorizontal, Zap, LayoutDashboard, AppWindow, Handshake, Wrench, Layers, Send, Smartphone, MapPin, Mail, QrCode, Store, ChevronLeft, Check } from 'lucide-react';
 
 // Official logo files dropped in social/assets/logos/<slug>.<ext> win over the bundled marks.
 const AVATAR_FILES = Object.fromEntries(
@@ -1006,6 +1007,119 @@ const ShuttersCta = ({ theme }) => {
   );
 };
 
+/* ---------- «Οι δικαιολογίες» — DM-style carousel ---------- */
+
+const EX_TOTAL = EXCUSES.items.length + 2;
+
+const ChatFrame = ({ theme, current, draft, children }) => (
+  <div className="social-frame social-chat">
+    <div className="social-frame__bg" aria-hidden="true">
+      <div className="lux-hero__grid" />
+      <div className="lux-aurora">
+        <span className="lux-aurora__band lux-aurora__band--one" />
+        <span className="lux-aurora__band lux-aurora__band--two" />
+        <span className="lux-aurora__band lux-aurora__band--three" />
+      </div>
+    </div>
+    <div className="lux-grain" aria-hidden="true" />
+
+    <header className="social-chat__top">
+      <ChevronLeft className="social-chat__back" />
+      <img src={LOGO_URL} alt="UBD" className="social-chat__logo" style={{ filter: LOGO_FILTER[theme] }} />
+      <span className="social-chat__status">
+        <span className="social-chat__dot" />
+        online
+      </span>
+      <span className="social-chat__dots">
+        {Array.from({ length: EX_TOTAL }, (_, i) => (
+          <span key={i} className={`social-chat__pip ${i + 1 === current ? 'is-active' : ''}`} />
+        ))}
+      </span>
+    </header>
+
+    <main className="social-chat__body">{children}</main>
+
+    <footer className="social-chat__input">
+      <span className={`social-chat__field ${draft ? 'is-filled' : ''}`}>{draft || EXCUSES.placeholder}</span>
+      <span className="social-chat__send">
+        <Send className="h-8 w-8" />
+      </span>
+    </footer>
+  </div>
+);
+
+const Bubble = ({ from, children, label }) => (
+  <div className={`social-bubble social-bubble--${from}`}>
+    <span className="social-bubble__label">{label}</span>
+    <div className="social-bubble__body">{children}</div>
+  </div>
+);
+
+const ExcusesCover = ({ theme }) => {
+  const c = EXCUSES.cover;
+  return (
+    <ChatFrame theme={theme} current={1}>
+      <span className="social-nbf__kicker mb-6">{c.kicker}</span>
+      <h1 className="social-chat__title font-bold text-white luxury-heading">
+        {c.titlePrefix} <span className="lux-gold-text">{c.titleAccent}</span> {c.titleSuffix}
+      </h1>
+      <div className="social-chat__pile w-full">
+        {EXCUSES.items.map((item, index) => (
+          <span key={item.excuse} className="social-chat__pile-item" style={{ '--i': index }}>
+            {item.excuse}
+          </span>
+        ))}
+      </div>
+      <p className="social-chat__hint">
+        Σύρε για τις απαντήσεις <ArrowRight className="h-7 w-7" />
+      </p>
+    </ChatFrame>
+  );
+};
+
+const ExcuseSlide = ({ theme, index }) => {
+  const item = EXCUSES.items[index];
+  return (
+    <ChatFrame theme={theme} current={index + 2}>
+      <span className="social-chat__num">
+        <span className="lux-gold-text">{String(index + 1).padStart(2, '0')}</span>
+        <span className="social-chat__num-total"> / {String(EXCUSES.items.length).padStart(2, '0')}</span>
+      </span>
+      <div className="social-chat__thread w-full">
+        <Bubble from="them" label={EXCUSES.sender}>
+          <p className="social-bubble__excuse">{item.excuse}</p>
+        </Bubble>
+        <Bubble from="us" label={EXCUSES.replier}>
+          <p className="social-bubble__reply">{item.reply}</p>
+          <span className="social-bubble__seen">
+            <Check className="h-6 w-6" />
+            <Check className="h-6 w-6 -ml-4" />
+          </span>
+        </Bubble>
+      </div>
+    </ChatFrame>
+  );
+};
+
+const ExcusesCta = ({ theme }) => {
+  const c = EXCUSES.cta;
+  return (
+    <ChatFrame theme={theme} current={EX_TOTAL} draft={c.draft}>
+      <h2 className="social-chat__title social-chat__title--cta font-bold text-white luxury-heading">
+        {c.titlePrefix}
+        <br />
+        <span className="lux-gold-text">{c.titleAccent}</span>
+      </h2>
+      <span className="lux-btn lux-btn--primary social-cta social-chat__cta">
+        <span className="lux-btn__glow" aria-hidden="true" />
+        <MessageCircle className="relative z-10 h-9 w-9" />
+        <span className="relative z-10">{c.button}</span>
+      </span>
+      <p className="social-chat__handle">@ubd.gr · ubd.gr</p>
+    </ChatFrame>
+  );
+};
+
 /* ---------- Instagram highlight covers (1080×1920) ---------- */
 
 const HighlightCover = ({ icon: Icon, id }) => (
@@ -1073,6 +1187,13 @@ export const POSTS = [
   { id: 'pinned-1-services-vol-1', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_1} volume={1} /> },
   { id: 'pinned-2-services-vol-2', theme: 'light', render: (theme) => <ServicesListPost theme={theme} items={SERVICES_VOL_2} volume={2} /> },
   { id: 'pinned-3-purpose', theme: 'light', render: (theme) => <PurposePost theme={theme} /> },
+  { id: 'excuses-01-cover', theme: 'light', render: (theme) => <ExcusesCover theme={theme} /> },
+  ...EXCUSES.items.map((_, index) => ({
+    id: `excuses-${String(index + 2).padStart(2, '0')}`,
+    theme: 'light',
+    render: (theme) => <ExcuseSlide theme={theme} index={index} />,
+  })),
+  { id: `excuses-${String(EXCUSES.items.length + 2).padStart(2, '0')}-cta`, theme: 'light', render: (theme) => <ExcusesCta theme={theme} /> },
   { id: 'shutters-01-hook', theme: 'dark', render: (theme) => <ShuttersHook theme={theme} /> },
   { id: 'shutters-02-era', theme: 'dark', render: (theme) => <ShuttersEra theme={theme} /> },
   { id: 'shutters-03-wom', theme: 'dark', render: (theme) => <ShuttersWom theme={theme} /> },

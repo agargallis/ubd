@@ -1933,3 +1933,260 @@ img.social-box__mark {
   border: none;
   background: linear-gradient(120deg, #f2cf7c, #53f2ff);
 }
+
+/* ---------- «Οι δικαιολογίες»: DM-style frame ---------- */
+.social-chat {
+  padding: 48px 72px 52px;
+}
+
+.social-chat__top {
+  display: flex;
+  align-items: center;
+  gap: 1.4rem;
+  padding: 1.2rem 1.6rem;
+  border-radius: 2rem;
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-surface-border);
+}
+
+.social-chat__back {
+  width: 3rem;
+  height: 3rem;
+  color: var(--lux-ink);
+  opacity: 0.6;
+}
+
+.social-chat__logo {
+  height: 72px;
+  width: auto;
+}
+
+.social-chat__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.5rem;
+  color: var(--lux-ink);
+  opacity: 0.75;
+}
+
+.social-chat__dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  background: var(--lux-cyan);
+}
+
+.social-chat__dots {
+  display: flex;
+  gap: 0.7rem;
+  margin-left: auto;
+}
+
+.social-chat__pip {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 9999px;
+  background: var(--lux-surface-border);
+}
+
+.social-chat__pip.is-active {
+  width: 3.2rem;
+  background: linear-gradient(90deg, #53f2ff, #f2cf7c);
+}
+
+.social-chat__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0.6rem;
+}
+
+.social-chat__input {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.social-chat__field {
+  flex: 1;
+  padding: 1.6rem 2.2rem;
+  border-radius: 9999px;
+  font-size: 1.8rem;
+  color: var(--lux-ink);
+  opacity: 0.55;
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-surface-border);
+}
+
+.social-chat__field.is-filled {
+  opacity: 1;
+  border-color: rgba(83, 242, 255, 0.6);
+}
+
+.social-chat__send {
+  display: inline-flex;
+  width: 6rem;
+  height: 6rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  color: #04131f;
+  background: linear-gradient(120deg, #f2cf7c, #53f2ff);
+}
+
+.social-chat__title {
+  font-size: 6rem;
+  line-height: 1.1;
+  margin-bottom: 3.6rem;
+}
+
+.social-chat__pile {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-bottom: 3rem;
+}
+
+.social-chat__pile-item {
+  align-self: flex-start;
+  margin-left: calc(var(--i) * 3.2rem);
+  padding: 1.2rem 2rem;
+  border-radius: 2rem 2rem 2rem 0.5rem;
+  font-size: 2rem;
+  color: var(--lux-ink);
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-surface-border);
+  text-decoration: line-through;
+  text-decoration-color: rgba(242, 207, 124, 0.9);
+  text-decoration-thickness: 3px;
+}
+
+.social-chat__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--lux-gold);
+}
+
+.social-chat__num {
+  margin-bottom: 3rem;
+  font-size: 7rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.social-chat__num-total {
+  font-size: 2.6rem;
+  color: var(--lux-ink);
+  opacity: 0.5;
+}
+
+.social-chat__thread {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.social-bubble {
+  display: flex;
+  max-width: 82%;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.social-bubble--us {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.social-bubble__label {
+  padding: 0 1rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  color: var(--lux-ink);
+  opacity: 0.6;
+}
+
+.social-bubble__body {
+  position: relative;
+  padding: 2.6rem 3rem;
+}
+
+.social-bubble--them .social-bubble__body {
+  border-radius: 3rem 3rem 3rem 0.8rem;
+  background: var(--lux-surface);
+  border: 1px solid var(--lux-surface-border);
+}
+
+.social-bubble--us .social-bubble__body {
+  border-radius: 3rem 3rem 0.8rem 3rem;
+  background: linear-gradient(135deg, #f2cf7c, #53f2ff 60%, #22d3ee);
+  color: #04131f;
+}
+
+.social-bubble__excuse {
+  font-size: 4rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--lux-ink);
+}
+
+.social-bubble__reply {
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.social-bubble__seen {
+  position: absolute;
+  right: 1.8rem;
+  bottom: 1rem;
+  display: inline-flex;
+  opacity: 0.6;
+}
+
+.social-chat__title--cta {
+  font-size: 6.4rem;
+}
+
+.social-chat__cta {
+  gap: 1.1rem;
+  margin-bottom: 2.4rem;
+}
+
+.social-chat__handle {
+  font-size: 1.8rem;
+  letter-spacing: 0.06em;
+  color: var(--lux-ink);
+  opacity: 0.75;
+}
+
+/* Cover fit: keep the message bar inside the canvas */
+.social-chat__title {
+  font-size: 5.2rem;
+  margin-bottom: 2.8rem;
+}
+
+.social-chat__pile {
+  gap: 0.9rem;
+  margin-bottom: 2.4rem;
+}
+
+.social-chat__pile-item {
+  padding: 1rem 1.8rem;
+  font-size: 1.8rem;
+}
+
+.social-chat__body {
+  padding: 1.6rem 0.6rem;
+}
+
+.social-chat__title--cta {
+  font-size: 6.4rem;
+}
